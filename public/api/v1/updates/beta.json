@@ -1,0 +1,17 @@
+{
+  "version": "v0.1.0-beta.2",
+  "release_date": "2025-09-17T15:47:00Z",
+  "release_notes": "Beta release: Fixed database migration race condition after self-update - ensures migrations complete before serving requests",
+  "assets": {
+    "linux_amd64": {
+      "url": "https://github.com/ontree-co/treeos/releases/download/v0.1.0-beta.2/treeos_0.1.0-beta.2_linux_x86_64.tar.gz",
+      "sha256": "7944f2bcc0666e666bf07c74e0ed5a7731f4afce151c7b98a2c172b88685803d",
+      "size": 21732666
+    },
+    "linux_arm64": {
+      "url": "https://github.com/ontree-co/treeos/releases/download/v0.1.0-beta.2/treeos_0.1.0-beta.2_linux_arm64.tar.gz",
+      "sha256": "40bacf04b8f2b71abed6da812acd56ef5645e1efb24ede306484f96be058d773",
+      "size": 19845081
+    }
+  }
+}

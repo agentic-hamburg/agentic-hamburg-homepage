@@ -1,0 +1,59 @@
+/* Import fonts used in the codebase */
+@import "@fontsource/ibm-plex-sans/400.css"; /* font-normal */
+@import "@fontsource/ibm-plex-sans/400-italic.css"; /* font-normal italic (restored) */
+@import "@fontsource/ibm-plex-sans/500.css"; /* font-medium (restored) */
+@import "@fontsource/ibm-plex-sans/600.css"; /* font-semibold */
+@import "@fontsource/ibm-plex-sans/700.css"; /* font-bold */
+@import "@fontsource/ibm-plex-mono/400.css"; /* font-normal */
+@import "@fontsource/ibm-plex-mono/400-italic.css"; /* font-normal italic (header) */
+@import "@fontsource/ibm-plex-mono/600.css"; /* font-semibold */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global font family for the entire app */
+html,
+body {
+  font-family:
+    "IBM Plex Sans",
+    system-ui,
+    -apple-system,
+    sans-serif;
+}
+
+/* Optional: Additional global typography settings */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Imprint page styles */
+.imprint-title {
+  letter-spacing: -0.025em;
+  padding-bottom: 0.5rem;
+  font-family: "IBM Plex Mono", monospace;
+}
+
+.imprint-link {
+  color: rgb(75, 85, 99);
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.imprint-link:hover {
+  color: rgb(17, 24, 39);
+}
+
+/* Blog post banner images */
+.blog-banner-wrapper {
+  width: 100%;
+  max-width: 800px;
+  margin-inline: auto;
+}
+
+.blog-banner-wrapper img {
+  width: 100%;
+  height: auto;
+  display: block;
+}

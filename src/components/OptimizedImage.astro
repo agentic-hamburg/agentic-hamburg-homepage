@@ -1,0 +1,59 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  src: string | ImageMetadata;
+  alt: string;
+  width?: number;
+  height?: number;
+}
+
+const { src, alt, width, height } = Astro.props;
+
+// If src is already an ImageMetadata object, use it directly
+let imageModule: ImageMetadata | null = null;
+
+if (typeof src === "string") {
+  // For MDX images, src will be a string path relative to the MDX file
+  // We need to resolve it to an actual image import
+  // Use glob to find all images in the blog content directory
+  const images = import.meta.glob<{ default: ImageMetadata }>(
+    "/src/data/blog/**/*.{jpeg,jpg,png,gif,webp,avif,svg}"
+  );
+
+  // Extract just the filename from the src path
+  const filename = src.split("/").pop();
+
+  // Find the matching image
+  for (const path in images) {
+    if (path.endsWith(filename || "")) {
+      const module = await images[path]();
+      imageModule = module.default;
+      break;
+    }
+  }
+} else {
+  // src is already an ImageMetadata object
+  imageModule = src;
+}
+---
+
+{
+  imageModule ? (
+    <Image
+      src={imageModule}
+      alt={alt}
+      widths={[400, 768]}
+      sizes="(max-width: 800px) calc(100vw - 2rem), 736px"
+      class="blog-banner-wrapper"
+      loading="lazy"
+    />
+  ) : (
+    <img
+      src={typeof src === "string" ? src : ""}
+      alt={alt}
+      width={width}
+      height={height}
+    />
+  )
+}

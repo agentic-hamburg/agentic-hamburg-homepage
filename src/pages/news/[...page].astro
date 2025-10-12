@@ -1,0 +1,204 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getCollection, render } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Newsletter from "@/components/blog/Newsletter.astro";
+import Pagination from "@/components/blog/Pagination.astro";
+import getSortedPosts from "@/utils/getSortedPosts";
+
+export const prerender = true;
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const posts = await getCollection("news", ({ data }) => !data.draft);
+  return paginate(getSortedPosts(posts), { pageSize: 10 });
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+
+// Pre-render all posts on current page
+const postsWithContent = await Promise.all(
+  page.data.map(async post => {
+    const { Content } = await render(post);
+    return { ...post, Content };
+  })
+);
+
+const dateFormat = new Intl.DateTimeFormat("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+---
+
+<Layout title="News | Agentic Hamburg">
+  <Header />
+
+  <main class="mx-auto max-w-4xl px-4 py-12">
+    <section id="posts-stream">
+      {
+        postsWithContent.map((post, index) => {
+          const PostContent = post.Content;
+          const isFirstPageFirstPost = page.currentPage === 1 && index === 0;
+
+          return (
+            <>
+              <article class="prose prose-lg max-w-none">
+                <h2 class="mb-2 text-2xl font-bold">
+                  <a
+                    href={`/news/${post.id}`}
+                    class="text-gray-900 no-underline hover:underline"
+                  >
+                    {post.data.title}
+                  </a>
+                </h2>
+                <div class="mb-4 text-sm text-gray-600">
+                  <span>By {post.data.author}</span>
+                  <span class="mx-2">•</span>
+                  <time datetime={post.data.pubDatetime.toISOString()}>
+                    {dateFormat.format(post.data.pubDatetime)}
+                  </time>
+                  {post.data.modDatetime && (
+                    <>
+                      <span class="mx-2">•</span>
+                      <span>
+                        Updated: {dateFormat.format(post.data.modDatetime)}
+                      </span>
+                    </>
+                  )}
+                </div>
+                {post.data.tags.length > 0 && (
+                  <div class="mb-4 flex flex-wrap gap-2">
+                    {post.data.tags.map(tag => (
+                      <span class="rounded-full bg-gray-100 px-3 py-1 text-xs text-gray-700">
+                        #{tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+                <div class="mt-4 prose-img:mx-auto">
+                  <PostContent />
+                </div>
+              </article>
+
+              {isFirstPageFirstPost && (
+                <>
+                  <hr class="my-12 border-gray-200" />
+                  <Newsletter />
+                </>
+              )}
+
+              {index < postsWithContent.length - 1 && (
+                <hr class="my-12 border-gray-200" />
+              )}
+            </>
+          );
+        })
+      }
+    </section>
+
+    {
+      page.lastPage > 1 && (
+        <div class="mt-12">
+          <Pagination page={page} />
+        </div>
+      )
+    }
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  import {
+    trackBlogListView,
+    trackBlogLinkClick,
+    trackPageView,
+  } from "@/utils/analytics";
+
+  // Track page view
+  document.addEventListener("DOMContentLoaded", () => {
+    // Get current page number from URL
+    const pathParts = window.location.pathname.split("/");
+    const pageNum = pathParts[pathParts.length - 1];
+    const currentPage =
+      pageNum && !isNaN(Number(pageNum)) ? Number(pageNum) : 1;
+
+    // Track blog list view
+    trackBlogListView(currentPage);
+    trackPageView(window.location.pathname, "News | Agentic Hamburg");
+
+    // Track clicks on blog post links
+    const postLinks = document.querySelectorAll("article h2 a");
+    postLinks.forEach(link => {
+      link.addEventListener("click", e => {
+        const target = e.currentTarget as HTMLAnchorElement;
+        const href = target.getAttribute("href");
+        const postId = href?.split("/").pop() || "";
+        const linkText = target.textContent || "";
+        trackBlogLinkClick(postId, linkText, "list");
+      });
+    });
+  });
+
+  // Handle Astro view transitions
+  document.addEventListener("astro:page-load", () => {
+    // Get current page number from URL
+    const pathParts = window.location.pathname.split("/");
+    const pageNum = pathParts[pathParts.length - 1];
+    const currentPage =
+      pageNum && !isNaN(Number(pageNum)) ? Number(pageNum) : 1;
+
+    // Track blog list view
+    trackBlogListView(currentPage);
+    trackPageView(window.location.pathname, "News | Agentic Hamburg");
+
+    // Re-attach click handlers
+    const postLinks = document.querySelectorAll("article h2 a");
+    postLinks.forEach(link => {
+      link.removeEventListener("click", handlePostClick);
+      link.addEventListener("click", handlePostClick);
+    });
+
+    function handlePostClick(e: Event) {
+      const target = e.currentTarget as HTMLAnchorElement;
+      const href = target.getAttribute("href");
+      const postId = href?.split("/").pop() || "";
+      const linkText = target.textContent || "";
+      trackBlogLinkClick(postId, linkText, "list");
+    }
+  });
+</script>
+
+<style>
+  /* Optimize readability */
+  .prose {
+    font-size: 1.125rem;
+    line-height: 1.75;
+  }
+
+  @media (max-width: 640px) {
+    .prose {
+      font-size: 1rem;
+      line-height: 1.65;
+    }
+  }
+
+  /* Style for post titles */
+  .prose h2 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Better spacing for long-form reading */
+  .prose p {
+    margin-bottom: 1.5rem;
+  }
+
+  /* Ensure images are responsive */
+  .prose img {
+    max-width: 100%;
+    height: auto;
+  }
+</style>

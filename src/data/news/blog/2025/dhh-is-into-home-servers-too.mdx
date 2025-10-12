@@ -1,0 +1,38 @@
+---
+author: Stefan Munz
+title: "DHH is into Home Servers, too"
+pubDatetime: 2025-09-11T07:00:00+02:00
+description: "Home servers are back and many cloud computing offerings are a complete rip-off: DHH discovered the same seismic changes this year, and he's a genius marketer."
+tags:
+  - Home Servers
+  - Cloud Computing
+  - DHH
+  - Technology Trends
+---
+
+import { Image } from "astro:assets";
+import bannerImg from "./dhh-is-into-home-servers-too-banner.jpg";
+
+<div class="blog-banner-wrapper">
+  <Image
+    src={bannerImg}
+    alt="DHH is into Home Servers, too"
+    widths={[400, 768]}
+    sizes="(max-width: 800px) calc(100vw - 2rem), 736px"
+    loading="lazy"
+  />
+</div>
+
+Home servers are back and many cloud computing offerings are a complete rip-off: DHH discovered the same seismic changes this year, and he's a genius marketer.
+
+David Heinemeier Hansson, or DHH in short, must live in the same social media bubble as I do, our most important topics overlap this year: home servers are on the cusp of becoming a serious alternative to cloud offerings and the cloud is turning into an expensive joke. Also, like me, he holds a serious grudge against Apple. #fuckapple
+
+It used to be that home servers were kind of a joke. That's because all home computers were a joke. Intel dominated the scene with no real competition. SSDs were tiny or nonexistent. This made computers and notebooks were power-hungry, hot, and slooow. The M-series CPUs from Apple are not even 5 years old. Also only in the last 5 years AMD got their shit together and started shipping serious consumer CPUs.
+
+So you could have a home server, but they were slow machines. Plus, your internet connection was also slow. Most people had asynchronous DSL connections with maybe okayish download speeds and totally underpowered upload speeds. Accessing your server from the outside was a pain in the ass. I remember running Plex on my home server 10 years ago and watching a video on my mobile phone, in bad resolution. I don't remember the bigger bottleneck: the slow CPU transcoding or my slow upload speed.
+
+Back to 2025, this has changed dramatically. Many homes upgraded to fiber connections, providing fast up- and download speeds. Well-manufactured mini PCs are available cheaply. While Mac minis can be a valid option for fast compute, AMD has gotten serious about this niche with their AI 395+ flagship CPU with integrated graphics and 128GB of shared RAM. These machines are not a joke anymore. If your use cases require a lot of RAM, like local LLM inference, going back to the edge aka your home becomes an interesting alternative.
+
+And then we haven't started talking about sovereignty and independence from unpredictable vendors or countries...
+
+I wholeheartedly recommend [DHH's full talk](https://www.youtube.com/watch?v=gcwzWzC7gUA_), it's a very energetic fuck you to the "modern stack" in general and Apple in particular.

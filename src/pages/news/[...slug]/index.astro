@@ -1,0 +1,261 @@
+---
+import { getCollection, type CollectionEntry, render } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import getSortedPosts from "@/utils/getSortedPosts";
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const posts = await getCollection("news", ({ data }) => !data.draft);
+  const sortedPosts = getSortedPosts(posts);
+
+  return sortedPosts.map(post => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+type Props = {
+  post: CollectionEntry<"news">;
+};
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const { title, author, description, pubDatetime, modDatetime, tags } =
+  post.data;
+
+const dateFormat = new Intl.DateTimeFormat("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+
+// Pass data for client-side tracking
+const postData = {
+  id: post.id,
+  title,
+  author,
+  tags,
+};
+---
+
+<Layout title={`${title} | Agentic Hamburg`}>
+  <Header />
+
+  <main class="mx-auto max-w-4xl px-4 py-12">
+    <article>
+      <header class="mb-8">
+        <h1 class="mb-4 text-4xl font-bold">{title}</h1>
+        <div class="flex flex-wrap gap-4 text-sm text-gray-600">
+          <span>By {author}</span>
+          <span>•</span>
+          <time datetime={pubDatetime.toISOString()}>
+            {dateFormat.format(pubDatetime)}
+          </time>
+          {
+            modDatetime && (
+              <>
+                <span>•</span>
+                <span>Updated: {dateFormat.format(modDatetime)}</span>
+              </>
+            )
+          }
+        </div>
+        {
+          tags.length > 0 && (
+            <div class="mt-4 flex flex-wrap gap-2">
+              {tags.map(tag => (
+                <span class="rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-700">
+                  #{tag}
+                </span>
+              ))}
+            </div>
+          )
+        }
+        <p class="mt-4 text-lg text-gray-600">{description}</p>
+      </header>
+
+      <div class="prose prose-lg max-w-none">
+        <Content />
+      </div>
+    </article>
+
+    <div class="mt-12 border-t pt-8">
+      <a href="/news" class="text-blue-600 hover:underline"
+        >← Back to all posts</a
+      >
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  import "@/scripts/blog-tracking";
+</script>
+
+<script define:vars={{ postData }} is:inline>
+  // We need to use window functions since we can't import with define:vars
+  const trackPageView =
+    window.trackPageView ||
+    ((path, title) => {
+      if (window.posthog) {
+        window.posthog.capture("$pageview", {
+          $current_url: path,
+          $title: title,
+        });
+      }
+    });
+
+  const trackBlogPostView =
+    window.trackBlogPostView ||
+    ((postId, title, author, tags) => {
+      if (window.posthog) {
+        window.posthog.capture("blog_post_view", {
+          post_id: postId,
+          title,
+          author,
+          tags,
+        });
+      }
+    });
+
+  const trackScrollDepth =
+    window.trackScrollDepth ||
+    ((depth, pagePath) => {
+      if (window.posthog) {
+        window.posthog.capture("scroll_depth", {
+          depth_percentage: depth,
+          page: pagePath,
+        });
+      }
+    });
+
+  // Track page view and blog post view
+  document.addEventListener("DOMContentLoaded", () => {
+    trackPageView(window.location.pathname, `${postData.title} | Agentic Hamburg`);
+    trackBlogPostView(
+      postData.id,
+      postData.title,
+      postData.author,
+      postData.tags
+    );
+
+    // Track scroll depth
+    let maxScrollDepth = 0;
+    let hasTracked25 = false;
+    let hasTracked50 = false;
+    let hasTracked75 = false;
+    let hasTracked100 = false;
+
+    const handleScroll = () => {
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      const scrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
+      const scrollPercentage = Math.round(
+        ((scrollTop + windowHeight) / documentHeight) * 100
+      );
+
+      if (scrollPercentage > maxScrollDepth) {
+        maxScrollDepth = scrollPercentage;
+
+        if (!hasTracked25 && maxScrollDepth >= 25) {
+          hasTracked25 = true;
+          trackScrollDepth(25, window.location.pathname);
+        }
+        if (!hasTracked50 && maxScrollDepth >= 50) {
+          hasTracked50 = true;
+          trackScrollDepth(50, window.location.pathname);
+        }
+        if (!hasTracked75 && maxScrollDepth >= 75) {
+          hasTracked75 = true;
+          trackScrollDepth(75, window.location.pathname);
+        }
+        if (!hasTracked100 && maxScrollDepth >= 95) {
+          // Use 95 instead of 100 for better accuracy
+          hasTracked100 = true;
+          trackScrollDepth(100, window.location.pathname);
+        }
+      }
+    };
+
+    // Throttle scroll event
+    let scrollTimer;
+    window.addEventListener("scroll", () => {
+      if (scrollTimer) return;
+      scrollTimer = setTimeout(() => {
+        handleScroll();
+        scrollTimer = undefined;
+      }, 100);
+    });
+
+    // Initial check
+    handleScroll();
+  });
+
+  // Handle Astro view transitions
+  document.addEventListener("astro:page-load", () => {
+    trackPageView(window.location.pathname, `${postData.title} | Agentic Hamburg`);
+    trackBlogPostView(
+      postData.id,
+      postData.title,
+      postData.author,
+      postData.tags
+    );
+
+    // Re-initialize scroll tracking
+    let maxScrollDepth = 0;
+    let hasTracked25 = false;
+    let hasTracked50 = false;
+    let hasTracked75 = false;
+    let hasTracked100 = false;
+
+    const handleScroll = () => {
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      const scrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
+      const scrollPercentage = Math.round(
+        ((scrollTop + windowHeight) / documentHeight) * 100
+      );
+
+      if (scrollPercentage > maxScrollDepth) {
+        maxScrollDepth = scrollPercentage;
+
+        if (!hasTracked25 && maxScrollDepth >= 25) {
+          hasTracked25 = true;
+          trackScrollDepth(25, window.location.pathname);
+        }
+        if (!hasTracked50 && maxScrollDepth >= 50) {
+          hasTracked50 = true;
+          trackScrollDepth(50, window.location.pathname);
+        }
+        if (!hasTracked75 && maxScrollDepth >= 75) {
+          hasTracked75 = true;
+          trackScrollDepth(75, window.location.pathname);
+        }
+        if (!hasTracked100 && maxScrollDepth >= 95) {
+          hasTracked100 = true;
+          trackScrollDepth(100, window.location.pathname);
+        }
+      }
+    };
+
+    // Throttle scroll event
+    let scrollTimer;
+    window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", () => {
+      if (scrollTimer) return;
+      scrollTimer = setTimeout(() => {
+        handleScroll();
+        scrollTimer = undefined;
+      }, 100);
+    });
+
+    // Initial check
+    handleScroll();
+  });
+</script>

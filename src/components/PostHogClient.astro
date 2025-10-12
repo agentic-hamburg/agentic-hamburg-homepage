@@ -1,0 +1,33 @@
+---
+// PostHog Client Component using npm package
+const posthogKey = import.meta.env.PUBLIC_POSTHOG_KEY;
+const posthogHost = import.meta.env.PUBLIC_POSTHOG_HOST || 'https://eu.i.posthog.com';
+
+// Only render if we have a key
+const shouldRender = !!posthogKey;
+---
+
+{shouldRender && (
+  <script is:inline define:vars={{ posthogKey, posthogHost }}>
+    (function(key, host) {
+      import('posthog-js').then((module) => {
+        const posthog = module.default;
+        // Initialize PostHog with npm package
+        posthog.init(key, {
+          api_host: host,
+          person_profiles: 'identified_only',
+          // Additional optimizations
+          autocapture: true,
+          capture_pageview: true,
+          capture_pageleave: true,
+          persistence: 'localStorage',
+          // Disable session recording for better performance unless needed
+          disable_session_recording: true,
+        });
+
+        // Make posthog available globally for existing utility functions
+        window.posthog = posthog;
+      });
+    })(posthogKey, posthogHost);
+  </script>
+)}

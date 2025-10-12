@@ -1,0 +1,13 @@
+dist
+.astro
+node_modules
+*.min.js
+*.min.css
+coverage
+.vercel
+.netlify
+reference
+build
+input
+src/components/PostHog.astro
+src/components/PostHogClient.astro

@@ -1,0 +1,31 @@
+{
+  "header": {
+    "home": "Home",
+    "news": "News",
+    "about": "About",
+    "imprint": "Imprint"
+  },
+  "hero": {
+    "title": "AI That's On Your Site",
+    "subtitle": "• Deploy apps with one click\n• Run AI models on your own hardware\n• Manage everything from your browser—no command line required\n• Optimized for Framework Desktop et al. (AMD Ryzen AI 395+)",
+    "cta": "Join the Waitlist"
+  },
+  "footer": {
+    "copyright": "",
+    "imprint": "Imprint"
+  },
+  "imprint": {
+    "title": "Imprint",
+    "content": "Legal information and imprint content goes here."
+  },
+  "about": {
+    "title": "About"
+  },
+  "signup": {
+    "title": "Join Our Newsletter",
+    "emailPlaceholder": "Enter your email",
+    "submitButton": "Subscribe",
+    "successMessage": "Thank you for subscribing!",
+    "errorMessage": "Something went wrong. Please try again."
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "version": "v0.0.0",
+  "release_date": "2025-01-01T00:00:00Z",
+  "release_notes": "No stable release available",
+  "assets": {
+    "linux_amd64": {
+      "url": "",
+      "sha256": "",
+      "size": 0
+    },
+    "linux_arm64": {
+      "url": "",
+      "sha256": "",
+      "size": 0
+    }
+  }
+}

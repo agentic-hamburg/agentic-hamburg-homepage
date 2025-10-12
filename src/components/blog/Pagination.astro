@@ -1,0 +1,46 @@
+---
+export interface Props {
+  page: {
+    currentPage: number;
+    lastPage: number;
+    url: {
+      prev?: string;
+      next?: string;
+    };
+  };
+}
+
+const { page } = Astro.props;
+---
+
+<nav class="mt-12 flex items-center justify-between">
+  <div>
+    {
+      page.url.prev && (
+        <a
+          href={page.url.prev}
+          class="rounded-lg bg-gray-100 px-4 py-2 text-gray-700 transition-colors hover:bg-gray-200"
+        >
+          ← Previous
+        </a>
+      )
+    }
+  </div>
+
+  <span class="text-gray-600">
+    Page {page.currentPage} of {page.lastPage}
+  </span>
+
+  <div>
+    {
+      page.url.next && (
+        <a
+          href={page.url.next}
+          class="rounded-lg bg-gray-100 px-4 py-2 text-gray-700 transition-colors hover:bg-gray-200"
+        >
+          Next →
+        </a>
+      )
+    }
+  </div>
+</nav>

@@ -1,0 +1,21 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Redirect /docs/ to /docs/intro
+[[redirects]]
+  from = "/docs/"
+  to = "/docs/intro"
+  status = 301
+  force = true
+
+# Proxy all docs pages to the documentation site
+[[redirects]]
+  from = "/docs/*"
+  to = "https://ontree-docs.netlify.app/docs/:splat"
+  status = 200
+  force = true
+  headers = {X-Frame-Options = "SAMEORIGIN"}
+
+# API routes are handled by Astro with Netlify adapter
+# No redirect needed - Astro's Netlify adapter handles this automatically

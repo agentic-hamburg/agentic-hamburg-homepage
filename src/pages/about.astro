@@ -1,0 +1,66 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { useTranslations } from "../lib/i18n/utils";
+
+const t = useTranslations();
+---
+
+<Layout title="About - Agentic Hamburg">
+  <Header />
+
+  <div class="about-container flex min-h-screen flex-col">
+    <main class="mx-auto max-w-4xl flex-grow px-4 py-12">
+      <h1
+        class="about-title md:leading-14 text-3xl font-extrabold leading-9 tracking-tight text-gray-900 sm:text-4xl sm:leading-10 md:text-6xl"
+      >
+        {t.about.title}
+      </h1>
+
+      <div class="mt-8 prose prose-lg max-w-none">
+        <h2>About Agentic Hamburg</h2>
+        <p>
+          Welcome to Agentic Hamburg - a community and initiative focused on
+          exploring and advancing the field of agentic AI systems in Hamburg,
+          Germany.
+        </p>
+
+        <h3>Our Mission</h3>
+        <p>
+          We bring together researchers, developers, entrepreneurs, and
+          enthusiasts who are interested in the development and application of
+          autonomous AI agents. Our goal is to foster collaboration, share
+          knowledge, and drive innovation in this rapidly evolving field.
+        </p>
+
+        <h3>What We Do</h3>
+        <p>
+          Agentic Hamburg organizes meetups, workshops, and discussions around
+          topics such as:
+        </p>
+        <ul>
+          <li>Autonomous AI agent architectures and frameworks</li>
+          <li>Multi-agent systems and coordination</li>
+          <li>AI agent safety and alignment</li>
+          <li>Practical applications in business and research</li>
+          <li>Emerging tools and technologies in the agentic AI space</li>
+        </ul>
+
+        <h3>Join Us</h3>
+        <p>
+          Whether you're an experienced AI researcher or just getting started
+          with agentic systems, you're welcome to join our community. Stay
+          updated with our latest news and events by following our updates.
+        </p>
+
+        <p class="mt-8 text-gray-600">
+          For inquiries and more information, please check our news section or
+          reach out through our official channels.
+        </p>
+      </div>
+    </main>
+  </div>
+
+  <Footer />
+</Layout>

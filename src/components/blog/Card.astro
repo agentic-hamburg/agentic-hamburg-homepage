@@ -1,0 +1,41 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+export interface Props {
+  post: CollectionEntry<"news">;
+}
+
+const { post } = Astro.props;
+const { title, description, pubDatetime, tags } = post.data;
+
+const dateFormat = new Intl.DateTimeFormat("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+
+const href = `/news/${post.id}`;
+---
+
+<article
+  class="rounded-lg border border-gray-200 p-6 transition-shadow hover:shadow-lg"
+>
+  <a href={href} class="block">
+    <h2 class="mb-2 text-2xl font-bold hover:text-blue-600">{title}</h2>
+    <p class="mb-4 text-gray-600">{description}</p>
+    <div class="flex items-center justify-between">
+      <time datetime={pubDatetime.toISOString()} class="text-sm text-gray-500">
+        {dateFormat.format(pubDatetime)}
+      </time>
+      {
+        tags.length > 0 && (
+          <div class="flex gap-2">
+            {tags.slice(0, 2).map((tag: string) => (
+              <span class="text-xs text-gray-500">#{tag}</span>
+            ))}
+          </div>
+        )
+      }
+    </div>
+  </a>
+</article>

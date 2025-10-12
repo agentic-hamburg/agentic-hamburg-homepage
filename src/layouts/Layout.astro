@@ -1,0 +1,37 @@
+---
+import PostHogClient from "../components/PostHogClient.astro";
+
+// Import only fonts actually used in the codebase - Latin subset only for optimal performance
+import "@fontsource/ibm-plex-sans/latin-500.css"; /* font-medium (form labels/buttons) */
+import "@fontsource/ibm-plex-sans/latin-600.css"; /* font-semibold */
+import "@fontsource/ibm-plex-sans/latin-700.css"; /* font-bold (headings) */
+import "@fontsource/ibm-plex-mono/latin-600-italic.css"; /* font-mono font-semibold italic (header/footer) */
+
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Agentic Hamburg - Exploring Agentic AI Systems" } =
+  Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <PostHogClient />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  @import "../styles/global.css";
+</style>

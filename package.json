@@ -1,0 +1,44 @@
+{
+  "name": "astro-agentic-hamburg",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "typecheck": "astro check",
+    "typecheck:watch": "astro check --watch",
+    "ci": "npm run typecheck && npm run lint && npm run format:check"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^4.3.6",
+    "@astrojs/netlify": "^6.5.9",
+    "@astrojs/tailwind": "^6.0.2",
+    "@fontsource/ibm-plex-mono": "^5.2.7",
+    "@fontsource/ibm-plex-sans": "^5.2.8",
+    "@tailwindcss/typography": "^0.5.18",
+    "astro": "^5.11.1",
+    "posthog-js": "^1.268.4",
+    "tailwindcss": "^3.4.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@typescript-eslint/parser": "^8.34.0",
+    "eslint": "^9.28.0",
+    "eslint-plugin-astro": "^1.3.1",
+    "globals": "^16.2.0",
+    "prettier": "^3.5.3",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-tailwindcss": "^0.6.12",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.34.0"
+  }
+}

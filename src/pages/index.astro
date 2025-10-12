@@ -1,0 +1,144 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import Footer from "../components/Footer.astro";
+import Newsletter from "../components/Newsletter.astro";
+import { useTranslations } from "../lib/i18n/utils";
+
+const t = useTranslations();
+---
+
+<Layout title="Agentic Hamburg - Exploring Agentic AI Systems">
+  <Header />
+
+  <main>
+    <section class="px-4 py-12 sm:px-6 lg:px-8">
+      <Hero
+        title={t.hero.title}
+        description={t.hero.subtitle}
+        buttonText={t.hero.cta}
+      />
+    </section>
+
+    <section
+      id="signup-section"
+      class="mx-auto max-w-2xl px-4 py-12 sm:px-6 lg:px-8"
+    >
+      <Newsletter />
+    </section>
+
+    <!-- Feature Details Section -->
+    <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+      <div class="space-y-24">
+        <!-- Feature 1: One-Click Deployment -->
+        <div class="grid gap-8 md:grid-cols-2 md:items-center">
+          <div class="order-2 md:order-1">
+            <h2 class="mb-4 text-3xl font-bold">Deploy apps with one click</h2>
+            <p class="mb-4 text-lg text-gray-600">
+              Launch production-ready applications from our curated template
+              library. Whether you're deploying Open WebUI, LibreChat, Readeck,
+              or custom Docker Compose stacks, TreeOS handles all the complexity
+              for you.
+            </p>
+            <p class="text-gray-600">
+              Simply paste your compose file, configure environment variables,
+              and hit deploy. TreeOS scaffolds your project, manages container
+              lifecycles, and keeps everything in sync automatically. All
+              conveniently controlled from a web interface.
+            </p>
+          </div>
+          <div
+            class="order-1 flex items-center justify-center rounded-lg bg-gray-200 p-8 md:order-2"
+            style="min-height: 300px;"
+          >
+            <span class="text-gray-400">Image placeholder</span>
+          </div>
+        </div>
+
+        <!-- Feature 2: Local AI Models -->
+        <div class="grid gap-8 md:grid-cols-2 md:items-center">
+          <div
+            class="flex items-center justify-center rounded-lg bg-gray-200 p-8"
+            style="min-height: 300px;"
+          >
+            <span class="text-gray-400">Image placeholder</span>
+          </div>
+          <div>
+            <h2 class="mb-4 text-3xl font-bold">
+              Run AI models on your own hardware
+            </h2>
+            <p class="mb-4 text-lg text-gray-600">
+              Keep your data private and stop being tracked by dubious companies
+              by running AI models locally. TreeOS treats models as first-class
+              citizens—browse our curated catalog of chat, code, and vision
+              models, then pull them directly to your hardware.
+            </p>
+            <p class="text-gray-600">
+              Manage model storage, integrate them seamlessly with your
+              applications, and run inference without sending your data to third
+              parties. Your AI stays on your infrastructure, under your control,
+              protecting both your privacy and your intellectual property.
+            </p>
+          </div>
+        </div>
+
+        <!-- Feature 3: Browser-Based Management -->
+        <div class="grid gap-8 md:grid-cols-2 md:items-center">
+          <div class="order-2 md:order-1">
+            <h2 class="mb-4 text-3xl font-bold">
+              Manage everything from your browser—no command line required
+            </h2>
+            <p class="mb-4 text-lg text-gray-600">
+              Access a polished web dashboard that puts complete control at your
+              fingertips. Edit Docker Compose files with syntax highlighting,
+              stream container logs in real-time, and monitor system vitals—all
+              from your browser.
+            </p>
+            <p class="text-gray-600">
+              Track CPU, GPU, memory, disk, and network metrics with live graphs
+              and historical sparklines. Start, stop, and restart services with
+              one click. Everything you need to operate confidently, without
+              touching the terminal.
+            </p>
+          </div>
+          <div
+            class="order-1 flex items-center justify-center rounded-lg bg-gray-200 p-8 md:order-2"
+            style="min-height: 300px;"
+          >
+            <span class="text-gray-400">Image placeholder</span>
+          </div>
+        </div>
+
+        <!-- Feature 4: Framework Desktop Optimization -->
+        <div class="grid gap-8 md:grid-cols-2 md:items-center">
+          <div
+            class="flex items-center justify-center rounded-lg bg-gray-200 p-8"
+            style="min-height: 300px;"
+          >
+            <span class="text-gray-400">Image placeholder</span>
+          </div>
+          <div>
+            <h2 class="mb-4 text-3xl font-bold">
+              Optimized for Framework Desktop et al. (AMD Ryzen AI 395+)
+            </h2>
+            <p class="mb-4 text-lg text-gray-600">
+              TreeOS is engineered to leverage modern AMD APUs with up to 128 GB
+              of unified RAM. Run local AI inference alongside your
+              containerized applications on the same machine, without
+              compromise.
+            </p>
+            <p class="text-gray-600">
+              The Framework Desktop and similar systems provide the perfect
+              foundation: powerful processors, abundant memory, and upgradeable
+              components. TreeOS maximizes this hardware, letting you self-host
+              both your apps and AI models gracefully.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

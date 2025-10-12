@@ -1,0 +1,79 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { useTranslations } from "../lib/i18n/utils";
+
+const t = useTranslations();
+---
+
+<Layout title="Imprint - OnTree">
+  <Header />
+
+  <div class="imprint-container flex min-h-screen flex-col">
+    <main class="mx-auto max-w-4xl flex-grow px-4 py-12">
+      <h1
+        class="imprint-title md:leading-14 text-3xl font-extrabold leading-9 tracking-tight text-gray-900 sm:text-4xl sm:leading-10 md:text-6xl"
+      >
+        {t.imprint.title}
+      </h1>
+
+      <!-- Company Information -->
+      <div class="mt-6">
+        <h3 class="font-regular pb-2 pt-4 text-xl leading-8 tracking-tight">
+          All information required by § 5 TMG (German Tele-Media Act)
+        </h3>
+
+        <p class="company-info">
+          Gannet Development GmbH<br />
+          Represented by: Stefan Munz<br />
+          Telemannstrasse 21<br />
+          20255 Hamburg<br />
+          Germany
+        </p>
+
+        <p class="mt-4">Email: mail [at] gannet [dot] dev</p>
+        <p>
+          Website: <a
+            href="https://www.gannet.dev"
+            class="imprint-link"
+            target="_blank"
+            rel="noopener noreferrer">www.gannet.dev</a
+          >
+        </p>
+      </div>
+
+      <!-- Registration Information -->
+      <h3 class="section-heading pb-2 pt-4 text-xl leading-8 tracking-tight">
+        Registereintrag
+      </h3>
+      <p>Registergericht: Amtsgericht Hamburg</p>
+      <p>Registernummer: HRB 191805</p>
+
+      <!-- Responsibility Information -->
+      <h3 class="section-heading pb-2 pt-4 text-xl leading-8 tracking-tight">
+        Responsible for content according to § 55 Abs. 2 RStV
+      </h3>
+      <p>
+        Stefan Munz<br />
+        Gannet Development GmbH<br />
+        Telemannstrasse 21<br />
+        20255 Hamburg
+      </p>
+
+      <!-- Liability Notice -->
+      <h3 class="section-heading pb-2 pt-4 text-xl leading-8 tracking-tight">
+        Liability Notice
+      </h3>
+      <p>
+        Despite careful content control, we don't take any liability for the
+        content of external links. The content of the linked pages is the sole
+        responsibility of their operators. If you find a link on this website
+        that links to websites that violate applicable law, please let us know
+        so that we can remove the link.
+      </p>
+    </main>
+  </div>
+
+  <Footer />
+</Layout>

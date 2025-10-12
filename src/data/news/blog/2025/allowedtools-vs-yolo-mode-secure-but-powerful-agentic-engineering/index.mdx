@@ -1,0 +1,38 @@
+---
+author: onTree Team
+pubDatetime: 2025-09-24T14:17:22+02:00
+title: "AllowedTools vs YOLO mode: Secure But Powerful Agentic Engineering"
+postSlug: allowedtools-vs-yolo-mode-secure-but-powerful-agentic-engineering
+featured: false
+draft: false
+description: "![AllowedTools vs YOLO mode: Secure But Powerful Agentic Engineering](./banner.png)"
+tags:
+  - Claude Code
+  - Security
+  - YOLO Mode
+  - Allowed Tools
+  - Agentic Engineering
+---
+
+import { Image } from "astro:assets";
+import bannerImg from "./banner.png";
+
+<div class="blog-banner-wrapper">
+  <Image
+    src={bannerImg}
+    alt="AllowedTools vs YOLO mode: Secure But Powerful Agentic Engineering"
+    widths={[400, 768]}
+    sizes="(max-width: 800px) calc(100vw - 2rem), 736px"
+    loading="lazy"
+  />
+</div>
+
+Recently, I've defaulted to using my coding agents in YOLO mode. I found a better way to balance security and ease of use.
+
+Once you get the hang of agentic coding, it can feel like babysitting. Can I read this file? Can I search these directories? Everything has to be allowed individually by default. The easiest fix is to switch to YOLO mode. Instead of starting claude in the terminal, start claude --dangerously-skip-permissions. This allows your agent to do everything: read all the files, delete all the files, commit to every repository on your hard disk. Even connecting to production servers and databases using your SSH keys. YOLO mode is the right name, real accidents happened.
+
+But YOLO mode has limitations too. I started to install Claude on my managed servers. It's helpful for boring server administration tasks. Unfortunately, Claude doesn't work in YOLO mode when you're the root user, which is typical for cloud machines. I'm not sure if I agree with Anthropic's limitation, since this can be less dangerous than running Claude on my private machine with all my private data in YOLO mode.
+
+Fortunately, better options are emerging. One I like is [allowed tools](https://docs.claude.com/en/docs/claude-code/sdk/custom-tools#configuring-allowed-tools). This gives the agent fine-grained controls on what he can do on his own and what not. Together with the [slash commands](https://ontree.co/blog/2025/custom-slash-commands-a-field-trip-with-claude-code/), I wrote about last week, this is a powerful combination. Similar to the [dotfiles](https://wiki.archlinux.org/title/Dotfiles) that many developers use for a familiar environment on new machines, I can imagine checking out a claude-tools repository with custom slash commands for repeating tasks. And also including allowedTools for uninterrupted execution.
+
+Disclaimer: I haven't built this yet. Hopefully, I'll have a demo for you in the next weeks!
