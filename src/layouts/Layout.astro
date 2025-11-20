@@ -12,8 +12,10 @@ export interface Props {
   description?: string;
 }
 
-const { title, description = "Agentic Hamburg - Exploring Agentic AI Systems" } =
-  Astro.props;
+const {
+  title = "Agentic Hamburg – The Coding Meetup for Hamburg",
+  description = "Agentic Hamburg – The Coding Meetup for Hamburg",
+} = Astro.props;
 ---
 
 <!doctype html>

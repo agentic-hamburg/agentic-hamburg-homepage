@@ -27,7 +27,7 @@ const {
       name="email"
       placeholder="Enter your email address"
       required
-      class="flex-1 rounded-md border border-gray-400 bg-[var(--color-shell-gray-light)] px-4 py-2 text-gray-800 placeholder-gray-500 focus:border-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-700"
+      class="flex-1 border border-black bg-[var(--color-shell-gray-light)] px-4 py-2 text-gray-800 placeholder-gray-500 focus:border-black focus:outline-none focus:ring-2 focus:ring-black"
       aria-label="Email address"
     />
 
@@ -37,26 +37,10 @@ const {
       aria-label="Subscribe to newsletter"
     >
       <span class="button-text">Keep me informed</span>
-      <span class="button-loading hidden">
-        <svg
-          class="h-5 w-5 animate-spin text-black"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-        >
-          <circle
-            class="opacity-25"
-            cx="12"
-            cy="12"
-            r="10"
-            stroke="currentColor"
-            stroke-width="4"></circle>
-          <path
-            class="opacity-75"
-            fill="currentColor"
-            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-          ></path>
-        </svg>
+      <span class="button-loading" aria-hidden="true">
+        <span class="text-sm font-semibold tracking-wide text-black">
+          Subscribing…
+        </span>
       </span>
     </button>
   </form>
@@ -92,6 +76,7 @@ const {
     isolation: isolate;
     transition: color 0.2s ease;
     border-radius: 0;
+    overflow: hidden;
   }
 
   .newsletter-button--medium {
@@ -103,6 +88,10 @@ const {
   .newsletter-button > span {
     position: relative;
     z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
   }
 
   .newsletter-button::before,
@@ -134,25 +123,38 @@ const {
 
   .button-loading {
     position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    color: #111;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+  }
+
+  .form-loading {
+    pointer-events: none;
   }
 
   .form-loading .button-text {
-    visibility: hidden;
+    opacity: 0;
   }
 
   .form-loading .button-loading {
-    display: block !important;
+    opacity: 1;
+  }
+  #form-message {
+    font-size: 0.95rem;
   }
 
   .message-success {
-    color: rgb(34, 197, 94);
+    color: rgb(21, 128, 61);
   }
 
   .message-error {
-    color: rgb(239, 68, 68);
+    color: rgb(185, 28, 28);
   }
 </style>
 
