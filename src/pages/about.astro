@@ -1,10 +1,38 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { useTranslations } from "../lib/i18n/utils";
+import stefanImg from "../assets/founder-stefan.svg";
+import sebastianStrategyImg from "../assets/founder-sebastian-strategy.svg";
+import sebastianSystemsImg from "../assets/founder-sebastian-systems.svg";
 
 const t = useTranslations();
+
+const founders = [
+  {
+    name: "Stefan",
+    role: "Community host & partnerships",
+    bio:
+      "Stefan keeps the lights on for every meetup, curates incoming project proposals, and makes sure Hamburg's broader tech scene knows what the agentic crowd is building.",
+    image: stefanImg,
+  },
+  {
+    name: "Sebastian",
+    role: "Strategy & research programming",
+    bio:
+      "Sebastian designs the learning arcs for our sprints, from evaluation study groups to governance roundtables, so we move from hype to repeatable practice.",
+    image: sebastianStrategyImg,
+  },
+  {
+    name: "Sebastian",
+    role: "Systems & operations",
+    bio:
+      "Sebastian wrangles the infrastructure—self-hosted models, shared observability stacks, and contributor onboarding—so every experiment has a safe runway.",
+    image: sebastianSystemsImg,
+  },
+];
 ---
 
 <Layout title="About - Agentic Hamburg">
@@ -58,6 +86,38 @@ const t = useTranslations();
           For inquiries and more information, please check our news section or
           reach out through our official channels.
         </p>
+
+        <section class="mt-16">
+          <h3>Meet the founders</h3>
+          <p class="text-gray-600">
+            Agentic Hamburg was started by three friends who wanted a local lab
+            for trustworthy agent workflows. Here's who runs what.
+          </p>
+
+          <div class="mt-10 grid gap-8 md:grid-cols-3">
+            {founders.map(founder => (
+              <article class="text-center">
+                <div class="mx-auto h-48 w-48 overflow-hidden rounded-3xl shadow-lg">
+                  <Image
+                    src={founder.image}
+                    alt={`${founder.name} founder portrait`}
+                    width={320}
+                    height={320}
+                    loading="lazy"
+                    class="h-full w-full object-cover"
+                  />
+                </div>
+                <h4 class="mt-6 text-xl font-semibold text-gray-900">
+                  {founder.name}
+                </h4>
+                <p class="text-sm uppercase tracking-widest text-gray-500">
+                  {founder.role}
+                </p>
+                <p class="mt-4 text-gray-600">{founder.bio}</p>
+              </article>
+            ))}
+          </div>
+        </section>
       </div>
     </main>
   </div>

@@ -2,10 +2,10 @@
 import PostHogClient from "../components/PostHogClient.astro";
 
 // Import only fonts actually used in the codebase - Latin subset only for optimal performance
-import "@fontsource/ibm-plex-sans/latin-500.css"; /* font-medium (form labels/buttons) */
-import "@fontsource/ibm-plex-sans/latin-600.css"; /* font-semibold */
-import "@fontsource/ibm-plex-sans/latin-700.css"; /* font-bold (headings) */
-import "@fontsource/ibm-plex-mono/latin-600-italic.css"; /* font-mono font-semibold italic (header/footer) */
+import "@fontsource/quicksand/latin-500.css"; /* font-medium (form labels/buttons) */
+import "@fontsource/quicksand/latin-600.css"; /* font-semibold */
+import "@fontsource/quicksand/latin-700.css"; /* font-bold (headings) */
+// Note: Quicksand doesn't have separate italic variants, italics are applied via CSS font-style
 
 export interface Props {
   title: string;

@@ -1,17 +1,26 @@
 ---
+import { Image } from "astro:assets";
+import headerLogo from "../assets/header.png";
 import { useTranslations } from "../lib/i18n/utils";
 
 const t = useTranslations();
 ---
 
-<footer class="w-full border-t border-gray-200 bg-gray-50">
-  <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+<footer class="site-footer w-full border-t border-black">
+  <div class="mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
     <div class="flex flex-col items-center justify-center">
-      <h2 class="font-mono text-lg font-semibold italic text-gray-900">
-        Agentic.hamburg
-      </h2>
+      <div class="flex items-center justify-center">
+        <Image
+          src={headerLogo}
+          alt="Agentic Hamburg"
+          width={220}
+          height={44}
+          class="h-11 w-auto"
+          loading="lazy"
+        />
+      </div>
       <p class="mt-2 text-center font-mono text-sm text-gray-500">
-        Built with ❤️ in Hamburg, Germany, Europe 🇪🇺 •
+        Built with ❤️ in Hamburg •
         <a href="/imprint" class="link">{t.footer.imprint}</a>
       </p>
     </div>
@@ -19,12 +28,8 @@ const t = useTranslations();
 </footer>
 
 <style>
-  h2 {
-    font-family: "IBM Plex Mono", monospace;
-  }
-
   p {
-    font-family: "IBM Plex Mono", monospace;
+    font-family: "Quicksand", monospace;
   }
 
   .link {

@@ -1,22 +1,27 @@
 /* Import fonts used in the codebase */
-@import "@fontsource/ibm-plex-sans/400.css"; /* font-normal */
-@import "@fontsource/ibm-plex-sans/400-italic.css"; /* font-normal italic (restored) */
-@import "@fontsource/ibm-plex-sans/500.css"; /* font-medium (restored) */
-@import "@fontsource/ibm-plex-sans/600.css"; /* font-semibold */
-@import "@fontsource/ibm-plex-sans/700.css"; /* font-bold */
-@import "@fontsource/ibm-plex-mono/400.css"; /* font-normal */
-@import "@fontsource/ibm-plex-mono/400-italic.css"; /* font-normal italic (header) */
-@import "@fontsource/ibm-plex-mono/600.css"; /* font-semibold */
+@import "@fontsource/quicksand/400.css"; /* font-normal */
+@import "@fontsource/quicksand/500.css"; /* font-medium */
+@import "@fontsource/quicksand/600.css"; /* font-semibold */
+@import "@fontsource/quicksand/700.css"; /* font-bold */
+/* Note: Quicksand doesn't have separate italic variants, italics are applied via CSS font-style */
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --color-shell-base: #f1d5c8;
+  --color-shell-soft: #f7f2ed;
+  --color-shell-soft-light: #fdfaf6;
+  --color-shell-rose: #deb8ba;
+  --color-shell-gray: #dddddd;
+}
+
 /* Global font family for the entire app */
 html,
 body {
   font-family:
-    "IBM Plex Sans",
+    "Quicksand",
     system-ui,
     -apple-system,
     sans-serif;
@@ -26,13 +31,23 @@ body {
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-shell-gray);
+}
+
+.site-header,
+.site-footer {
+  background-color: var(--color-shell-gray);
+}
+
+.site-header img {
+  background-color: transparent;
 }
 
 /* Imprint page styles */
 .imprint-title {
   letter-spacing: -0.025em;
   padding-bottom: 0.5rem;
-  font-family: "IBM Plex Mono", monospace;
+  font-family: "Quicksand", monospace;
 }
 
 .imprint-link {

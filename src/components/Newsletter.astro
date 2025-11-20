@@ -5,8 +5,8 @@ export interface Props {
 }
 
 const {
-  title = "Join the Waitlist",
-  description = "Get notified when TreeOS launches. No spam, unsubscribe at any time.",
+  title = "Join the Newsletter",
+  description = "Get notified about new events from us. No spam, unsubscribe at any time. One mail per month.",
 } = Astro.props;
 ---
 
@@ -29,26 +29,12 @@ const {
       aria-label="Email address"
     />
 
-    <div class="flex items-start gap-2">
-      <input
-        type="checkbox"
-        id="newsletter-checkbox"
-        name="subscribe_newsletter"
-        value="true"
-        checked
-        class="mt-1 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-2 focus:ring-indigo-500"
-      />
-      <label for="newsletter-checkbox" class="text-sm text-gray-700">
-        Also subscribe to the weekly newsletter
-      </label>
-    </div>
-
     <button
       type="submit"
       class="relative rounded-md bg-indigo-600 px-6 py-2 font-medium text-white transition-opacity hover:bg-indigo-700"
       aria-label="Subscribe to newsletter"
     >
-      <span class="button-text">Join Waitlist</span>
+      <span class="button-text">Keep me informed</span>
       <span class="button-loading hidden">
         <svg
           class="h-5 w-5 animate-spin text-white"
