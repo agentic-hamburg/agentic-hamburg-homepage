@@ -15,6 +15,7 @@
   --color-shell-soft-light: #fdfaf6;
   --color-shell-rose: #deb8ba;
   --color-shell-gray: #dddddd;
+  --color-shell-gray-light: #f6f6f6;
 }
 
 /* Global font family for the entire app */
@@ -41,6 +42,14 @@ body {
 
 .site-header img {
   background-color: transparent;
+}
+
+.display-title {
+  font-size: clamp(2.5rem, 5vw, 3.75rem);
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: #111827;
 }
 
 /* Imprint page styles */
@@ -71,4 +80,13 @@ body {
   width: 100%;
   height: auto;
   display: block;
+}
+
+.prose :where(h2):not(:where([class~="not-prose"] *)) {
+  font-size: clamp(1.25rem, 2vw, 1.75rem) !important;
+  line-height: 1.3 !important;
+  color: #111827 !important;
+  font-weight: 600 !important;
+  margin-top: 2.5rem !important;
+  margin-bottom: 1rem !important;
 }

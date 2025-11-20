@@ -1,0 +1,80 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout title="Coding Meetup | Agentic Hamburg">
+  <Header />
+
+  <main class="px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl space-y-12">
+      <div class="space-y-4 text-center">
+        <p class="text-base font-semibold uppercase tracking-[0.2em] text-gray-500">
+          Coding Meetup
+        </p>
+        <h1 class="display-title">
+          How a Coding Meetup Looks and Feels
+        </h1>
+        <p class="text-lg text-gray-700">
+          Three quick snapshots: the room, the speakers, and the community rituals
+          we run in Hamburg. Swap in real photos later—these placeholders show the
+          layout.
+        </p>
+      </div>
+
+      <section class="space-y-10">
+        {[
+          {
+            heading: "Inside the meetup room",
+            body:
+              "Picture the tables, the dual monitors, and the scribbles on paper. This block will host a short narration about how the coding night is staged.",
+            imageRight: false,
+          },
+          {
+            heading: "Speakers and lightning talks",
+            body:
+              "This placeholder text covers how we curate lightning talks, who takes the mic, and how Q&A sessions keep everyone involved.",
+            imageRight: true,
+          },
+          {
+            heading: "Community rituals",
+            body:
+              "Here we talk about pairings, shared prompts, or post-event recaps—whatever makes the meetup feel uniquely Hamburg.",
+            imageRight: false,
+          },
+        ].map(section => (
+          <article
+            class="flex flex-col gap-6 p-6 sm:p-8 md:flex-row"
+          >
+            <div
+              class={`flex-1 border border-black bg-[var(--color-shell-rose)] ${
+                section.imageRight ? "order-2 md:order-2" : "order-1 md:order-1"
+              }`}
+            >
+              <div
+                class="flex h-[360px] items-center justify-center text-lg font-semibold text-gray-700"
+                style="aspect-ratio: 2 / 3;"
+              >
+                <!-- Image -->
+              </div>
+            </div>
+            <div
+              class={`flex-1 space-y-3 text-gray-800 ${
+                section.imageRight ? "order-1 md:order-1" : "order-2 md:order-2"
+              }`}
+            >
+              <h2 class="text-2xl font-bold text-gray-900">{section.heading}</h2>
+              <p class="text-lg">{section.body}</p>
+              <p class="text-sm uppercase tracking-[0.2em] text-gray-600">
+                Real photos coming soon
+              </p>
+            </div>
+          </article>
+        ))}
+      </section>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

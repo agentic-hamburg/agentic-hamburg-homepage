@@ -5,13 +5,15 @@ export interface Props {
 }
 
 const {
-  title = "Join the Newsletter",
+  title = "Join the Community",
   description = "Get notified about new events from us. No spam, unsubscribe at any time. One mail per month.",
 } = Astro.props;
 ---
 
-<div class="newsletter-form rounded-lg bg-white p-6 shadow-md">
-  <h2 class="mb-4 text-2xl font-bold">{title}</h2>
+<div
+  class="newsletter-form border border-black bg-[var(--color-shell-rose)] p-8 sm:p-10"
+>
+  <h2 class="mb-6 text-3xl font-bold">{title}</h2>
   <p class="mb-4 text-gray-600">{description}</p>
 
   <form
@@ -25,19 +27,19 @@ const {
       name="email"
       placeholder="Enter your email address"
       required
-      class="flex-1 rounded-md border border-gray-300 bg-white px-4 py-2 placeholder-gray-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+      class="flex-1 rounded-md border border-gray-400 bg-[var(--color-shell-gray-light)] px-4 py-2 text-gray-800 placeholder-gray-500 focus:border-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-700"
       aria-label="Email address"
     />
 
     <button
       type="submit"
-      class="relative rounded-md bg-indigo-600 px-6 py-2 font-medium text-white transition-opacity hover:bg-indigo-700"
+      class="newsletter-button newsletter-button--medium"
       aria-label="Subscribe to newsletter"
     >
       <span class="button-text">Keep me informed</span>
       <span class="button-loading hidden">
         <svg
-          class="h-5 w-5 animate-spin text-white"
+          class="h-5 w-5 animate-spin text-black"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
@@ -69,6 +71,67 @@ const {
 </div>
 
 <style>
+  .newsletter-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    cursor: pointer;
+    border: 0;
+    background: transparent;
+    color: #111;
+    font-family:
+      "Quicksand",
+      system-ui,
+      -apple-system,
+      sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    text-transform: none;
+    isolation: isolate;
+    transition: color 0.2s ease;
+    border-radius: 0;
+  }
+
+  .newsletter-button--medium {
+    padding: 0.75rem 2.4rem;
+    font-size: 0.95rem;
+    min-height: 42px;
+  }
+
+  .newsletter-button > span {
+    position: relative;
+    z-index: 1;
+  }
+
+  .newsletter-button::before,
+  .newsletter-button::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1px solid #0f0f0f;
+    pointer-events: none;
+    border-radius: 0;
+  }
+
+  .newsletter-button::before {
+    inset: -4px;
+    background: transparent;
+  }
+
+  .newsletter-button::after {
+    background: var(--color-shell-soft-light);
+  }
+
+  .newsletter-button:hover {
+    color: #000;
+  }
+
+  .newsletter-button:hover::after {
+    background: var(--color-shell-soft);
+  }
+
   .button-loading {
     position: absolute;
     left: 50%;

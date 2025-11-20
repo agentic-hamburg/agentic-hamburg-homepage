@@ -4,7 +4,7 @@ import { getCollection, render } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
-import Newsletter from "@/components/blog/Newsletter.astro";
+import Newsletter from "@/components/Newsletter.astro";
 import Pagination from "@/components/blog/Pagination.astro";
 import getSortedPosts from "@/utils/getSortedPosts";
 
@@ -45,7 +45,7 @@ const dateFormat = new Intl.DateTimeFormat("en-US", {
           return (
             <>
               <article class="prose prose-lg max-w-none">
-                <h2 class="mb-2 text-2xl font-bold">
+                <h2 class="display-title not-prose mb-2">
                   <a
                     href={`/news/${post.id}`}
                     class="text-gray-900 no-underline hover:underline"
@@ -83,10 +83,9 @@ const dateFormat = new Intl.DateTimeFormat("en-US", {
               </article>
 
               {isFirstPageFirstPost && (
-                <>
-                  <hr class="my-12 border-gray-200" />
+                <div class="mx-auto max-w-2xl">
                   <Newsletter />
-                </>
+                </div>
               )}
 
               {index < postsWithContent.length - 1 && (
