@@ -1,0 +1,302 @@
+---
+export interface PastEvent {
+  title: string;
+  number: number;
+  date: string;
+  location: string;
+  sponsor: string;
+  attendees: number;
+  url?: string;
+}
+
+export interface Props {
+  events?: PastEvent[];
+}
+
+// Past meetups in chronological order
+const defaultEvents: PastEvent[] = [
+  {
+    title: "Inaugural Edition",
+    number: 1,
+    date: "July 15, 2025",
+    location: "Hamburg",
+    sponsor: "New Work SE",
+    attendees: 134,
+    url: "https://www.meetup.com/agentic-coding-meetup-hamburg/events/308816601/",
+  },
+  {
+    title: "Meetup #2",
+    number: 2,
+    date: "September 23, 2025",
+    location: "Hamburg",
+    sponsor: "MOIA GmbH",
+    attendees: 92,
+    url: "https://www.meetup.com/agentic-coding-meetup-hamburg/events/310792806/",
+  },
+];
+
+const { events = defaultEvents } = Astro.props;
+---
+
+<div class="past-events-container">
+  <div class="mx-auto max-w-6xl px-4">
+    <div class="mb-10 text-center">
+      <p
+        class="text-base font-semibold uppercase tracking-[0.2em] text-gray-600"
+      >
+        Our Journey
+      </p>
+      <h2 class="display-title mt-2">Past Meetups</h2>
+      <p class="mt-4 text-lg text-gray-600">
+        Growing Hamburg's agentic coding community, one meetup at a time
+      </p>
+    </div>
+
+    <div class="timeline">
+      {
+        events.map((event, index) => (
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <div class="timeline-number">{event.number}</div>
+            </div>
+            <a href={event.url} target="_blank" rel="noopener noreferrer" class="timeline-content">
+              <div class="event-header">
+                <h3 class="event-title">{event.title}</h3>
+                <div class="attendee-badge">
+                  <svg
+                    class="attendee-icon"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
+                  </svg>
+                  {event.attendees} attendees
+                </div>
+              </div>
+              <div class="event-meta">
+                <div class="meta-item">
+                  <svg class="meta-icon" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      fill-rule="evenodd"
+                      d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                  {event.date}
+                </div>
+                <div class="meta-item">
+                  <svg class="meta-icon" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      fill-rule="evenodd"
+                      d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                  {event.location}
+                </div>
+                <div class="meta-item sponsor">
+                  <svg class="meta-icon" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                  Hosted by {event.sponsor}
+                </div>
+              </div>
+            </a>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<style>
+  .past-events-container {
+    padding: 4rem 0;
+    background: white;
+  }
+
+  .timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 30px;
+    top: 20px;
+    bottom: 20px;
+    width: 3px;
+    background: linear-gradient(
+      180deg,
+      var(--color-primary) 0%,
+      var(--color-accent) 100%
+    );
+  }
+
+  .timeline-item {
+    position: relative;
+    padding-left: 80px;
+    margin-bottom: 3rem;
+  }
+
+  .timeline-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .timeline-marker {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .timeline-number {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(
+      135deg,
+      var(--color-primary) 0%,
+      var(--color-accent) 100%
+    );
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 800;
+    box-shadow: 0 4px 12px rgba(247, 127, 0, 0.3);
+    border: 4px solid white;
+  }
+
+  .timeline-content {
+    display: block;
+    text-decoration: none;
+    background: var(--color-bg-soft);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .timeline-content:hover {
+    border-color: var(--color-primary-light);
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(247, 127, 0, 0.1);
+  }
+
+  .event-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .event-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .attendee-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+    white-space: nowrap;
+  }
+
+  .attendee-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    flex-shrink: 0;
+  }
+
+  .event-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+  }
+
+  .meta-item.sponsor {
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+
+  .meta-icon {
+    width: 1.125rem;
+    height: 1.125rem;
+    flex-shrink: 0;
+    color: var(--color-primary);
+  }
+
+  @media (max-width: 640px) {
+    .timeline::before {
+      left: 20px;
+    }
+
+    .timeline-item {
+      padding-left: 60px;
+    }
+
+    .timeline-marker {
+      width: 40px;
+      height: 40px;
+    }
+
+    .timeline-number {
+      width: 40px;
+      height: 40px;
+      font-size: 1.125rem;
+    }
+
+    .event-title {
+      font-size: 1.25rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .timeline-item {
+      animation: fadeInLeft 0.6s ease-out;
+    }
+
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+  }
+</style>

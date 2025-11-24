@@ -3,7 +3,10 @@ import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
 import Footer from "../components/Footer.astro";
-import Newsletter from "../components/Newsletter.astro";
+// import Newsletter from "../components/Newsletter.astro"; // Temporarily disabled
+import EventCards from "../components/EventCards.astro";
+import SocialProof from "../components/SocialProof.astro";
+import PastEvents from "../components/PastEvents.astro";
 import { useTranslations } from "../lib/i18n/utils";
 
 const t = useTranslations();
@@ -13,7 +16,8 @@ const t = useTranslations();
   <Header />
 
   <main>
-    <section class="px-4 py-12 sm:px-6 lg:px-8">
+    <!-- Hero Section -->
+    <section class="hero-section px-4 sm:px-6 lg:px-8">
       <Hero
         title={t.hero.title}
         description={t.hero.subtitle}
@@ -21,36 +25,112 @@ const t = useTranslations();
       />
     </section>
 
-    <!-- Community Overview Section -->
-    <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-      <div class="mx-auto max-w-4xl space-y-6 text-center">
-        <p class="text-base font-semibold uppercase tracking-[0.2em] text-gray-500">
-          Agentic Coding in Hamburg
-        </p>
-        <h2 class="display-title">
-          A Community for Builders Who Co-Create with AI
-        </h2>
-        <p class="text-lg text-gray-600">
-          Agentic Hamburg is a volunteer-run community that learns how to ship
-          reliable AI-assisted workflows together. We pair real projects with
-          hands-on sessions so that every experiment ends in a pull request,
-          not in a slide deck.
-        </p>
-        <p class="text-lg text-gray-600">
-          Expect tactical notes on coding with agents, labs around automation
-          tooling, and story time with the people who keep Hamburg's tech
-          scene curious.
-        </p>
-      </div>
+    <!-- Upcoming Events Section -->
+    <section class="events-section">
+      <EventCards />
     </section>
 
+    <!-- Social Proof Section -->
+    <section class="social-proof-section">
+      <SocialProof />
+    </section>
+
+    <!-- Past Events Section -->
+    <section class="past-events-section">
+      <PastEvents />
+    </section>
+
+    <!-- Newsletter Section - Temporarily disabled
     <section
       id="signup-section"
-      class="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8"
+      class="newsletter-section mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8"
     >
       <Newsletter />
     </section>
+    -->
   </main>
 
   <Footer />
 </Layout>
+
+<style>
+  .section-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-text-secondary);
+    margin-bottom: 1rem;
+  }
+
+  .community-section {
+    background: white;
+  }
+
+  .community-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  @media (min-width: 768px) {
+    .community-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .community-card {
+    background: var(--color-bg-soft);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+  }
+
+  .community-card:hover {
+    border-color: var(--color-primary-light);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(247, 127, 0, 0.1);
+  }
+
+  .community-icon {
+    width: 3rem;
+    height: 3rem;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    color: white;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .community-icon svg {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+
+  .community-card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 0.75rem;
+  }
+
+  .community-card-text {
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    font-size: 1rem;
+  }
+
+  .newsletter-section {
+    background: linear-gradient(
+      135deg,
+      var(--color-bg-soft) 0%,
+      var(--color-bg-cream) 100%
+    );
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+</style>

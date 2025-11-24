@@ -11,10 +11,10 @@ const {
 ---
 
 <div
-  class="newsletter-form border border-black bg-[var(--color-shell-rose)] p-8 sm:p-10"
+  class="newsletter-form border-2 border-[var(--color-primary)] bg-white p-8 shadow-lg sm:p-10"
 >
-  <h2 class="mb-6 text-3xl font-bold">{title}</h2>
-  <p class="mb-4 text-gray-600">{description}</p>
+  <h2 class="mb-6 text-3xl font-bold text-[var(--color-text-primary)]">{title}</h2>
+  <p class="mb-4 text-[var(--color-text-secondary)]">{description}</p>
 
   <form
     id="newsletter-form"
@@ -27,7 +27,7 @@ const {
       name="email"
       placeholder="Enter your email address"
       required
-      class="flex-1 border border-black bg-[var(--color-shell-gray-light)] px-4 py-2 text-gray-800 placeholder-gray-500 focus:border-black focus:outline-none focus:ring-2 focus:ring-black"
+      class="flex-1 border-2 border-gray-300 bg-[var(--color-bg-soft)] px-4 py-3 text-gray-800 placeholder-gray-500 focus:border-[var(--color-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
       aria-label="Email address"
     />
 
@@ -64,18 +64,18 @@ const {
     cursor: pointer;
     border: 0;
     background: transparent;
-    color: #111;
+    color: white;
     font-family:
       "Quicksand",
       system-ui,
       -apple-system,
       sans-serif;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.01em;
     text-transform: none;
     isolation: isolate;
-    transition: color 0.2s ease;
-    border-radius: 0;
+    transition: all 0.3s ease;
+    border-radius: 8px;
     overflow: hidden;
   }
 
@@ -110,15 +110,15 @@ const {
   }
 
   .newsletter-button::after {
-    background: var(--color-shell-soft-light);
+    background: var(--color-primary);
   }
 
   .newsletter-button:hover {
-    color: #000;
+    color: white;
   }
 
   .newsletter-button:hover::after {
-    background: var(--color-shell-soft);
+    background: var(--color-primary-light);
   }
 
   .button-loading {

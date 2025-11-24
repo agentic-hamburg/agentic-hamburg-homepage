@@ -8,9 +8,7 @@ const currentPath = Astro.url.pathname;
 
 // Determine which navigation item is active
 const isHome = currentPath === "/";
-const isCodingMeetup = currentPath.includes("/coding-meetup");
-const isCodingDay = currentPath.includes("/coding-day");
-const isNews = currentPath.includes("/news");
+// const isNews = currentPath.includes("/news"); // Temporarily disabled
 const isAbout = currentPath.includes("/about");
 ---
 
@@ -36,21 +34,13 @@ const isAbout = currentPath.includes("/about");
           class={`text-gray-700 hover:text-gray-900 ${isHome ? "font-bold" : ""}`}
           >{t.header.home}</a
         >
-        <a
-          href="/coding-meetup"
-          class={`text-gray-700 hover:text-gray-900 ${isCodingMeetup ? "font-bold" : ""}`}
-          >Coding Meetup</a
-        >
-        <a
-          href="/coding-day"
-          class={`text-gray-700 hover:text-gray-900 ${isCodingDay ? "font-bold" : ""}`}
-          >Coding Day</a
-        >
+        <!-- News temporarily disabled
         <a
           href="/news"
           class={`text-gray-700 hover:text-gray-900 ${isNews ? "font-bold" : ""}`}
           >{t.header.news}</a
         >
+        -->
         <a
           href="/about"
           class={`text-gray-700 hover:text-gray-900 ${isAbout ? "font-bold" : ""}`}

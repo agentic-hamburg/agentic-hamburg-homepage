@@ -5,35 +5,29 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { useTranslations } from "../lib/i18n/utils";
 import stefanImg from "../assets/stefan.jpeg";
-import sebastianStrategyImg from "../assets/founder-sebastian-strategy.svg";
-import sebastianSystemsImg from "../assets/founder-sebastian-systems.svg";
+import sebastianKorfmannImg from "../assets/sebastian-korfmann.jpg";
+import sebastianReimannImg from "../assets/sebastian-reimann.jpeg";
 
 const t = useTranslations();
 
 const founders = [
   {
     name: "Stefan Munz",
-    role: "Founder OnTree.co",
-    bio:
-      "Stefan keeps the lights on for every meetup, curates incoming project proposals, and makes sure Hamburg's broader tech scene knows what the agentic crowd is building.",
+    role: "The Liquid Engineer",
     image: stefanImg,
-    imageRight: false,
+    linkedin: "https://www.linkedin.com/in/stefanmunz/",
   },
   {
     name: "Sebastian Korfmann",
-    role: "Insert Fancy Title Here",
-    bio:
-      "Sebastian designs the learning arcs for our sprints, from evaluation study groups to governance roundtables, so we move from hype to repeatable practice.",
-    image: sebastianStrategyImg,
-    imageRight: true,
+    role: "Chief Tinkering Officer",
+    image: sebastianKorfmannImg,
+    linkedin: "https://www.linkedin.com/in/skorfmann/",
   },
   {
     name: "Sebastian Reimann",
-    role: "Insert Fancy Title Here",
-    bio:
-      "Sebastian wrangles the infrastructure—self-hosted models, shared observability stacks, and contributor onboarding—so every experiment has a safe runway.",
-    image: sebastianSystemsImg,
-    imageRight: false,
+    role: "AI/ML Team Herder",
+    image: sebastianReimannImg,
+    linkedin: "https://www.linkedin.com/in/sebastian-reimann-b1a2042a4/",
   },
 ];
 ---
@@ -50,83 +44,62 @@ const founders = [
       </h1>
 
       <section class="mt-10">
-        <div class="space-y-10">
+        <div class="organizers-grid">
           {founders.map(founder => (
-            <article
-              class={`flex flex-col gap-6 p-6 sm:p-8 md:flex-row ${
-                founder.imageRight ? "md:flex-row-reverse" : ""
-              }`}
-            >
-              <div class="flex flex-1 items-center justify-center">
-                <div
-                  class="border border-black bg-[var(--color-shell-rose)] p-[6px]"
-                  style="width: 334px; height: 334px;"
-                >
-                  <div class="h-full w-full border border-black">
-                    <Image
-                      src={founder.image}
-                      alt={`${founder.name} founder portrait`}
-                      width={320}
-                      height={320}
-                      loading="lazy"
-                      class="h-full w-full object-cover"
-                    />
-                  </div>
+            <article class="organizer-card">
+              <a href={founder.linkedin} target="_blank" rel="noopener noreferrer" class="organizer-link">
+                <div class="organizer-image-wrapper">
+                  <Image
+                    src={founder.image}
+                    alt={`${founder.name}`}
+                    width={200}
+                    height={200}
+                    loading="lazy"
+                    class="organizer-image"
+                  />
                 </div>
-              </div>
-              <div class="flex-1 space-y-3 text-gray-800">
-                <h4 class="text-2xl font-bold text-gray-900">
-                  {founder.name}
-                </h4>
-                <p class="text-sm uppercase tracking-[0.2em] text-gray-600">
-                  {founder.role}
-                </p>
-                <p class="text-lg">{founder.bio}</p>
-              </div>
+                <h4 class="organizer-name">{founder.name}</h4>
+                <p class="organizer-role">{founder.role}</p>
+                <span class="linkedin-hint">
+                  <svg class="linkedin-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                  </svg>
+                </span>
+              </a>
             </article>
           ))}
         </div>
       </section>
 
       <div class="mt-16 prose prose-lg max-w-none">
-        <h2>About Agentic Hamburg</h2>
+        <h2>What is this?</h2>
         <p>
-          Welcome to Agentic Hamburg - a community and initiative focused on
-          exploring and advancing the field of agentic AI systems in Hamburg,
-          Germany.
+          Hamburg's meetup for developers who build with AI, not just talk about it.
+        </p>
+        <p>
+          We share workflows that actually work, demo tools we're using, and honestly
+          discuss what's hype vs. reality. No vendor pitches, no theoretical
+          frameworks—just practitioners showing their setups and learning from each other.
         </p>
 
-        <h3>Our Mission</h3>
-        <p>
-          We bring together researchers, developers, entrepreneurs, and
-          enthusiasts who are interested in the development and application of
-          autonomous AI agents. Our goal is to foster collaboration, share
-          knowledge, and drive innovation in this rapidly evolving field.
-        </p>
-
-        <h3>What We Do</h3>
-        <p>
-          Agentic Hamburg organizes meetups, workshops, and discussions around
-          topics such as:
-        </p>
+        <h3>What happens at a meetup?</h3>
         <ul>
-          <li>Autonomous AI agent architectures and frameworks</li>
-          <li>Multi-agent systems and coordination</li>
-          <li>AI agent safety and alignment</li>
-          <li>Practical applications in business and research</li>
-          <li>Emerging tools and technologies in the agentic AI space</li>
+          <li><strong>Short talks</strong> — Real experiences from practitioners</li>
+          <li><strong>Live demos</strong> — Watch things break in real time</li>
+          <li><strong>Open discussions</strong> — The best ideas come from the crowd</li>
         </ul>
 
-        <h3>Join Us</h3>
+        <h3>Who shows up?</h3>
         <p>
-          Whether you're an experienced AI researcher or just getting started
-          with agentic systems, you're welcome to join our community. Stay
-          updated with our latest news and events by following our updates.
+          Developers, engineers, and curious minds from startups to enterprises.
+          Some have been shipping with AI tools for years, others are just getting
+          started. Both are welcome.
         </p>
 
-        <p class="mt-8 text-gray-600">
-          For inquiries and more information, please check our news section or
-          reach out through our official channels.
+        <h3>Get in touch</h3>
+        <p>
+          Want to give a talk, host a meetup, or just say hi?<br />
+          <a href="mailto:hello@agentic.hamburg">hello@agentic.hamburg</a>
         </p>
       </div>
     </main>
@@ -134,3 +107,93 @@ const founders = [
 
   <Footer />
 </Layout>
+
+<style>
+  .about-container {
+    background: var(--color-bg-soft);
+  }
+
+  .organizers-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 640px) {
+    .organizers-grid {
+      grid-template-columns: 1fr;
+      max-width: 280px;
+    }
+  }
+
+  .organizer-card {
+    text-align: center;
+  }
+
+  .organizer-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease;
+  }
+
+  .organizer-link:hover {
+    transform: translateY(-4px);
+  }
+
+  .organizer-link:hover .organizer-image-wrapper {
+    box-shadow: 0 8px 20px rgba(247, 127, 0, 0.3);
+  }
+
+  .organizer-link:hover .linkedin-hint {
+    opacity: 1;
+  }
+
+  .organizer-image-wrapper {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid var(--color-primary);
+    box-shadow: 0 4px 12px rgba(247, 127, 0, 0.2);
+  }
+
+  .organizer-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .organizer-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 0.25rem;
+  }
+
+  .organizer-role {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-primary);
+  }
+
+  .linkedin-hint {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.75rem;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+  }
+
+  .linkedin-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: #0077b5;
+  }
+</style>
