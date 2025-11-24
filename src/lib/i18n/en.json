@@ -6,9 +6,9 @@
     "imprint": "Imprint"
   },
   "hero": {
-    "title": "We're Bringing Agentic Thinking to Hamburg",
-    "subtitle": "• Swap reliable agent workflows with local builders\n• Pair-program with models in community sprints\n• Publish your experiments in News and tell your story in About\n• Keep Hamburg on the map for agentic software",
-    "cta": "Get Field Notes"
+    "title": "Hamburg's Agentic Coding Meetup",
+    "subtitle": "Regular meetups where developers share AI workflows, demo tools, figure out what actually works, and inspire each other.",
+    "cta": "Join Next Meetup"
   },
   "footer": {
     "copyright": "",

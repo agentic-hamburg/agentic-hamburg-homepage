@@ -1,44 +1,274 @@
 ---
 import { Image } from "astro:assets";
-import heroImage from "../assets/hero.png";
+import heroImage from "../assets/hero.jpg";
+import { communityStats } from "../config/community";
 
 export interface Props {
   title: string;
   description: string;
   buttonText: string;
+  primaryCtaUrl?: string;
+  secondaryCtaText?: string;
+  secondaryCtaUrl?: string;
 }
 
-const { title, description, buttonText } = Astro.props;
+const {
+  title,
+  description,
+  buttonText,
+  primaryCtaUrl = "#signup-section",
+  secondaryCtaText = "Learn More",
+  secondaryCtaUrl = "/about",
+} = Astro.props;
 const descriptionLines = description
   .split("\n")
   .map(line => line.trim())
   .filter(Boolean);
 ---
 
-<div
-  class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-12 md:flex-row"
->
-  <div class="w-full flex-1 space-y-6 md:max-w-[420px]">
-    <h1 class="display-title">
-      {title}
-    </h1>
-    <div class="max-w-[420px] space-y-2 text-lg text-gray-600">
-      {descriptionLines.map(line => <p>{line.replace(/^•\s*/, "")}</p>)}
+<div class="hero-container">
+  <div
+    class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-12 md:flex-row"
+  >
+    <div class="w-full flex-1 space-y-6 md:max-w-[520px]">
+      <h1 class="hero-title">
+        {title}
+      </h1>
+      <div class="hero-description">
+        {descriptionLines.map(line => <p>{line.replace(/^•\s*/, "")}</p>)}
+      </div>
+
+      <!-- CTA Buttons -->
+      <div class="hero-ctas">
+        <a href={primaryCtaUrl} class="cta-primary">
+          {buttonText}
+          <svg
+            class="cta-icon"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+          </svg>
+        </a>
+        <a href={secondaryCtaUrl} class="cta-secondary">
+          {secondaryCtaText}
+        </a>
+      </div>
+
+      <!-- Trust indicators -->
+      <div class="trust-indicators">
+        <div class="trust-item">
+          <svg class="trust-icon" fill="currentColor" viewBox="0 0 20 20">
+            <path
+              d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"
+            ></path>
+          </svg>
+          <span>{communityStats.memberCount} Members</span>
+        </div>
+        <div class="trust-item">
+          <svg class="trust-icon" fill="currentColor" viewBox="0 0 20 20">
+            <path
+              d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"
+            ></path>
+          </svg>
+          <span>Talks & Demos</span>
+        </div>
+        <div class="trust-item">
+          <svg class="trust-icon" fill="currentColor" viewBox="0 0 20 20">
+            <path
+              fill-rule="evenodd"
+              d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+              clip-rule="evenodd"></path>
+          </svg>
+          <span>Regular Events</span>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="hero-image-container mt-8 flex w-full flex-1 justify-center md:mt-0 md:flex-1 md:justify-end"
+    >
+      <Image
+        src={heroImage}
+        alt={title}
+        class="hero-image"
+        width={960}
+        height={540}
+        loading="eager"
+        fetchpriority="high"
+        format="webp"
+      />
     </div>
   </div>
-  <div
-    class="mt-8 flex w-full flex-1 justify-center md:mt-0 md:flex-[0.6] md:justify-end"
-  >
-    <Image
-      src={heroImage}
-      alt={title}
-      class="w-full max-w-[720px] rounded-2xl object-contain"
-      style="aspect-ratio: 16 / 9;"
-      width={960}
-      height={540}
-      loading="eager"
-      fetchpriority="high"
-      format="webp"
-    />
-  </div>
 </div>
+
+<style>
+  .hero-container {
+    padding: 2rem 0;
+    background: linear-gradient(
+      135deg,
+      var(--color-bg-soft) 0%,
+      var(--color-bg-cream) 50%,
+      var(--color-bg-light) 100%
+    );
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.1;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--color-text-primary);
+    margin-bottom: 1rem;
+  }
+
+  .hero-description {
+    max-width: 520px;
+    margin-bottom: 2rem;
+  }
+
+  .hero-description p {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .cta-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--color-primary);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1.125rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid var(--color-primary);
+    box-shadow: 0 4px 12px rgba(247, 127, 0, 0.3);
+  }
+
+  .cta-primary:hover {
+    background: var(--color-primary-light);
+    border-color: var(--color-primary-light);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(247, 127, 0, 0.4);
+  }
+
+  .cta-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    transition: transform 0.3s ease;
+  }
+
+  .cta-primary:hover .cta-icon {
+    transform: translateX(4px);
+  }
+
+  .cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: white;
+    color: var(--color-primary);
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1.125rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid var(--color-primary);
+  }
+
+  .cta-secondary:hover {
+    background: var(--color-bg-light);
+    transform: translateY(-2px);
+  }
+
+  .trust-indicators {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  .trust-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--color-secondary);
+  }
+
+  .hero-image-container {
+    position: relative;
+  }
+
+  .hero-image {
+    width: 100%;
+    max-width: 900px;
+    border-radius: 16px;
+    object-fit: contain;
+    aspect-ratio: 16 / 9;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+
+  .hero-image:hover {
+    transform: scale(1.02);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-title,
+    .hero-description,
+    .hero-ctas,
+    .hero-image {
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .hero-description {
+      animation-delay: 0.1s;
+    }
+
+    .hero-ctas {
+      animation-delay: 0.2s;
+    }
+
+    .hero-image {
+      animation-delay: 0.3s;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+</style>

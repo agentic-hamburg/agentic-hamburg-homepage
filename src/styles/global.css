@@ -10,16 +10,40 @@
 @tailwind utilities;
 
 :root {
+  /* Warm, community-focused palette */
+  --color-primary: #f77f00; /* Vibrant warm orange */
+  --color-primary-light: #ff9e1f;
+  --color-secondary: #06d6a0; /* Fresh teal for accents */
+  --color-accent: #ffb703; /* Warm amber */
+
+  /* Backgrounds */
+  --color-bg-cream: #fff5eb; /* Warm cream */
+  --color-bg-light: #fef6e4; /* Light warm background */
+  --color-bg-soft: #fef9f2; /* Soft peachy white */
+
+  /* Legacy shell colors (kept for compatibility) */
   --color-shell-base: #f1d5c8;
-  --color-shell-soft: #f7f2ed;
-  --color-shell-soft-light: #fdfaf6;
-  --color-shell-rose: #deb8ba;
-  --color-shell-gray: #dddddd;
-  --color-shell-gray-light: #f6f6f6;
+  --color-shell-soft: #fef9f2;
+  --color-shell-soft-light: #fef6e4;
+  --color-shell-rose: #ff9e8a;
+  --color-shell-gray: #f0ebe1;
+  --color-shell-gray-light: #fef6e4;
+
+  /* Text colors */
+  --color-text-primary: #1a1a1a;
+  --color-text-secondary: #4a4a4a;
 }
 
 /* Global font family for the entire app */
-html,
+html {
+  font-family:
+    "Quicksand",
+    system-ui,
+    -apple-system,
+    sans-serif;
+  scroll-behavior: smooth;
+}
+
 body {
   font-family:
     "Quicksand",
@@ -32,12 +56,13 @@ body {
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--color-shell-gray);
+  background-color: var(--color-bg-cream);
+  color: var(--color-text-primary);
 }
 
 .site-header,
 .site-footer {
-  background-color: var(--color-shell-gray);
+  background-color: var(--color-bg-soft);
 }
 
 .site-header img {

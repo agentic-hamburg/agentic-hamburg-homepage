@@ -1,0 +1,426 @@
+---
+import { communityStats } from "../config/community";
+
+export interface AgendaItem {
+  time: string;
+  title: string;
+  speaker?: string;
+}
+
+export interface Event {
+  title: string;
+  date: string;
+  time: string;
+  location: string;
+  spotsAvailable?: number;
+  description: string;
+  registrationUrl: string;
+  type: "meetup" | "coding-day";
+  agenda?: AgendaItem[];
+}
+
+export interface Props {
+  events?: Event[];
+}
+
+// Default events if none provided - focusing on next Luma event
+const defaultEvents: Event[] = [
+  {
+    title: "Agentic Coding Meetup #3",
+    date: "November 25, 2025",
+    time: "18:00 - 20:00 CET",
+    location: "Factorial GmbH, Hamburg",
+    spotsAvailable: 3,
+    description:
+      "4 talks on agentic coding plus networking! 107+ attendees confirmed.",
+    registrationUrl: "https://luma.com/dicrp3xl",
+    type: "meetup",
+    agenda: [
+      { time: "18:00", title: "Open Doors" },
+      { time: "18:30", title: "Headless Claude Code in the Wild", speaker: "Sebastian Korfmann" },
+      { time: "18:50", title: "Agentic AI for SEO Content Generation", speaker: "Guruprasad P" },
+      { time: "19:10", title: "Break" },
+      { time: "19:30", title: "FlowDrop: AI Agentic and Automation Workflow", speaker: "Volkan Jacobsen" },
+      { time: "19:50", title: "OpenCode – The Freedom of Choice for Agentic Coding", speaker: "Daniel Moll" },
+      { time: "20:10", title: "Networking & Drinks" },
+    ],
+  },
+];
+
+const { events = defaultEvents } = Astro.props;
+---
+
+<div class="event-cards-container">
+  <div class="mx-auto max-w-6xl">
+    <div class="mb-8 text-center">
+      <p
+        class="text-base font-semibold uppercase tracking-[0.2em] text-gray-600"
+      >
+        Join Us
+      </p>
+      <h2 class="display-title mt-2">Upcoming Events</h2>
+    </div>
+
+    <div class="event-cards-grid">
+      {
+        events.map(event => (
+          <div class="event-card">
+            <div class="event-card-inner">
+              <!-- Left Column: Event Info -->
+              <div class="event-info">
+                <div class="event-card-header">
+                  <span
+                    class={`event-type-badge ${event.type === "meetup" ? "badge-meetup" : "badge-coding-day"}`}
+                  >
+                    {event.type === "meetup" ? "Next Event" : "Community"}
+                  </span>
+                  {event.spotsAvailable && (
+                    <span class="spots-badge">{event.spotsAvailable} spots left</span>
+                  )}
+                </div>
+
+                <h3 class="event-title">{event.title}</h3>
+
+                <div class="event-details">
+                  <div class="event-detail-item">
+                    <svg
+                      class="event-icon"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                      />
+                    </svg>
+                    <span>{event.date}</span>
+                  </div>
+
+                  <div class="event-detail-item">
+                    <svg
+                      class="event-icon"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                      />
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                      />
+                    </svg>
+                    <span>{event.location}</span>
+                  </div>
+                </div>
+
+                <p class="event-teaser">{event.description}</p>
+
+                <div class="event-cta-group">
+                  <a href={event.registrationUrl} class="event-cta-button">
+                    Register Now
+                    <svg
+                      class="button-arrow"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M17 8l4 4m0 0l-4 4m4-4H3"
+                      />
+                    </svg>
+                  </a>
+                  <a
+                    href="https://www.meetup.com/agentic-coding-meetup-hamburg/events/311692803/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="event-secondary-link"
+                  >
+                    Also on Meetup.com →
+                  </a>
+                </div>
+              </div>
+
+              <!-- Right Column: Agenda -->
+              {event.agenda && (
+                <div class="event-agenda">
+                  <h4 class="agenda-title">Agenda</h4>
+                  <div class="agenda-list">
+                    {event.agenda.map(item => (
+                      <div class="agenda-item">
+                        <span class="agenda-time">{item.time}</span>
+                        <div class="agenda-content">
+                          <span class="agenda-talk">{item.title}</span>
+                          {item.speaker && <span class="agenda-speaker">{item.speaker}</span>}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<style>
+  .event-cards-container {
+    padding: 4rem 1rem;
+    background: linear-gradient(
+      135deg,
+      var(--color-bg-soft) 0%,
+      var(--color-bg-cream) 100%
+    );
+  }
+
+  .event-cards-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .event-card {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+  }
+
+  .event-card-inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .event-card-inner {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .event-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .event-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px -4px rgba(247, 127, 0, 0.15);
+    border-color: var(--color-primary-light);
+  }
+
+  .event-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .event-type-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .badge-meetup {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    color: white;
+  }
+
+  .badge-coding-day {
+    background: linear-gradient(135deg, var(--color-secondary), #04c28f);
+    color: white;
+  }
+
+  .spots-badge {
+    background: var(--color-bg-light);
+    color: var(--color-primary);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .event-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 1rem;
+  }
+
+  .event-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .event-detail-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+  }
+
+  .event-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--color-primary);
+    flex-shrink: 0;
+  }
+
+  .event-teaser {
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .event-description {
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+  }
+
+  .event-cta-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+
+  .event-cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: var(--color-primary);
+    color: white;
+    padding: 0.875rem 1.75rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid var(--color-primary);
+    align-self: flex-start;
+  }
+
+  .event-cta-button:hover {
+    background: var(--color-primary-light);
+    border-color: var(--color-primary-light);
+    transform: translateX(4px);
+  }
+
+  .button-arrow {
+    width: 1.25rem;
+    height: 1.25rem;
+    transition: transform 0.3s ease;
+  }
+
+  .event-cta-button:hover .button-arrow {
+    transform: translateX(4px);
+  }
+
+  .event-secondary-link {
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-weight: 500;
+  }
+
+  .event-secondary-link:hover {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+
+  /* Agenda Styles */
+  .event-agenda {
+    border-left: 3px solid var(--color-primary);
+    padding-left: 1.5rem;
+  }
+
+  @media (max-width: 767px) {
+    .event-agenda {
+      border-left: none;
+      border-top: 2px solid var(--color-bg-soft);
+      padding-left: 0;
+      padding-top: 1.5rem;
+    }
+  }
+
+  .agenda-title {
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+  }
+
+  .agenda-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .agenda-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .agenda-time {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    min-width: 50px;
+    flex-shrink: 0;
+  }
+
+  .agenda-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+  }
+
+  .agenda-talk {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    line-height: 1.3;
+  }
+
+  .agenda-speaker {
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+  }
+</style>
