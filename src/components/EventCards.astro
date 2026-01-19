@@ -5,6 +5,7 @@ export interface AgendaItem {
   time: string;
   title: string;
   speaker?: string;
+  abstract?: string;
 }
 
 export interface Event {
@@ -30,11 +31,23 @@ const defaultEvents: Event[] = [
     date: "January 20, 2026",
     time: "18:00 - 23:00 CET",
     location: "Engel & Völkers HQ, Hamburg",
-    spotsAvailable: 15,
+    spotsAvailable: 0,
     description:
-      "A special Claude Code meetup as part of the global Claude Community Events series. 180+ attendees confirmed — limited spots still available! Live demos, talks, and networking.",
+      "A special Claude Code meetup as part of the global Claude Community Events series. SOLD OUT — 150 confirmed, 70+ on waitlist! Drinks, beer, wine & pizza provided. Large screen available for spontaneous demos.",
     registrationUrl: "https://luma.com/4c9hr63k",
     type: "meetup",
+    agenda: [
+      { time: "18:00", title: "Doors Open" },
+      { time: "18:20", title: "Opening" },
+      { time: "18:30", title: "The Claude Code Wars and the Return of The Software Spec", speaker: "Stefan Munz", abstract: "Discover why letting go of control strategically is the key to unlocking AI's full potential, and how better specs, not better prompts, are the real game-changer." },
+      { time: "18:45", title: "The Zero-Code Hardware Hack: When Claude Becomes Your Electronics Engineer", speaker: "Tobias Schlottke", abstract: "I needed a kid-friendly audio player. I had a $40 ESP32 display from AliExpress and no embedded systems experience. A few hours later, I had a working device—rotary encoder, touch gestures, Music Assistant integration—all built through conversation with Claude. No C++. No Stack Overflow. This talk examines what agentic AI actually looks like in practice: not replacing engineers, but collapsing the expertise barrier between \"I have an idea\" and \"it works.\"" },
+      { time: "19:00", title: "TBA" },
+      { time: "19:30", title: "Break & Pizza (~19:45)" },
+      { time: "20:30", title: "Shipping Critical Systems by Asking Questions", speaker: "Sebastian Korfmann and Thies Arntzen", abstract: "How we rebuilt a 20-year legacy system using Claude Code without writing a single line by hand. A story about letting go of the keyboard and stepping into the navigator seat." },
+      { time: "20:45", title: "Open Mic (5 min max, 3-4 slots)" },
+      { time: "21:00", title: "Socialising & Ad-hoc Demos" },
+      { time: "23:00", title: "Closing" },
+    ],
   },
 ];
 
@@ -65,8 +78,11 @@ const { events = defaultEvents } = Astro.props;
                   >
                     {event.type === "meetup" ? "Next Event" : "Community"}
                   </span>
-                  {event.spotsAvailable && (
+                  {event.spotsAvailable !== undefined && event.spotsAvailable > 0 && (
                     <span class="spots-badge">{event.spotsAvailable} spots left</span>
+                  )}
+                  {event.spotsAvailable === 0 && (
+                    <span class="spots-badge sold-out">Sold Out</span>
                   )}
                 </div>
 
@@ -118,7 +134,7 @@ const { events = defaultEvents } = Astro.props;
 
                 <div class="event-cta-group">
                   <a href={event.registrationUrl} class="event-cta-button">
-                    Register Now
+                    {event.spotsAvailable === 0 ? "Join Waitlist" : "Register Now"}
                     <svg
                       class="button-arrow"
                       fill="none"
@@ -155,6 +171,7 @@ const { events = defaultEvents } = Astro.props;
                         <div class="agenda-content">
                           <span class="agenda-talk">{item.title}</span>
                           {item.speaker && <span class="agenda-speaker">{item.speaker}</span>}
+                          {item.abstract && <span class="agenda-abstract">{item.abstract}</span>}
                         </div>
                       </div>
                     ))}
@@ -255,6 +272,11 @@ const { events = defaultEvents } = Astro.props;
     border-radius: 20px;
     font-size: 0.75rem;
     font-weight: 600;
+  }
+
+  .spots-badge.sold-out {
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
+    color: white;
   }
 
   .event-title {
@@ -413,5 +435,14 @@ const { events = defaultEvents } = Astro.props;
   .agenda-speaker {
     font-size: 0.8rem;
     color: var(--color-text-secondary);
+  }
+
+  .agenda-abstract {
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+    opacity: 0.8;
+    font-style: italic;
+    line-height: 1.4;
+    margin-top: 0.25rem;
   }
 </style>
