@@ -7,6 +7,7 @@ import Footer from "../components/Footer.astro";
 import EventCards from "../components/EventCards.astro";
 import SocialProof from "../components/SocialProof.astro";
 import PastEvents from "../components/PastEvents.astro";
+import ConferenceBanner from "../components/ConferenceBanner.astro";
 import { useTranslations } from "../lib/i18n/utils";
 
 const t = useTranslations();
@@ -14,6 +15,7 @@ const t = useTranslations();
 
 <Layout title="Agentic Hamburg - The Coding Meetup for Hamburg">
   <Header />
+  <ConferenceBanner />
 
   <main>
     <!-- Hero Section -->
