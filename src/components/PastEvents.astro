@@ -42,6 +42,15 @@ const defaultEvents: PastEvent[] = [
     attendees: 100,
     url: "https://www.meetup.com/agentic-coding-meetup-hamburg/events/311692803/",
   },
+  {
+    title: "Claude Code Special",
+    number: 4,
+    date: "January 20, 2026",
+    location: "Hamburg",
+    sponsor: "Engel & Völkers",
+    attendees: 150,
+    url: "https://lu.ma/4c9hr63k",
+  },
 ];
 
 const { events = defaultEvents } = Astro.props;
@@ -63,7 +72,7 @@ const { events = defaultEvents } = Astro.props;
 
     <div class="timeline">
       {
-        events.map((event, index) => (
+        events.map(event => (
           <div class="timeline-item">
             <div class="timeline-marker">
               <div class="timeline-number">{event.number}</div>

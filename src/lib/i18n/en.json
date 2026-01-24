@@ -1,6 +1,8 @@
 {
   "header": {
     "home": "Home",
+    "conference": "Conference",
+    "meetups": "Meetups",
     "news": "News",
     "about": "About",
     "imprint": "Imprint"
@@ -9,6 +11,13 @@
     "title": "Hamburg's Agentic Coding Meetup",
     "subtitle": "Regular meetups where developers share AI workflows, demo tools, figure out what actually works, and inspire each other.",
     "cta": "Join Next Meetup"
+  },
+  "conferenceHero": {
+    "title": "Agentic Conf Hamburg 2026",
+    "date": "March 22, 2026",
+    "venue": "SAE Institute Hamburg",
+    "cta": "Get Tickets",
+    "learnMore": "Learn More"
   },
   "footer": {
     "copyright": "",
