@@ -1,0 +1,350 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import PastEvents from "../components/PastEvents.astro";
+---
+
+<Layout
+  title="Meetups - Agentic Hamburg"
+  description="Hamburg's agentic coding meetup. Regular meetups where developers share AI workflows, demo tools, and learn from each other."
+>
+  <Header />
+
+  <!-- Conference Banner -->
+  <a href="/conf-2026" class="conf-banner">
+    <div class="banner-content">
+      <span class="banner-badge">March 22, 2026</span>
+      <span class="banner-text">Agentic Conf Hamburg — Tickets now available</span>
+      <svg class="banner-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M5 12h14M12 5l7 7-7 7" />
+      </svg>
+    </div>
+  </a>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="meetups-hero">
+      <div class="mx-auto max-w-4xl px-4 py-16 text-center">
+        <h1 class="hero-title">Where We Figure It Out</h1>
+        <p class="hero-description">
+          The agentic shift is happening fast. These meetups are where Hamburg's builders share what's working — real workflows, live demos, honest discussions.
+        </p>
+        <div class="hero-links">
+          <a
+            href="https://www.meetup.com/agentic-coding-meetup-hamburg/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="meetup-link"
+          >
+            <svg class="link-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19.24 14.46c-.21.55-.64 1.25-1.35 2.21-.74 1.01-1.37 1.7-1.89 2.07-.81.61-1.68.92-2.61.92-.66 0-1.46-.18-2.4-.56-.95-.38-1.82-.57-2.61-.57-.82 0-1.71.19-2.65.57-.95.38-1.72.58-2.29.6-.9.02-1.79-.29-2.66-.96-.55-.41-1.24-1.12-2.07-2.11-.9-1.09-1.63-2.35-2.21-3.8-.62-1.57-.93-3.08-.93-4.55 0-1.68.37-3.13 1.1-4.35.58-1 1.35-1.78 2.33-2.35.97-.58 2.02-.87 3.16-.89.71 0 1.63.21 2.78.62 1.14.41 1.88.62 2.19.62.24 0 1.05-.24 2.44-.73 1.31-.45 2.42-.64 3.33-.57 2.46.2 4.31 1.17 5.55 2.92-2.2 1.33-3.29 3.19-3.27 5.57.02 1.86.69 3.4 2.02 4.63.6.57 1.27 1.01 2.01 1.32-.16.47-.33.91-.52 1.33zM15.39.78c0 1.45-.53 2.81-1.59 4.06-.28.34-.63.65-1.04.93-.8.53-1.7.87-2.7.93l-.02-.38c0-1.39.61-2.89 1.7-4.1C12.8 1.1 14.16.38 15.33.08c.04.23.06.46.06.7z"/>
+            </svg>
+            Join us on Meetup.com
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About the Format Section -->
+    <section class="meetups-format">
+      <div class="mx-auto max-w-4xl px-4 py-12">
+        <h2 class="format-title">What to Expect</h2>
+        <div class="format-grid">
+          <div class="format-item">
+            <div class="format-icon">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <h3>Short Talks</h3>
+            <p>Real experiences from practitioners who are building with AI every day</p>
+          </div>
+          <div class="format-item">
+            <div class="format-icon">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <h3>Live Demos</h3>
+            <p>Watch things break in real time as we explore what actually works</p>
+          </div>
+          <div class="format-item">
+            <div class="format-icon">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+            <h3>Open Discussions</h3>
+            <p>The best ideas come from the crowd—networking and knowledge sharing</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Past Events Section -->
+    <section class="past-events-section">
+      <PastEvents />
+    </section>
+
+    <!-- Call to Action -->
+    <section class="meetups-cta">
+      <div class="mx-auto max-w-4xl px-4 py-12 text-center">
+        <h2 class="cta-title">Want to Speak or Host?</h2>
+        <p class="cta-description">
+          We're always looking for speakers to share their experiences and companies to host our meetups.
+        </p>
+        <a href="mailto:hello@agentic.hamburg" class="cta-button">
+          Get in Touch
+          <svg class="cta-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* Conference Banner */
+  .conf-banner {
+    display: block;
+    position: relative;
+    z-index: 40;
+    background: linear-gradient(135deg, var(--color-primary) 0%, #ff8c00 100%);
+    color: white;
+    text-decoration: none;
+    padding: 0.75rem 1rem;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .conf-banner:hover {
+    background: linear-gradient(135deg, #e67300 0%, var(--color-primary) 100%);
+  }
+
+  .banner-content {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .banner-badge {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .banner-text {
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  .banner-arrow {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.3s ease;
+  }
+
+  .conf-banner:hover .banner-arrow {
+    transform: translateX(4px);
+  }
+
+  @media (max-width: 500px) {
+    .banner-badge {
+      display: none;
+    }
+  }
+
+  /* Hero Section */
+  .meetups-hero {
+    background: linear-gradient(
+      135deg,
+      var(--color-bg-soft) 0%,
+      var(--color-bg-cream) 50%,
+      var(--color-bg-light) 100%
+    );
+    border-bottom: 3px solid var(--color-primary);
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.1;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--color-text-primary);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-description {
+    font-size: 1.25rem;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+    max-width: 600px;
+    margin: 0 auto 2rem;
+  }
+
+  .hero-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .meetup-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--color-primary);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid var(--color-primary);
+    box-shadow: 0 4px 12px rgba(247, 127, 0, 0.3);
+  }
+
+  .meetup-link:hover {
+    background: var(--color-primary-light);
+    border-color: var(--color-primary-light);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(247, 127, 0, 0.4);
+  }
+
+  .link-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  /* Format Section */
+  .meetups-format {
+    background: white;
+  }
+
+  .format-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--color-text-primary);
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .format-grid {
+    display: grid;
+    gap: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .format-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .format-item {
+    text-align: center;
+    padding: 2rem;
+    background: var(--color-bg-soft);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+  }
+
+  .format-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  .format-icon {
+    width: 3.5rem;
+    height: 3.5rem;
+    background: linear-gradient(
+      135deg,
+      var(--color-primary) 0%,
+      var(--color-accent) 100%
+    );
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+  }
+
+  .format-icon svg {
+    width: 2rem;
+    height: 2rem;
+    color: white;
+  }
+
+  .format-item h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 0.75rem;
+  }
+
+  .format-item p {
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+  }
+
+  /* CTA Section */
+  .meetups-cta {
+    background: var(--color-bg-soft);
+  }
+
+  .cta-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--color-text-primary);
+    margin-bottom: 1rem;
+  }
+
+  .cta-description {
+    font-size: 1.125rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 2rem;
+  }
+
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--color-primary);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1.125rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid var(--color-primary);
+    box-shadow: 0 4px 12px rgba(247, 127, 0, 0.3);
+  }
+
+  .cta-button:hover {
+    background: var(--color-primary-light);
+    border-color: var(--color-primary-light);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(247, 127, 0, 0.4);
+  }
+
+  .cta-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    transition: transform 0.3s ease;
+  }
+
+  .cta-button:hover .cta-icon {
+    transform: translateX(4px);
+  }
+</style>
