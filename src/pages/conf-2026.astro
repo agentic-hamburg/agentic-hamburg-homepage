@@ -51,7 +51,7 @@ const faqs = [
   },
   {
     question: "How can I become a speaker?",
-    answer: "We're currently finalizing our speaker lineup. Reach out to us at hello@agentic.hamburg if you're interested.",
+    answer: "Submit your talk proposal through our Call for Papers on Sessionize. The CFP is open until March 2, 2026. We're looking for lightning talks (10 min), standard talks (20 min), workshops (45-60 min), and open space sessions.",
   },
   {
     question: "Is there parking available?",
@@ -234,17 +234,58 @@ const faqs = [
       </div>
     </section>
 
-    <!-- Speakers Section -->
-    <section class="conf-section conf-speakers">
+    <!-- Call for Papers Section -->
+    <section class="conf-section conf-cfp">
       <div class="mx-auto max-w-4xl px-4">
-        <p class="section-label">The Speakers</p>
-        <h2 class="section-title">Lineup Coming Soon</h2>
-        <p class="section-description">
-          We're currently finalizing an exciting lineup of practitioners who are building with AI every day. Stay tuned for announcements.
-        </p>
-        <p class="section-description">
-          Interested in speaking? Reach out at <a href="mailto:hello@agentic.hamburg">hello@agentic.hamburg</a>
-        </p>
+        <p class="section-label">Call for Speakers</p>
+        <h2 class="section-title">Share Your Story</h2>
+
+        <div class="cfp-box">
+          <div class="cfp-deadline">
+            <span class="deadline-label">CFP Closes</span>
+            <span class="deadline-date">March 2, 2026</span>
+          </div>
+
+          <p class="cfp-intro">
+            We're looking for practitioners who are building with AI every day. Share your real-world experiences, hard-won lessons, and creative experiments.
+          </p>
+
+          <div class="cfp-details">
+            <div class="cfp-formats">
+              <h3>Session Formats</h3>
+              <ul>
+                <li><strong>Lightning Talks</strong> — 10 minutes</li>
+                <li><strong>Standard Talks</strong> — 20 minutes</li>
+                <li><strong>Workshops</strong> — 45-60 minutes</li>
+                <li><strong>Open Spaces</strong> — Unconference style</li>
+              </ul>
+            </div>
+
+            <div class="cfp-topics">
+              <h3>Topics We Love</h3>
+              <ul>
+                <li>AI-native development tools & workflows</li>
+                <li>Building custom agents & MCP servers</li>
+                <li>Team productivity & adoption stories</li>
+                <li>Real-world lessons (wins and fails)</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="cfp-benefits">
+            <svg class="benefits-icon" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            <span>Speakers get free admission + potential travel/hotel support</span>
+          </div>
+
+          <a href="https://sessionize.com/agentic-conf-hamburg" target="_blank" rel="noopener noreferrer" class="cta-primary cfp-cta">
+            Submit Your Proposal
+            <svg class="cta-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -954,5 +995,116 @@ const faqs = [
 
   .cta-primary:hover .cta-icon {
     transform: translateX(4px);
+  }
+
+  /* CFP Section */
+  .cfp-box {
+    background: white;
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(247, 127, 0, 0.15);
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .cfp-deadline {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+  }
+
+  .deadline-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.9;
+  }
+
+  .deadline-date {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .cfp-intro {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+    margin-bottom: 2rem;
+  }
+
+  .cfp-details {
+    display: grid;
+    gap: 2rem;
+    text-align: left;
+    margin-bottom: 2rem;
+  }
+
+  @media (min-width: 600px) {
+    .cfp-details {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .cfp-formats h3,
+  .cfp-topics h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-primary);
+    margin-bottom: 0.75rem;
+  }
+
+  .cfp-formats ul,
+  .cfp-topics ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .cfp-formats li,
+  .cfp-topics li {
+    padding: 0.5rem 0;
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .cfp-formats li:last-child,
+  .cfp-topics li:last-child {
+    border-bottom: none;
+  }
+
+  .cfp-benefits {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(247, 127, 0, 0.08);
+    color: var(--color-text-primary);
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 2rem;
+  }
+
+  .benefits-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--color-primary);
+    flex-shrink: 0;
+  }
+
+  .cfp-cta {
+    display: inline-flex;
   }
 </style>
