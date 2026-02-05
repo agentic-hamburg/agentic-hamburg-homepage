@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import { slugifyStr } from "@/utils/slugify";
 
 export interface Props {
   post: CollectionEntry<"news">;
@@ -29,9 +30,15 @@ const href = `/news/${post.id}`;
       </time>
       {
         tags.length > 0 && (
-          <div class="flex gap-2">
+          <div class="flex gap-2" onclick="event.stopPropagation()">
             {tags.slice(0, 2).map((tag: string) => (
-              <span class="text-xs text-gray-500">#{tag}</span>
+              <a
+                href={`/news/tags/${slugifyStr(tag)}/`}
+                class="text-xs text-gray-500 hover:text-[#f77f00]"
+                onclick="event.stopPropagation()"
+              >
+                #{tag}
+              </a>
             ))}
           </div>
         )

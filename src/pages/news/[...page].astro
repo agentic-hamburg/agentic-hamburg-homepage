@@ -6,7 +6,9 @@ import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Newsletter from "@/components/Newsletter.astro";
 import Pagination from "@/components/blog/Pagination.astro";
+import Tag from "@/components/blog/Tag.astro";
 import getSortedPosts from "@/utils/getSortedPosts";
+import { slugifyStr } from "@/utils/slugify";
 
 export const prerender = true;
 
@@ -71,9 +73,7 @@ const dateFormat = new Intl.DateTimeFormat("en-US", {
                 {post.data.tags.length > 0 && (
                   <div class="mb-4 flex flex-wrap gap-2">
                     {post.data.tags.map(tag => (
-                      <span class="rounded-full bg-gray-100 px-3 py-1 text-xs text-gray-700">
-                        #{tag}
-                      </span>
+                      <Tag tag={slugifyStr(tag)} tagName={tag} size="sm" />
                     ))}
                   </div>
                 )}

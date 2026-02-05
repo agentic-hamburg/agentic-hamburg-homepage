@@ -1,0 +1,40 @@
+---
+// Reading progress bar component
+// Displays a fixed progress bar at the top of the page that updates on scroll
+---
+
+<div
+  class="progress-container fixed left-0 top-0 z-50 h-1 w-full bg-gray-200"
+  aria-hidden="true"
+>
+  <div class="progress-bar h-1 w-0 bg-[#f77f00] transition-[width]" id="reading-progress"></div>
+</div>
+
+<script is:inline data-astro-rerun>
+  function initProgressBar() {
+    const progressBar = document.getElementById("reading-progress");
+    if (!progressBar) return;
+
+    function updateProgress() {
+      const winScroll =
+        document.body.scrollTop || document.documentElement.scrollTop;
+      const height =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+      const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+      progressBar.style.width = scrolled + "%";
+    }
+
+    // Update on scroll
+    window.addEventListener("scroll", updateProgress, { passive: true });
+
+    // Initial update
+    updateProgress();
+  }
+
+  // Initialize on load
+  initProgressBar();
+
+  // Re-initialize after Astro page transitions
+  document.addEventListener("astro:after-swap", initProgressBar);
+</script>

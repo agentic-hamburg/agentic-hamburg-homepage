@@ -3,7 +3,11 @@ import { getCollection, type CollectionEntry, render } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
+import Tag from "@/components/blog/Tag.astro";
+import ProgressBar from "@/components/blog/ProgressBar.astro";
+import PostNavigation from "@/components/blog/PostNavigation.astro";
 import getSortedPosts from "@/utils/getSortedPosts";
+import { slugifyStr } from "@/utils/slugify";
 
 export const prerender = true;
 
@@ -11,17 +15,23 @@ export async function getStaticPaths() {
   const posts = await getCollection("news", ({ data }) => !data.draft);
   const sortedPosts = getSortedPosts(posts);
 
-  return sortedPosts.map(post => ({
+  return sortedPosts.map((post, index) => ({
     params: { slug: post.id },
-    props: { post },
+    props: {
+      post,
+      prevPost: index > 0 ? { id: sortedPosts[index - 1].id, title: sortedPosts[index - 1].data.title } : null,
+      nextPost: index < sortedPosts.length - 1 ? { id: sortedPosts[index + 1].id, title: sortedPosts[index + 1].data.title } : null,
+    },
   }));
 }
 
 type Props = {
   post: CollectionEntry<"news">;
+  prevPost: { id: string; title: string } | null;
+  nextPost: { id: string; title: string } | null;
 };
 
-const { post } = Astro.props;
+const { post, prevPost, nextPost } = Astro.props;
 const { Content } = await render(post);
 const { title, author, description, pubDatetime, modDatetime, tags } =
   post.data;
@@ -42,6 +52,7 @@ const postData = {
 ---
 
 <Layout title={`${title} | Agentic Hamburg`}>
+  <ProgressBar />
   <Header />
 
   <main class="mx-auto max-w-4xl px-4 py-12">
@@ -69,9 +80,7 @@ const postData = {
           tags.length > 0 && (
             <div class="mt-4 flex flex-wrap gap-2">
               {tags.map(tag => (
-                <span class="rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-700">
-                  #{tag}
-                </span>
+                <Tag tag={slugifyStr(tag)} tagName={tag} />
               ))}
             </div>
           )
@@ -84,9 +93,11 @@ const postData = {
       </div>
     </article>
 
-    <div class="mt-12 border-t pt-8">
+    <PostNavigation prevPost={prevPost} nextPost={nextPost} />
+
+    <div class="mt-8 text-center">
       <a href="/news" class="text-blue-600 hover:underline"
-        >← Back to all posts</a
+        >&larr; Back to all posts</a
       >
     </div>
   </main>
@@ -260,4 +271,54 @@ const postData = {
     // Initial check
     handleScroll();
   });
+</script>
+
+<script is:inline data-astro-rerun>
+  /** Attaches copy buttons to code blocks in the document,
+   * allowing users to copy code easily. */
+  function attachCopyButtons() {
+    const copyButtonLabel = "Copy";
+    const codeBlocks = Array.from(document.querySelectorAll("pre"));
+
+    for (const codeBlock of codeBlocks) {
+      // Skip if already has a copy button
+      if (codeBlock.querySelector(".copy-code")) continue;
+
+      const wrapper = document.createElement("div");
+      wrapper.style.position = "relative";
+
+      const copyButton = document.createElement("button");
+      copyButton.className =
+        "copy-code absolute right-3 top-3 rounded bg-gray-700/80 px-2 py-1 text-xs leading-4 text-white font-medium hover:bg-gray-600";
+      copyButton.innerHTML = copyButtonLabel;
+      codeBlock.setAttribute("tabindex", "0");
+      codeBlock.appendChild(copyButton);
+
+      // wrap codeblock with relative parent element
+      codeBlock?.parentNode?.insertBefore(wrapper, codeBlock);
+      wrapper.appendChild(codeBlock);
+
+      copyButton.addEventListener("click", async () => {
+        await copyCode(codeBlock, copyButton);
+      });
+    }
+
+    async function copyCode(block, button) {
+      const code = block.querySelector("code");
+      const text = code?.innerText;
+
+      await navigator.clipboard.writeText(text ?? "");
+
+      // visual feedback that task is completed
+      button.innerText = "Copied!";
+
+      setTimeout(() => {
+        button.innerText = copyButtonLabel;
+      }, 1500);
+    }
+  }
+  attachCopyButtons();
+
+  // Re-run after Astro page transitions
+  document.addEventListener("astro:after-swap", attachCopyButtons);
 </script>

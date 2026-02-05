@@ -1,0 +1,33 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Tag from "@/components/blog/Tag.astro";
+import getUniqueTags from "@/utils/getUniqueTags";
+
+export const prerender = true;
+
+const posts = await getCollection("news", ({ data }) => !data.draft);
+const tags = getUniqueTags(posts);
+---
+
+<Layout title="All Tags | Agentic Hamburg">
+  <Header />
+
+  <main class="mx-auto max-w-4xl px-4 py-12">
+    <h1 class="display-title mb-8">All Tags</h1>
+
+    <div class="flex flex-wrap gap-3">
+      {tags.map(({ tag, tagName }) => <Tag tag={tag} tagName={tagName} />)}
+    </div>
+
+    <div class="mt-12">
+      <a href="/news" class="text-blue-600 hover:underline"
+        >&larr; Back to all posts</a
+      >
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

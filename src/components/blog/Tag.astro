@@ -1,0 +1,26 @@
+---
+export interface Props {
+  tag: string;
+  tagName: string;
+  size?: "sm" | "md";
+}
+
+const { tag, tagName, size = "md" } = Astro.props;
+
+const sizeClasses = {
+  sm: "px-2 py-0.5 text-xs",
+  md: "px-3 py-1 text-sm",
+};
+---
+
+<a
+  href={`/news/tags/${tag}/`}
+  class:list={[
+    "inline-block rounded-full border border-gray-200 transition-colors",
+    "hover:border-[#f77f00] hover:bg-[#f77f00] hover:text-white",
+    "bg-gray-100 text-gray-700",
+    sizeClasses[size],
+  ]}
+>
+  #{tagName}
+</a>

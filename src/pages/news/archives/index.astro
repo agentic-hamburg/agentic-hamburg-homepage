@@ -1,0 +1,62 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import getPostsByGroupCondition from "@/utils/getPostsByGroupCondition";
+
+export const prerender = true;
+
+const posts = await getCollection("news", ({ data }) => !data.draft);
+const groupedPosts = getPostsByGroupCondition(posts);
+
+const dateFormat = new Intl.DateTimeFormat("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+---
+
+<Layout title="Archives | Agentic Hamburg">
+  <Header />
+
+  <main class="mx-auto max-w-4xl px-4 py-12">
+    <h1 class="display-title mb-8">Archives</h1>
+
+    {
+      groupedPosts.map(group => (
+        <section class="mb-12">
+          <h2 class="mb-4 border-b border-gray-200 pb-2 text-xl font-bold">
+            {group.monthName} {group.year}
+          </h2>
+          <ul class="space-y-4">
+            {group.posts.map(post => (
+              <li class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-4">
+                <time
+                  datetime={post.data.pubDatetime.toISOString()}
+                  class="shrink-0 text-sm text-gray-500"
+                >
+                  {dateFormat.format(post.data.pubDatetime)}
+                </time>
+                <a
+                  href={`/news/${post.id}`}
+                  class="font-medium text-gray-900 hover:text-[#f77f00]"
+                >
+                  {post.data.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))
+    }
+
+    <div class="mt-12">
+      <a href="/news" class="text-blue-600 hover:underline"
+        >&larr; Back to all posts</a
+      >
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

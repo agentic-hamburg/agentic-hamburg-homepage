@@ -6,6 +6,7 @@ import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://agentic.hamburg",
   // In Astro 5, hybrid mode is now part of static mode
   // Pages with `export const prerender = false` are automatically server-rendered
   adapter: netlify(),

@@ -10,6 +10,7 @@ const currentPath = Astro.url.pathname;
 const isHome = currentPath === "/";
 const isConference = currentPath.includes("/conf-2026");
 const isMeetups = currentPath.includes("/meetups");
+const isNews = currentPath.startsWith("/news");
 const isAbout = currentPath.includes("/about");
 ---
 
@@ -44,6 +45,11 @@ const isAbout = currentPath.includes("/about");
           href="/meetups"
           class={`text-gray-700 hover:text-gray-900 ${isMeetups ? "font-bold" : ""}`}
           >{t.header.meetups}</a
+        >
+        <a
+          href="/news"
+          class={`text-gray-700 hover:text-gray-900 ${isNews ? "font-bold" : ""}`}
+          >{t.header.news}</a
         >
         <a
           href="/about"
