@@ -35,8 +35,11 @@ npm run ci           # Full CI check (typecheck + lint + format:check)
 - `src/components/` - Reusable Astro components
 - `src/layouts/Layout.astro` - Base HTML layout with meta tags
 - `src/lib/i18n/` - Internationalization (currently English only)
-- `src/data/news/` - MDX blog posts (content collection)
+- `src/data/news/blog/YYYY/<post-slug>/index.mdx` - Blog posts (subdirectory per post, co-located images)
 - `src/content.config.ts` - Content collection schema definition
+- `content/<post-folder>/post.md` - Source content for the content pipeline
+- `tools/bannergenerator/` - Go CLI for generating banner images via Gemini Imagen
+- `tools/contentmachine/` - Go CLI for distributing content to blog + social media
 
 ### Key Patterns
 - Path alias: `@/*` maps to `./src/*`
@@ -48,6 +51,43 @@ npm run ci           # Full CI check (typecheck + lint + format:check)
 Required for newsletter functionality:
 - `CONVERTKIT_API_KEY`
 - `CONVERTKIT_FORM_ID`
+
+Required for content pipeline:
+- `GOOGLE_API_KEY` - Gemini API key for banner generation
+- `BLOG_CONTENT_PATH` - Path to blog content directory (default: `src/data/news/blog`)
+- `BLOG_BASE_URL` - Base URL of the blog (default: `https://agentic.hamburg`)
+
+## Content Workflow
+
+### Creating a new blog post
+
+1. Create a folder in `content/`: `content/<post-folder>/post.md`
+2. Write content with YAML frontmatter (see `content/example-post/post.md` for format)
+3. Generate banner: `cd tools/bannergenerator && go run main.go --post <post-folder> --prompt "description" --count 4`
+4. Pick the best banner, rename to `banner.png` in the post folder
+5. Distribute: `./distribute-post.sh <post-folder>` (or `--dry-run` to preview)
+6. The content machine creates the blog post in `src/data/news/blog/YYYY/<slug>/index.mdx` and outputs social media text
+
+### Post format (`content/<post-folder>/post.md`)
+
+```yaml
+---
+title: "Post Title"
+description: "Short summary for blog listing and social media"
+author: Stefan Munz
+pubDatetime: 2026-03-01T10:00:00+01:00
+tags: [meetup, recap]
+featured: false
+draft: false
+socialMediaHashtags: "#AgenticHamburg #AICoding"
+---
+```
+
+Body is plain markdown. Images referenced as `![alt](./image.png)` are converted to Astro Image components.
+
+### Banner guidelines
+
+See `BANNER_GUIDELINES.md` for image generation style guide.
 
 ## Linting Rules
 - `no-console` is an error (except `console.error` and `console.warn` in API routes)
