@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import headerLogo from "../assets/header.png";
+import logoImage from "../assets/logo-agentic-conf.png";
 import { useTranslations } from "../lib/i18n/utils";
 
 const t = useTranslations();
@@ -14,17 +14,17 @@ const isNews = currentPath.startsWith("/news");
 const isAbout = currentPath.includes("/about");
 ---
 
-<header class="site-header relative z-50 w-full border-b border-black">
+<header class="site-header relative z-50 w-full border-b border-[var(--color-secondary)]" style="border-opacity: 0.1;">
   <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
     <div class="flex h-20 items-center justify-between">
       <div class="flex items-center">
         <a href="/" class="flex items-center" aria-label="Agentic Hamburg home">
           <Image
-            src={headerLogo}
+            src={logoImage}
             alt="Agentic Hamburg"
-            width={320}
-            height={64}
-            class="h-16 w-auto"
+            width={160}
+            height={160}
+            class="h-12 w-auto rounded-lg"
             loading="eager"
             decoding="sync"
           />
@@ -33,30 +33,47 @@ const isAbout = currentPath.includes("/about");
       <nav class="flex items-center space-x-6 text-lg font-semibold">
         <a
           href="/"
-          class={`text-gray-700 hover:text-gray-900 ${isHome ? "font-bold" : ""}`}
+          class:list={["nav-link", { active: isHome }]}
           >Home</a
         >
         <a
           href="/conf-2026"
-          class={`text-gray-700 hover:text-gray-900 ${isConference ? "font-bold" : ""}`}
+          class:list={["nav-link", { active: isConference }]}
           >{t.header.conference}</a
         >
         <a
           href="/meetups"
-          class={`text-gray-700 hover:text-gray-900 ${isMeetups ? "font-bold" : ""}`}
+          class:list={["nav-link", { active: isMeetups }]}
           >{t.header.meetups}</a
         >
         <a
           href="/news"
-          class={`text-gray-700 hover:text-gray-900 ${isNews ? "font-bold" : ""}`}
+          class:list={["nav-link", { active: isNews }]}
           >{t.header.news}</a
         >
         <a
           href="/about"
-          class={`text-gray-700 hover:text-gray-900 ${isAbout ? "font-bold" : ""}`}
+          class:list={["nav-link", { active: isAbout }]}
           >{t.header.about}</a
         >
       </nav>
     </div>
   </div>
 </header>
+
+<style>
+  .nav-link {
+    color: var(--color-text-secondary);
+    transition: color 0.2s ease;
+    text-decoration: none;
+  }
+
+  .nav-link:hover {
+    color: var(--color-text-primary);
+  }
+
+  .nav-link.active {
+    color: var(--color-primary-dark);
+    font-weight: 700;
+  }
+</style>
