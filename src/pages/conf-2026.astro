@@ -8,6 +8,15 @@ import stefanImg from "../assets/stefan.jpeg";
 import sebastianKorfmannImg from "../assets/sebastian-korfmann.jpg";
 import sebastianReimannImg from "../assets/sebastian-reimann.jpeg";
 import venueImg from "../assets/venue-illustration.jpg";
+import speakerBjoernImg from "../assets/speakers/bjoern-rochel.jpg";
+import speakerBenediktImg from "../assets/speakers/benedikt-stemmildt.jpg";
+import speakerHenrikImg from "../assets/speakers/henrik-edler.png";
+import speakerAnastasiaImg from "../assets/speakers/anastasia-karavdina.jpg";
+import speakerPaulImg from "../assets/speakers/paul-stack.jpg";
+import speakerArnaudImg from "../assets/speakers/arnaud-jean.png";
+import speakerChristophImg from "../assets/speakers/christoph-steinlehner.png";
+import speakerHenningImg from "../assets/speakers/henning-thies.jpg";
+import speakerTilmanImg from "../assets/speakers/tilman-dietrich.jpg";
 
 const ticketUrl = "https://lu.ma/45lfeyeh";
 
@@ -37,46 +46,55 @@ const speakers = [
     name: "Björn Rochel",
     title: "You Don't Need a Bigger Model. You Need a Better AI Harness",
     format: "Full Talk",
+    image: speakerBjoernImg,
   },
   {
     name: "Benedikt Stemmildt",
     title: "Stop Building Features. Build the Factory That Builds Them.",
     format: "Full Talk",
+    image: speakerBenediktImg,
   },
   {
     name: "Henrik Edler",
     title: "Claude Code for everything except coding: The PM we've been looking for",
     format: "Full Talk",
+    image: speakerHenrikImg,
   },
   {
     name: "Anastasia Karavdina",
     title: "AI Coding Assistants in Enterprises: threat or friend?",
     format: "Full Talk",
+    image: speakerAnastasiaImg,
   },
   {
     name: "Paul Stack",
     title: "From Runbooks to Models: AI-Native Operations",
     format: "Full Talk",
+    image: speakerPaulImg,
   },
   {
     name: "Arnaud Jean",
     title: "Create Your Own Role-Playing Game with Agentic AI",
     format: "Workshop",
+    image: speakerArnaudImg,
   },
   {
     name: "Christoph Steinlehner",
     title: "What if building faster just means building the wrong thing faster?",
     format: "Workshop",
+    image: speakerChristophImg,
   },
   {
     name: "Henning Thies",
     title: "Personal AI: Coding Agents Beyond Coding",
     format: "Lightning Talk",
+    image: speakerHenningImg,
   },
   {
     name: "Tilman Dietrich",
     title: "Automating AI Research Delivery — From Papers to Spotify & YouTube",
     format: "Lightning Talk",
+    image: speakerTilmanImg,
   },
 ];
 
@@ -210,9 +228,13 @@ const faqs = [
         <div class="speakers-grid">
           {speakers.map(speaker => (
             <article class="speaker-card">
-              <div class="speaker-initials">
-                {speaker.name.split(" ").map(n => n[0]).join("")}
-              </div>
+              <Image
+                src={speaker.image}
+                alt={speaker.name}
+                width={48}
+                height={48}
+                class="speaker-photo"
+              />
               <div class="speaker-info">
                 <h3 class="speaker-name">{speaker.name}</h3>
                 <p class="speaker-talk">{speaker.title}</p>
@@ -1207,19 +1229,12 @@ const faqs = [
     transform: translateY(-2px);
   }
 
-  .speaker-initials {
+  .speaker-photo {
     flex-shrink: 0;
     width: 48px;
     height: 48px;
-    border-radius: 12px;
-    background: var(--color-secondary);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 0.95rem;
-    letter-spacing: 0.02em;
+    object-fit: cover;
+    border-radius: 50%;
   }
 
   .speaker-info {
