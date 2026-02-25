@@ -2,7 +2,7 @@ import type { CollectionEntry } from "astro:content";
 
 const getSortedPosts = (posts: CollectionEntry<"news">[]) => {
   return posts
-    .filter(({ data }) => !data.draft)
+    .filter(({ data }) => import.meta.env.DEV || !data.draft)
     .sort(
       (a, b) =>
         Math.floor(

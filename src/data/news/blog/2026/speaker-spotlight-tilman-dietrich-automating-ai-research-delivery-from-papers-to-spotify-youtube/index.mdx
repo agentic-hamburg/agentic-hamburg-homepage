@@ -1,0 +1,46 @@
+---
+author: Agentic Hamburg Team
+pubDatetime: 2026-02-25T18:00:00+01:00
+title: "Speaker Spotlight: Tilman Dietrich – Automating AI Research Delivery — From Papers to Spotify & YouTube"
+featured: false
+draft: true
+description: "Tilman Dietrich built a fully automated pipeline that turns top AI research papers into podcast episodes, blog posts, YouTube Shorts, and newsletters – completely hands-off."
+tags:
+  - conference
+  - speaker
+  - agentic-conf
+---
+
+import { Image } from "astro:assets";
+import bannerImg from "./banner.png";
+
+<Image
+  src={bannerImg}
+  alt="Speaker Spotlight: Tilman Dietrich – Automating AI Research Delivery — From Papers to Spotify & YouTube"
+  widths={[400, 800, 1200]}
+  sizes="(max-width: 800px) 100vw, 800px"
+/>
+
+We're excited to announce **Tilman Dietrich** as a speaker at [Agentic Conf Hamburg](https://lu.ma/45lfeyeh) on March 22nd!
+
+## About Tilman
+
+Tilman Dietrich is a freelance IT consultant from Hamburg with an unusual background: he originally trained as a pilot with Lufthansa before switching to tech – trading cockpit checklists for deployment pipelines. Today he builds projects at the intersection of AI, Salesforce, and anything that can (and should) be automated.
+
+You can follow Tilman on [LinkedIn](https://www.linkedin.com/in/tilman-dietrich/) and his website [dietrich.ai](https://dietrich.ai).
+
+## The Talk: Automating AI Research Delivery — From Papers to Spotify & YouTube
+
+Every week, hundreds of AI research papers are published. Keeping up is hard. Tilman built a fully automated pipeline that does it for you.
+
+The system scrapes the top 10 papers from Hugging Face's weekly rankings, generates a ~10-minute two-host podcast episode about the #1 paper, publishes a blog post to Substack, creates YouTube Shorts, and delivers everything as a weekly email newsletter. All of it completely hands-off, without any human intervention.
+
+Under the hood, the pipeline combines multiple AI APIs: Claude Opus for generating accessible podcast transcripts and blog posts, Gemini TTS for multi-speaker audio synthesis, and Veo 3.1 for video generation. A key design goal is accessibility – the podcast explains technical jargon, avoids reading math notation aloud, and uses analogies to make cutting-edge research approachable for a broad audience.
+
+In this lightning talk, Tilman will walk through the architecture, the cron-driven workflow, and the practical challenges he solved along the way – from chunking long transcripts for TTS to automatically publishing on Spotify and YouTube.
+
+## See Tilman Live
+
+Catch this lightning talk and many more at **Agentic Conf Hamburg on March 22, 2026** at SAE Institute Hamburg.
+
+👉 **[Get your tickets on Luma](https://lu.ma/45lfeyeh)**

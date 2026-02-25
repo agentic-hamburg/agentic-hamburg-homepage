@@ -8,7 +8,7 @@ tags:
   - speaker
   - agentic-conf
 featured: false
-draft: false
+draft: true
 socialMediaHashtags: "#AgenticConf #AgenticHamburg #AICoding #ClaudeCode #Rails"
 ---
 
@@ -32,7 +32,7 @@ In this lightning talk, Henning will demo his Personal AI System and show how Cl
 - **Strategic documentation** – How AI captures and maintains key business decisions
 - **Content & research** – How AI creates LinkedIn posts and conducts market research
 
-PAI isn't a tool. It's Henning's digital co-founder. And at Agentic Conf, he'll show you how he built it.
+PAI isn't a tool. It's Henning's digital co-founder. And at [Agentic Conf Hamburg](https://lu.ma/45lfeyeh), he'll show you how he built it.
 
 ## See Henning Live
 

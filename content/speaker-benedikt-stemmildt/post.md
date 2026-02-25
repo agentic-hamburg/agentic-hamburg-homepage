@@ -1,0 +1,39 @@
+---
+title: "Speaker Spotlight: Benedikt Stemmildt – Stop Building Features. Build the Factory That Builds Them."
+description: "Benedikt Stemmildt on why the real shift in AI-assisted development isn't better prompts – it's building production lines that turn tickets into pull requests with minimal intervention."
+author: Agentic Hamburg Team
+pubDatetime: 2026-02-25T18:00:00+01:00
+tags:
+  - conference
+  - speaker
+  - agentic-conf
+featured: false
+draft: true
+socialMediaHashtags: "#AgenticConf #AgenticHamburg #AICoding"
+---
+
+We're excited to announce **Benedikt Stemmildt** as a speaker at [Agentic Conf Hamburg](https://lu.ma/45lfeyeh) on March 22nd!
+
+## About Benedikt
+
+Benedikt Stemmildt is an Agentic Software Engineering Advocate with over 20 years of enterprise experience. He helps CTOs and their teams move past the frustration of AI assistants that don't quite deliver – and into workflows that actually multiply productivity.
+
+Having led 70+ developers at companies like OTTO, Breuninger, and BLUME 2000, Benedikt knows what it takes to make AI work at scale. Through his consultancy [hackers&wizards](https://hackersandwizards.dev), he teaches context engineering methodologies that achieve 10x efficiency improvements while preserving programming joy.
+
+You can follow Benedikt on [LinkedIn](https://www.linkedin.com/in/benedikt-stemmildt/), his [personal blog](https://benedikt.stemmildt.com), and [@slashBene](https://twitter.com/slashBene) on X.
+
+## The Talk: Stop Building Features. Build the Factory That Builds Them.
+
+You've got your CLAUDE.md, your subagents, your custom skills. And it works. But every feature still starts with you – kicking off the agent, steering it, reviewing, course-correcting. You've optimized the tool. You haven't automated the process.
+
+Benedikt argues the real shift is **indirection**: instead of using an agent to build a feature, build a production line that builds features for you. Scripts, validation steps, orchestration – from ticket to pull request with minimal intervention. And it doesn't stop at code. The factory writes tests, generates documentation, handles requirements engineering.
+
+Two hard truths you'll hear in this talk: you can't copy someone else's factory (it's deeply coupled to your codebase and conventions), and when a new model drops, you rebuild it. That's the new developer skill – not maintaining one perfect system, but rapidly creating factories for any situation.
+
+No slides. Benedikt will open a real factory from a real client project and walk through how it's built, how it runs, and why this is the path from AI-assisted to genuinely autonomous.
+
+## See Benedikt Live
+
+Catch this full talk and many more at **Agentic Conf Hamburg on March 22, 2026** at SAE Institute Hamburg.
+
+👉 **[Get your tickets on Luma](https://lu.ma/45lfeyeh)**

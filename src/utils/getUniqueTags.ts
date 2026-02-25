@@ -10,7 +10,7 @@ const getUniqueTags = (posts: CollectionEntry<"news">[]): TagInfo[] => {
   const tags: Map<string, string> = new Map();
 
   posts
-    .filter(({ data }) => !data.draft)
+    .filter(({ data }) => import.meta.env.DEV || !data.draft)
     .flatMap(post => post.data.tags)
     .forEach(tag => {
       const slug = slugifyStr(tag);
