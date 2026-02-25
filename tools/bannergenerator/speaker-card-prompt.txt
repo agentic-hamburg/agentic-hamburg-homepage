@@ -1,0 +1,24 @@
+Create a speaker announcement card for a tech conference.
+
+BACKGROUND: Solid monochrome fill using exactly {{BACKGROUND_COLOR}}. No gradients, no patterns, no decorative shapes, no blobs. Just a flat solid color.
+
+BORDER: A thin outline/border (3-4px) around the entire image in {{ACCENT_COLOR}}.
+
+LAYOUT:
+- The entire content (photo + text block) is VERTICALLY CENTERED in the image. Equal empty space above and below.
+- LEFT SIDE: A circular cutout of the speaker's photo, vertically centered. The circle should be roughly 35-40% of the image width.
+- RIGHT SIDE: A text block, vertically centered and aligned to the left edge of the right half.
+- TOP-RIGHT CORNER: Leave empty (a logo will be added in post-processing).
+
+TEXT (all text uses {{ACCENT_COLOR}}):
+- "{{SPEAKER_NAME}}" — large, bold, serif or clean sans-serif
+- "{{SPEAKER_TITLE}}" — smaller, regular weight, below the name
+- "{{TALK_TITLE}}" — medium size, italic or semi-bold, with slight vertical spacing above and below to separate it from the other text
+- "Agentic Conf Hamburg · March 22, 2026" — small, regular weight
+- "https://agentic.hamburg" — small, bottom-right area of the text block
+
+STYLE:
+- Clean, modern, minimal, professional
+- No decorative elements, no icons, no extra graphics
+- The only visual interest comes from the circular photo and the typography hierarchy
+- High contrast between the background color and the text/accent color

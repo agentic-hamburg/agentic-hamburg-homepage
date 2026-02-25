@@ -12,9 +12,15 @@ if [ -f ".env" ]; then
     set +a
 fi
 
-# Default values if not set
+# Default values if not set, resolve to absolute paths
 BLOG_CONTENT_PATH="${BLOG_CONTENT_PATH:-src/data/news/blog}"
+# Make BLOG_CONTENT_PATH absolute (relative to repo root)
+if [[ "$BLOG_CONTENT_PATH" != /* ]]; then
+    BLOG_CONTENT_PATH="$SCRIPT_DIR/$BLOG_CONTENT_PATH"
+fi
+export BLOG_CONTENT_PATH
 BLOG_BASE_URL="${BLOG_BASE_URL:-https://agentic.hamburg}"
+export BLOG_BASE_URL
 
 # Check for --dry-run flag
 DRY_RUN=""
