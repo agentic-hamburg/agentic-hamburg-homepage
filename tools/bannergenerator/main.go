@@ -6,6 +6,7 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+	"time"
 
 	"github.com/joho/godotenv"
 	"github.com/spf13/cobra"
@@ -17,24 +18,31 @@ var (
 	prompt string
 	count  int32
 	dryRun bool
+	images []string
 )
 
 func main() {
 	var rootCmd = &cobra.Command{
 		Use:   "bannergenerator",
-		Short: "Generate banner images using Imagen",
-		Long: `A CLI tool that generates banner images for blog posts
-using Google's Imagen model. It combines general style guidelines from
-BANNER_GUIDELINES.md with a post-specific prompt.`,
+		Short: "Generate banner images for blog posts",
+		Long: `A CLI tool that generates banner images for blog posts.
+
+Two modes:
+  1. Text-only (Imagen): Generate from a text prompt using Imagen 4.0
+  2. Compose (Gemini): Supply input images (photos, logos) and a prompt
+     to compose a banner using Gemini 2.5 Flash Image
+
+Both modes combine BANNER_GUIDELINES.md with your prompt.`,
 		RunE: run,
 	}
 
 	rootCmd.Flags().StringVarP(&post, "post", "p", "", "Post folder name (required)")
 	rootCmd.MarkFlagRequired("post")
-	rootCmd.Flags().StringVarP(&prompt, "prompt", "m", "", "Post-specific image prompt (required)")
+	rootCmd.Flags().StringVarP(&prompt, "prompt", "m", "", "Image prompt (required)")
 	rootCmd.MarkFlagRequired("prompt")
-	rootCmd.Flags().Int32VarP(&count, "count", "c", 4, "Number of images to generate (1-4)")
+	rootCmd.Flags().Int32VarP(&count, "count", "c", 4, "Number of images to generate (1-4, Imagen mode only)")
 	rootCmd.Flags().BoolVarP(&dryRun, "dry-run", "d", false, "Print combined prompt without calling the API")
+	rootCmd.Flags().StringSliceVarP(&images, "images", "i", nil, "Input image paths for composition mode (uses Gemini instead of Imagen)")
 
 	if err := rootCmd.Execute(); err != nil {
 		os.Exit(1)
@@ -65,6 +73,15 @@ func run(cmd *cobra.Command, args []string) error {
 
 	if dryRun {
 		fmt.Println(combined)
+		if len(images) > 0 {
+			fmt.Println("\n## Input images:")
+			for _, img := range images {
+				fmt.Printf("  - %s\n", img)
+			}
+			fmt.Println("\nMode: Gemini 2.5 Flash Image (composition)")
+		} else {
+			fmt.Println("\nMode: Imagen 4.0 (text-to-image)")
+		}
 		return nil
 	}
 
@@ -82,16 +99,26 @@ func run(cmd *cobra.Command, args []string) error {
 		return fmt.Errorf("post directory does not exist: %s", outputDir)
 	}
 
-	// Call Imagen API
 	ctx := context.Background()
 	client, err := genai.NewClient(ctx, &genai.ClientConfig{
 		APIKey:  apiKey,
 		Backend: genai.BackendGeminiAPI,
+		HTTPOptions: genai.HTTPOptions{
+			Timeout: ptr(120 * time.Second),
+		},
 	})
 	if err != nil {
 		return fmt.Errorf("creating genai client: %w", err)
 	}
 
+	if len(images) > 0 {
+		return runGeminiCompose(ctx, client, combined, guidelines, outputDir, repoRoot)
+	}
+	return runImagen(ctx, client, combined, guidelines, outputDir)
+}
+
+// runImagen generates images from text using Imagen 4.0
+func runImagen(ctx context.Context, client *genai.Client, combined, guidelines, outputDir string) error {
 	config := &genai.GenerateImagesConfig{
 		NumberOfImages: count,
 		AspectRatio:    ParseAspectRatio(guidelines),
@@ -106,7 +133,6 @@ func run(cmd *cobra.Command, args []string) error {
 		return fmt.Errorf("no images were generated")
 	}
 
-	// Save images
 	for n, image := range response.GeneratedImages {
 		var filename string
 		if count == 1 {
@@ -120,6 +146,91 @@ func run(cmd *cobra.Command, args []string) error {
 			return fmt.Errorf("writing image %s: %w", outputPath, err)
 		}
 		fmt.Println(outputPath)
+	}
+
+	return nil
+}
+
+// runGeminiCompose uses Gemini 2.5 Flash Image to compose a banner from input images + prompt
+func runGeminiCompose(ctx context.Context, client *genai.Client, combined, guidelines, outputDir, repoRoot string) error {
+	// Build parts: text prompt + input images
+	parts := []*genai.Part{
+		genai.NewPartFromText(combined),
+	}
+
+	for _, imgPath := range images {
+		// Resolve relative paths against repo root
+		if !filepath.IsAbs(imgPath) {
+			imgPath = filepath.Join(repoRoot, imgPath)
+		}
+
+		imgData, err := os.ReadFile(imgPath)
+		if err != nil {
+			return fmt.Errorf("reading image %s: %w", imgPath, err)
+		}
+
+		mimeType := "image/png"
+		ext := strings.ToLower(filepath.Ext(imgPath))
+		switch ext {
+		case ".jpg", ".jpeg":
+			mimeType = "image/jpeg"
+		case ".webp":
+			mimeType = "image/webp"
+		}
+
+		parts = append(parts, &genai.Part{
+			InlineData: &genai.Blob{
+				MIMEType: mimeType,
+				Data:     imgData,
+			},
+		})
+
+		fmt.Printf("Loaded image: %s (%s, %d bytes)\n", filepath.Base(imgPath), mimeType, len(imgData))
+	}
+
+	// Generate with Gemini 2.5 Flash Image
+	var n int32
+	for n = 1; n <= count; n++ {
+		result, err := client.Models.GenerateContent(ctx, "gemini-2.5-flash-image", []*genai.Content{
+			{Parts: parts},
+		}, &genai.GenerateContentConfig{
+			ResponseModalities: []string{"IMAGE", "TEXT"},
+		})
+		if err != nil {
+			return fmt.Errorf("generating composed image: %w", err)
+		}
+
+		// Extract image from response
+		saved := false
+		for _, candidate := range result.Candidates {
+			if candidate.Content == nil {
+				continue
+			}
+			for _, part := range candidate.Content.Parts {
+				if part.InlineData != nil && strings.HasPrefix(part.InlineData.MIMEType, "image/") {
+					var filename string
+					if count == 1 {
+						filename = "banner.png"
+					} else {
+						filename = fmt.Sprintf("banner-%d.png", n)
+					}
+					outputPath := filepath.Join(outputDir, filename)
+
+					if err := os.WriteFile(outputPath, part.InlineData.Data, 0644); err != nil {
+						return fmt.Errorf("writing image %s: %w", outputPath, err)
+					}
+					fmt.Println(outputPath)
+					saved = true
+				}
+				if part.Text != "" {
+					fmt.Printf("Model note: %s\n", part.Text)
+				}
+			}
+		}
+
+		if !saved {
+			fmt.Printf("Warning: attempt %d produced no image\n", n)
+		}
 	}
 
 	return nil
@@ -144,10 +255,8 @@ func findRepoRoot() (string, error) {
 		dir = parent
 	}
 
-	// Fallback: try to find via executable path
 	execPath, err := os.Executable()
 	if err == nil {
-		// Try two levels up from tools/bannergenerator/
 		candidate := filepath.Join(filepath.Dir(execPath), "..", "..")
 		candidate, err = filepath.Abs(candidate)
 		if err == nil {
@@ -191,3 +300,5 @@ func isNumeric(s string) bool {
 	}
 	return true
 }
+
+func ptr(d time.Duration) *time.Duration { return &d }

@@ -12,7 +12,7 @@ import { slugifyStr } from "@/utils/slugify";
 export const prerender = true;
 
 export async function getStaticPaths() {
-  const posts = await getCollection("news", ({ data }) => !data.draft);
+  const posts = await getCollection("news", ({ data }) => import.meta.env.DEV || !data.draft);
   const sortedPosts = getSortedPosts(posts);
 
   return sortedPosts.map((post, index) => ({

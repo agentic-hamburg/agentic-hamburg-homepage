@@ -13,7 +13,7 @@ import { slugifyStr } from "@/utils/slugify";
 export const prerender = true;
 
 export const getStaticPaths = (async ({ paginate }) => {
-  const posts = await getCollection("news", ({ data }) => !data.draft);
+  const posts = await getCollection("news", ({ data }) => import.meta.env.DEV || !data.draft);
   const tags = getUniqueTags(posts);
 
   return tags.flatMap(({ tag, tagName }) => {

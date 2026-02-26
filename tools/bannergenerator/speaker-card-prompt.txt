@@ -1,0 +1,37 @@
+Create a speaker announcement card for a tech conference.
+
+ASPECT RATIO: The output image MUST be 16:9 widescreen landscape format (e.g. 1920x1080). The image must be significantly wider than it is tall.
+
+BACKGROUND COLOR: #D4A59A (muted salmon/dusty rose). Solid monochrome flat fill across the entire image. No gradients, no patterns, no shapes.
+
+NO BORDERS OR LINES ON THE CARD:
+- No border or outline around the image edges.
+- No horizontal lines, dividers, or separators between text elements.
+
+SPEAKER PHOTO CIRCLE:
+- LEFT SIDE: The speaker's photo cropped into a perfect circle, vertically centered.
+- CRITICAL: The photo MUST completely fill the circle. There must be ZERO gap between the photo edge and the outline. No salmon/background color visible inside the circle at all. The photo goes right up to the outline ring.
+- Draw a very thin, subtle dark teal (#1B4B5A) hairline outline ring (1-1.5px) as the border of the circle. This ring is the exact boundary — photo on the inside, salmon background on the outside, nothing in between.
+- The circle should be roughly 30-35% of the image height.
+
+LOGO: Place the provided logo image in the TOP-RIGHT CORNER. Make it large and prominent — roughly 20-25% of the image width. The logo should be a strong visual element, clearly readable.
+
+LAYOUT (16:9 widescreen):
+- Content (photo + text block) is VERTICALLY CENTERED with equal space above and below.
+- LEFT SIDE: Circular speaker photo with thin teal outline ring.
+- RIGHT SIDE: A text block, vertically centered, left-aligned to the right half.
+- TOP-RIGHT CORNER: Logo, large and prominent.
+
+TEXT (all text uses #1B4B5A — dark teal):
+- "{{SPEAKER_NAME}}" — large, bold, serif or clean sans-serif
+- "{{SPEAKER_TITLE}}" — smaller, regular weight, below the name
+- "{{TALK_TITLE}}" — medium size, italic or semi-bold, with vertical spacing to separate it
+- "Agentic Conf Hamburg · March 22, 2026" — small, regular weight
+- "https://agentic.hamburg" — small, bottom-right area of the text block
+
+IMPORTANT - TEXT ACCURACY: Double-check every word for correct spelling. Render each word exactly as provided, letter by letter. Do not introduce typos or misspellings. Verify especially: names, titles, and technical terms.
+
+STYLE:
+- Clean, modern, minimal, professional
+- No decorative elements, no icons, no extra graphics, no card borders, no separator lines
+- High contrast between the salmon background and the dark teal text
