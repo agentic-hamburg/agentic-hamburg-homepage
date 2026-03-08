@@ -205,6 +205,21 @@ const faqs = [
       </div>
     </section>
 
+    <!-- Sponsor Logo Strip -->
+    <div class="logo-strip">
+      <span class="logo-strip-label">Supported by</span>
+      <div class="logo-strip-logos">
+        <img src={sponsorAfcSvg.src} alt="AFC" class="logo-strip-img" />
+        <img src={sponsorVorwerkSvg.src} alt="Vorwerk" class="logo-strip-img" />
+        <Image src={sponsorHackersWizardsImg} alt="Hackers and Wizards" class="logo-strip-img" width={120} />
+        <img src={sponsorTegtmeierSvg.src} alt="Tegtmeier" class="logo-strip-img" />
+        <img src={sponsorAdessoSvg.src} alt="Adesso Insurance Solutions" class="logo-strip-img" />
+        <img src={sponsorDlSchoolSvg.src} alt="DL School" class="logo-strip-img" />
+        <img src={sponsorInnoqSvg.src} alt="INNOQ" class="logo-strip-img" />
+        <Image src={sponsorFobizzImg} alt="Fobizz" class="logo-strip-img" width={80} />
+      </div>
+    </div>
+
     <!-- Stats Bar -->
     <section class="stats-bar">
       <div class="stats-container">
@@ -604,6 +619,60 @@ const faqs = [
   @media (max-width: 600px) {
     .stat-divider { display: none; }
     .stats-container { gap: 1.5rem; }
+  }
+
+  /* Logo Strip */
+  .logo-strip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 1rem 2rem;
+    background: rgba(0, 0, 0, 0.02);
+    border-top: 1px solid rgba(0, 0, 0, 0.04);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  }
+
+  .logo-strip-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--color-text-secondary);
+    opacity: 0.6;
+    white-space: nowrap;
+  }
+
+  .logo-strip-logos {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .logo-strip-img {
+    height: 18px;
+    width: auto;
+    object-fit: contain;
+    filter: grayscale(100%);
+    opacity: 0.45;
+  }
+
+  @media (max-width: 768px) {
+    .logo-strip {
+      flex-direction: column;
+      gap: 0.75rem;
+      padding: 1rem 1.5rem;
+    }
+
+    .logo-strip-logos {
+      gap: 1.25rem;
+    }
+
+    .logo-strip-img {
+      height: 14px;
+    }
   }
 
   /* Testimonials Section */
