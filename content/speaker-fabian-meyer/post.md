@@ -1,0 +1,33 @@
+---
+title: "Speaker Spotlight: Fabian Meyer – Onboarding Your Agent: How eventim Integrates Agentic Engineering into Enterprise Workflows"
+description: "Fabian Meyer shares how eventim onboarded their coding agent like a new engineer – giving it access to GitLab, Jira, and their workflows."
+author: Agentic Hamburg Team
+pubDatetime: 2026-03-09T18:00:00+01:00
+tags:
+  - conference
+  - speaker
+  - agentic-conf
+featured: false
+draft: true
+socialMediaHashtags: "#AgenticConf #AgenticHamburg #AICoding"
+---
+
+We're excited to announce **Fabian Meyer** as a speaker at [Agentic Conf Hamburg](https://lu.ma/45lfeyeh) on March 22nd!
+
+## About Fabian
+
+Fabian Meyer is Chapter Lead Vue at eventim Tech. He leads the Vue chapter developing frontend engineers and has the technical leadership for the eventim.Tixx online shop, where he shapes a scalable platform built to meet the highest standards in ticketing for 100+ customers. He is deeply invested in agentic engineering and AI-driven workflows, enabling teams to rethink how they build software.
+
+## The Talk: Onboarding Your Agent: How eventim Integrates Agentic Engineering into Enterprise Workflows
+
+Coding agents are impressive, but in enterprise environments code was never the main bottleneck. The friction lives in the process: turning tickets into specs, running pipelines, opening merge requests, deploying, and debugging failures.
+
+At eventim, they onboarded their agent like a new engineer. They gave it access to GitLab and Jira, implemented their workflows as agent skills, and let it operate within their guardrails — from ticket to verified result. Engineers review outcomes, not execute steps.
+
+This talk introduces the four pillars that enable this: Specification, Implementation, Tools, and Verification — and why in agentic engineering, the best engineers write the best specs.
+
+## See Fabian Live
+
+Catch this talk and many more at **Agentic Conf Hamburg on March 22, 2026** at SAE Institute Hamburg.
+
+👉 **[Get your tickets on Luma](https://lu.ma/45lfeyeh)**

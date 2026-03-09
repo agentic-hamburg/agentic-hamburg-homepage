@@ -1,0 +1,46 @@
+---
+author: Agentic Hamburg Team
+pubDatetime: 2026-03-09T18:00:00+01:00
+title: "Speaker Spotlight: Lutz Feldhege – The MCP Playbook: How I Wired Cursor to My Entire Production Stack"
+featured: false
+draft: true
+description: "Lutz Feldhege built a custom MCP server that connects Cursor to his full production infrastructure – 19 Docker containers, 7 microservices, and 3 databases."
+tags:
+  - conference
+  - speaker
+  - agentic-conf
+---
+
+import { Image } from "astro:assets";
+import bannerImg from "./banner.png";
+
+<Image
+  src={bannerImg}
+  alt="Speaker Spotlight: Lutz Feldhege – The MCP Playbook: How I Wired Cursor to My Entire Production Stack"
+  widths={[400, 800, 1200]}
+  sizes="(max-width: 800px) 100vw, 800px"
+/>
+
+We're excited to announce **Lutz Feldhege** as a speaker at [Agentic Conf Hamburg](https://lu.ma/45lfeyeh) on March 22nd!
+
+## About Lutz
+
+Lutz Feldhege is an AI Enabler and consultant who built his entire consulting platform — 19 Docker containers, 7 microservices, 3 databases, and a custom MCP server — using Cursor IDE. With a background in business consulting rather than software engineering, he brings a practitioner's perspective on what happens when agentic tools meet real business requirements.
+
+## The Talk: The MCP Playbook: How I Wired Cursor to My Entire Production Stack
+
+Your Cursor IDE knows about your current file. Maybe your project. But does it know about your running Docker containers, your database schemas, your deployment pipeline, and your seven microservices talking to each other over an internal Docker network?
+
+Lutz's does. He built feldhege-stack-mcp — a custom Model Context Protocol server that connects Cursor to his entire production infrastructure: a Next.js frontend, seven FastAPI/Node.js microservices, three dedicated PostgreSQL databases, a Qdrant vector store, and an Ollama instance, all running in Docker on a VPS.
+
+In this talk, he'll show the MCP server architecture, walk through the key tools and resources he exposed, and demonstrate how this changes the development experience. When Cursor understands your infrastructure, it stops generating code in isolation and starts making architecture-aware suggestions.
+
+He'll also cover what went wrong: context window limits that forced selectivity, latency issues with remote MCP connections, and the security decisions he had to make — what an AI agent should be allowed to see in production, and what he deliberately kept out.
+
+Expect a live walkthrough of MCP tools, real terminal sessions, and Cursor making infrastructure-aware decisions in real time.
+
+## See Lutz Live
+
+Catch this talk and many more at **Agentic Conf Hamburg on March 22, 2026** at SAE Institute Hamburg.
+
+👉 **[Get your tickets on Luma](https://lu.ma/45lfeyeh)**

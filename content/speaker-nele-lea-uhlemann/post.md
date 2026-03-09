@@ -1,0 +1,33 @@
+---
+title: "Speaker Spotlight: Nele Lea Uhlemann – DIY or Delegate: A Custom Learning Skill for AI Coding Agents"
+description: "Nele Lea Uhlemann built a custom Skill that balances AI delegation with developer learning – proving that AI can make you a better developer, not just a faster one."
+author: Agentic Hamburg Team
+pubDatetime: 2026-03-09T18:00:00+01:00
+tags:
+  - conference
+  - speaker
+  - agentic-conf
+featured: false
+draft: true
+socialMediaHashtags: "#AgenticConf #AgenticHamburg #AICoding"
+---
+
+We're excited to announce **Nele Lea Uhlemann** as a speaker at [Agentic Conf Hamburg](https://lu.ma/45lfeyeh) on March 22nd!
+
+## About Nele Lea
+
+Nele Lea Uhlemann is a Developer Relations Engineer at Fiberplane. Her passion is enabling collaboration among the multiple stakeholders involved in building and running software. Having switched sides from application development to infrastructure — and now to AI-native tooling — she brings a unique perspective on how developers work and introduce AI tooling to their workflows. At Fiberplane, she is part of a team rethinking how software gets built in the age of AI.
+
+## The Talk: DIY or Delegate: A Custom Learning Skill for AI Coding Agents
+
+Nele Lea stopped learning. Not because she quit coding — she was shipping more than ever. But AI agents were writing the interesting parts, and she was just reviewing diffs she half-understood. Especially painful when picking up a new framework or library: AI agents would just figure it out for her, and she'd walk away having learned nothing.
+
+So she built a custom Skill that forces the balance back. Before a project starts, you tell it what you want to learn. It then classifies every task: [DIY] tasks get broken down with specific learning goals and starting points, but you still do the research and write the code. [DELEGATE] tasks are implementation work outside that learning scope and get handed off to an agent. After each phase, it generates a quiz tied to your actual project code.
+
+A demo of one custom skill — and proof that AI can make you a better developer, not just a faster one.
+
+## See Nele Lea Live
+
+Catch this talk and many more at **Agentic Conf Hamburg on March 22, 2026** at SAE Institute Hamburg.
+
+👉 **[Get your tickets on Luma](https://lu.ma/45lfeyeh)**

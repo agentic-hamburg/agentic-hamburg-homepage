@@ -1,0 +1,45 @@
+---
+title: "Speaker Spotlight: Luise Freese – My Agent Went Rogue: 5 Failure Modes and How to Contain Them"
+description: "Luise Freese walks through concrete failure modes she's encountered shipping agentic systems – and the mitigation patterns that actually work."
+author: Agentic Hamburg Team
+pubDatetime: 2026-03-09T18:00:00+01:00
+tags:
+  - conference
+  - speaker
+  - agentic-conf
+featured: false
+draft: true
+socialMediaHashtags: "#AgenticConf #AgenticHamburg #AICoding"
+---
+
+We're excited to announce **Luise Freese** as a speaker at [Agentic Conf Hamburg](https://lu.ma/45lfeyeh) on March 22nd!
+
+## About Luise
+
+Luise Freese is an Azure & Power Platform Architect and awarded Microsoft Most Valuable Professional (MVP). She works with organizations that want to move beyond digital theatre, focusing on AI-enabled solutions designed to last in real-world environments. She helps teams build accessible apps, robust data models, and automation that respects governance, compliance, and human effort.
+
+A recurring theme in her work is making the invisible visible: unmeasured work, emotional load, operational friction, and the real cost of "quick wins". Her motto "Changing the world one app at a time" stems from her extensive work with non-profit organizations.
+
+Alongside client work, Luise writes and speaks about productivity myths, pseudo-agile practices, AI readiness, and why many digital initiatives fail long before technology becomes the problem. She is known for combining clear technical guidance with a sharp eye for organizational patterns — and for asking the uncomfortable questions others tend to avoid.
+
+## The Talk: My Agent Went Rogue: 5 Failure Modes and How to Contain Them
+
+LLM demos are easy. Shipping agentic systems that don't break is not.
+
+Once an agent is allowed to call tools, trigger workflows, or modify state, small probabilistic quirks turn into real engineering problems. In this talk, Luise walks through concrete failure modes she has encountered when integrating LLMs into real systems:
+
+- Structured output drifting just enough to crash downstream logic
+- Agents selecting the wrong tool or repeating calls
+- Reflection loops exploding token usage and latency
+- Prompt tweaks causing silent regressions
+- Context windows filling up with irrelevant history
+
+For each failure mode, she will show code examples and the mitigation patterns that actually work: contract layers, validation and repair loops, tool scoping, iteration caps, cost guards, and lightweight evaluation harnesses.
+
+This is a talk about what breaks when agents leave the playground — and how to design systems that survive that transition.
+
+## See Luise Live
+
+Catch this talk and many more at **Agentic Conf Hamburg on March 22, 2026** at SAE Institute Hamburg.
+
+👉 **[Get your tickets on Luma](https://lu.ma/45lfeyeh)**

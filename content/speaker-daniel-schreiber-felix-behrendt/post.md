@@ -1,0 +1,37 @@
+---
+title: "Speaker Spotlight: Daniel Schreiber & Felix Behrendt – We're Not Developers. We Built a 116K LoC Production System Anyway."
+description: "Daniel Schreiber and Felix Behrendt share how two non-developers built a 116K LoC production system for 85 technicians across Germany – with AI coding tools, domain knowledge, and weekends."
+author: Agentic Hamburg Team
+pubDatetime: 2026-03-09T18:00:00+01:00
+tags:
+  - conference
+  - speaker
+  - agentic-conf
+featured: false
+draft: true
+socialMediaHashtags: "#AgenticConf #AgenticHamburg #AICoding"
+---
+
+We're excited to announce **Daniel Schreiber** and **Felix Behrendt** as speakers at [Agentic Conf Hamburg](https://lu.ma/45lfeyeh) on March 22nd!
+
+## About Daniel & Felix
+
+**Daniel Schreiber** is Co-Owner & COO of AFC Group. With a background in chemical engineering (ETH Zurich), management consulting (Bain & Company), and an MBA (IMD), he built the AFC Group from 3 employees in 2001 to a 350-person corporation. In 2019, AFC acquired nobleglass — Germany's leading automotive glass business — and Daniel drove its transformation into a mobile service operation. He started coding a first version in late 2023 to solve immediate needs, and from Christmas 2025 rebuilt the entire system to full spec. 1,770+ commits later: a production system optimizing daily routes for 85 technicians across Germany.
+
+**Felix Behrendt** is Head of Product at AFC Group. He spent a decade at Lufthansa Industry Solutions building software used by 100,000 pilots and engineers daily, followed by product leadership at Volocopter. He joined AFC in 2025 and immediately started shipping — interactive Gantt scheduling, mobile technician app, frontend architecture — all with AI coding tools. He brings the rare combination of someone who's written production code professionally and led product teams, now using AI to collapse the distance between the two.
+
+## The Talk: We're Not Developers. We Built a 116K LoC Production System Anyway.
+
+Most AI coding talks follow the same script: developers using AI to work faster. This is a different story.
+
+Neither Daniel nor Felix works as a software engineer. Both built this part-time — weekends, holidays, evenings. Together, with Claude Code and Pi, they built 116,000 lines of code, 2,100+ commits, optimizing routes for 85 technicians across 40 depots handling 150-200 jobs per day across Germany. In full production since January 2026.
+
+It started with route optimization — multi-depot, multi-vehicle VRP with OR-Tools, two-man job synchronization, time windows, technician constraints. But the system grew into a four-phase yield optimization pipeline: restrictions engine, k-medoids geographic clustering on real travel-time matrices, constraint-based routing, and a mobile frontend putting the plan directly into technicians' hands.
+
+Their key insight: **the bottleneck in AI coding was never the code — it was always the domain knowledge.** AI can generate any pattern you ask for. But only you know that morning time windows in Munich mean something different than in Hamburg. That knowledge — 25 years of it — turns AI output from plausible garbage into a production system.
+
+## See Daniel & Felix Live
+
+Catch this talk and many more at **Agentic Conf Hamburg on March 22, 2026** at SAE Institute Hamburg.
+
+👉 **[Get your tickets on Luma](https://lu.ma/45lfeyeh)**
