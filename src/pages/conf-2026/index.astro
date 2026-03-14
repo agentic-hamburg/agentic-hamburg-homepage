@@ -1,50 +1,47 @@
 ---
 import { Image } from "astro:assets";
-import Layout from "../layouts/Layout.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import { communityStats } from "../config/community";
-import stefanImg from "../assets/stefan.jpeg";
-import sebastianKorfmannImg from "../assets/sebastian-korfmann.jpg";
-import sebastianReimannImg from "../assets/sebastian-reimann.jpeg";
-import venueImg from "../assets/venue-illustration.jpg";
-import speakerBjoernImg from "../assets/speakers/bjoern-rochel.jpg";
-import speakerBenediktImg from "../assets/speakers/benedikt-stemmildt.jpg";
-import speakerHenrikImg from "../assets/speakers/henrik-edler.png";
-import speakerAnastasiaImg from "../assets/speakers/anastasia-karavdina.jpg";
-import speakerPaulImg from "../assets/speakers/paul-stack.jpg";
-import speakerArnaudImg from "../assets/speakers/arnaud-jean.png";
-import speakerChristophImg from "../assets/speakers/christoph-steinlehner.png";
-import speakerHenningImg from "../assets/speakers/henning-thies.jpg";
-import speakerTilmanImg from "../assets/speakers/tilman-dietrich.jpg";
-import speakerXescaImg from "../assets/speakers/xesca-alabart.jpg";
-import speakerLuisImg from "../assets/speakers/luis-bezzenberger.png";
-import speakerLeoImg from "../assets/speakers/leo-peters.jpg";
-import speakerDanielMollImg from "../assets/speakers/daniel-moll.jpg";
-import speakerJannikImg from "../assets/speakers/jannik-streek.jpg";
-import speakerAlexanderImg from "../assets/speakers/alexander-stolle.png";
-import speakerLuiseImg from "../assets/speakers/luise-freese.jpg";
-import speakerHarshilImg from "../assets/speakers/harshil-agrawal.jpg";
-import speakerNeleImg from "../assets/speakers/nele-lea-uhlemann.jpg";
-import speakerHendrikImg from "../assets/speakers/hendrik-mans.jpg";
-import speakerDanielSchreiberImg from "../assets/speakers/daniel-schreiber.jpg";
-import speakerFelixImg from "../assets/speakers/felix-behrendt.jpg";
-import speakerMarvinImg from "../assets/speakers/marvin-kruse.jpg";
-import speakerTerezaImg from "../assets/speakers/tereza-iofciu.jpg";
-import speakerBenediktTImg from "../assets/speakers/benedikt-terhechte.jpg";
-import speakerLutzImg from "../assets/speakers/lutz-feldhege.png";
-import speakerAleksandrImg from "../assets/speakers/aleksandr-lossenko.jpg";
-import speakerWaqasImg from "../assets/speakers/waqas-ahmed.jpg";
-import speakerChristophHImg from "../assets/speakers/christoph-hubner.jpg";
-import speakerFabianImg from "../assets/speakers/fabian-meyer.jpg";
-import sponsorHackersWizardsImg from "../assets/sponsors/hackersandwizards_long_rgb.png";
-import sponsorFobizzImg from "../assets/sponsors/fobizz.png";
-import sponsorAfcSvg from "../assets/sponsors/afc_rgb.svg";
-import sponsorVorwerkSvg from "../assets/sponsors/vorwerk_rgb.svg";
-import sponsorTegtmeierSvg from "../assets/sponsors/tegtmeier_rgb.svg";
-import sponsorAdessoSvg from "../assets/sponsors/adesso-insurance-solutions_rgb.svg";
-import sponsorDlSchoolSvg from "../assets/sponsors/dl-school_rgb.svg";
-import sponsorInnoqSvg from "../assets/sponsors/innoq_rgb.svg";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import { communityStats } from "@/config/community";
+import stefanImg from "@/assets/stefan.jpeg";
+import sebastianKorfmannImg from "@/assets/sebastian-korfmann.jpg";
+import sebastianReimannImg from "@/assets/sebastian-reimann.jpeg";
+import venueImg from "@/assets/venue-illustration.jpg";
+import speakerBjoernImg from "@/assets/speakers/bjoern-rochel.jpg";
+import speakerBenediktImg from "@/assets/speakers/benedikt-stemmildt.jpg";
+import speakerHenrikImg from "@/assets/speakers/henrik-edler.png";
+import speakerAnastasiaImg from "@/assets/speakers/anastasia-karavdina.jpg";
+import speakerPaulImg from "@/assets/speakers/paul-stack.jpg";
+import speakerArnaudImg from "@/assets/speakers/arnaud-jean.png";
+import speakerChristophImg from "@/assets/speakers/christoph-steinlehner.png";
+import speakerHenningImg from "@/assets/speakers/henning-thies.jpg";
+import speakerTilmanImg from "@/assets/speakers/tilman-dietrich.jpg";
+import speakerXescaImg from "@/assets/speakers/xesca-alabart.jpg";
+import speakerLuisImg from "@/assets/speakers/luis-bezzenberger.png";
+import speakerDanielMollImg from "@/assets/speakers/daniel-moll.jpg";
+import speakerJannikImg from "@/assets/speakers/jannik-streek.jpg";
+import speakerAlexanderImg from "@/assets/speakers/alexander-stolle.png";
+import speakerLuiseImg from "@/assets/speakers/luise-freese.jpg";
+import speakerHarshilImg from "@/assets/speakers/harshil-agrawal.jpg";
+import speakerNeleImg from "@/assets/speakers/nele-lea-uhlemann.jpg";
+import speakerHendrikImg from "@/assets/speakers/hendrik-mans.jpg";
+import speakerDanielSchreiberImg from "@/assets/speakers/daniel-schreiber.jpg";
+import speakerMarvinImg from "@/assets/speakers/marvin-kruse.jpg";
+import speakerTerezaImg from "@/assets/speakers/tereza-iofciu.jpg";
+import speakerBenediktTImg from "@/assets/speakers/benedikt-terhechte.jpg";
+import speakerLutzImg from "@/assets/speakers/lutz-feldhege.png";
+import speakerAleksandrImg from "@/assets/speakers/aleksandr-lossenko.jpg";
+import speakerWaqasImg from "@/assets/speakers/waqas-ahmed.jpg";
+import speakerFabianImg from "@/assets/speakers/fabian-meyer.jpg";
+import sponsorHackersWizardsImg from "@/assets/sponsors/hackersandwizards_long_rgb.png";
+import sponsorFobizzImg from "@/assets/sponsors/fobizz.png";
+import sponsorAfcSvg from "@/assets/sponsors/afc_rgb.svg";
+import sponsorVorwerkSvg from "@/assets/sponsors/vorwerk_rgb.svg";
+import sponsorTegtmeierSvg from "@/assets/sponsors/tegtmeier_rgb.svg";
+import sponsorAdessoSvg from "@/assets/sponsors/adesso-insurance-solutions_rgb.svg";
+import sponsorDlSchoolSvg from "@/assets/sponsors/dl-school_rgb.svg";
+import sponsorInnoqSvg from "@/assets/sponsors/innoq_rgb.svg";
 
 const ticketUrl = "https://lu.ma/45lfeyeh";
 
@@ -69,162 +66,199 @@ const organizers = [
   },
 ];
 
-const speakers = [
+const speakerCards = [
   {
     name: "Björn Rochel",
     title: "You Don't Need a Bigger Model. You Need a Better AI Harness",
     format: "Full Talk",
     image: speakerBjoernImg,
+    slug: "you-dont-need-a-bigger-model",
   },
   {
     name: "Benedikt Stemmildt & Leo Peters",
     title: "Stop Building Features. Build the Factory That Builds Them.",
     format: "Full Talk",
     image: speakerBenediktImg,
+    slug: "stop-building-features-build-the-factory",
   },
   {
     name: "Henrik Edler",
-    title: "Claude Code for everything except coding: The PM we've been looking for",
+    title:
+      "Claude Code for everything except coding: The PM we've been looking for",
     format: "Full Talk",
     image: speakerHenrikImg,
+    slug: "claude-code-for-everything-except-coding",
   },
   {
     name: "Anastasia Karavdina",
     title: "AI Coding Assistants in Enterprises: threat or friend?",
     format: "Full Talk",
     image: speakerAnastasiaImg,
+    slug: "ai-coding-assistants-in-enterprises",
   },
   {
     name: "Paul Stack",
     title: "From Runbooks to Models: AI-Native Operations",
     format: "Full Talk",
     image: speakerPaulImg,
+    slug: "from-runbooks-to-models",
   },
   {
     name: "Xesca Alabart",
-    title: "Requirements-Driven Development: The Missing Layer in Agentic Coding",
+    title:
+      "Requirements-Driven Development: The Missing Layer in Agentic Coding",
     format: "Full Talk",
     image: speakerXescaImg,
+    slug: "requirements-driven-development",
   },
   {
     name: "Luis Bezzenberger",
     title: "A tiny intelligent being lives inside a box under my desk",
     format: "Full Talk",
     image: speakerLuisImg,
+    slug: "a-tiny-intelligent-being",
   },
   {
-    name: 'Daniel Moll',
+    name: "Daniel Moll",
     title: '"This (web) is for everyone!" - Sir Tim Berners-Lee.',
     format: "Full Talk",
     image: speakerDanielMollImg,
+    slug: "this-web-is-for-everyone",
   },
   {
     name: "Alexander Stolle",
     title: "From Intentional Sprawl to a Deliberate Stack: Rolling Out Codex",
     format: "Full Talk",
     image: speakerAlexanderImg,
+    slug: "from-intentional-sprawl-to-a-deliberate-stack",
   },
   {
     name: "Luise Freese",
     title: "My agent went rogue: 5 failure modes and how to contain them",
     format: "Full Talk",
     image: speakerLuiseImg,
+    slug: "my-agent-went-rogue",
   },
   {
     name: "Hendrik Mans",
     title: "Woop Coding!",
     format: "Full Talk",
     image: speakerHendrikImg,
+    slug: "woop-coding",
   },
   {
     name: "Daniel Schreiber & Felix Behrendt",
-    title: "We're Not Developers. We Built a 116K LoC Production System Anyway.",
+    title:
+      "We're Not Developers. We Built a 116K LoC Production System Anyway.",
     format: "Full Talk",
     image: speakerDanielSchreiberImg,
+    slug: "were-not-developers",
   },
   {
     name: "Benedikt Terhechte",
-    title: "Humans still needed: Learnings from refactoring an ancient codebase",
+    title:
+      "Humans still needed: Learnings from refactoring an ancient codebase",
     format: "Full Talk",
     image: speakerBenediktTImg,
+    slug: "humans-still-needed",
   },
   {
     name: "Lutz Feldhege",
     title: "The MCP Playbook: How I Wired Cursor to My Entire Production Stack",
     format: "Full Talk",
     image: speakerLutzImg,
+    slug: "the-mcp-playbook",
   },
   {
     name: "Waqas Ahmed & Christoph Hübner",
     title: "Driving AI: How MOIA Scales LLM Expertise",
     format: "Full Talk",
     image: speakerWaqasImg,
+    slug: "driving-ai-how-moia-scales-llm-expertise",
   },
   {
     name: "Fabian Meyer",
-    title: "Onboarding Your Agent: How eventim integrates agentic engineering into enterprise workflows",
+    title:
+      "Onboarding Your Agent: How eventim integrates agentic engineering into enterprise workflows",
     format: "Full Talk",
     image: speakerFabianImg,
+    slug: "onboarding-your-agent",
   },
   {
     name: "Arnaud Jean",
-    title: "Create Your Own Role-Playing Game with Agentic AI using Strands Agents",
+    title:
+      "Create Your Own Role-Playing Game with Agentic AI using Strands Agents",
     format: "Workshop",
     image: speakerArnaudImg,
+    slug: "create-your-own-rpg-with-agentic-ai",
   },
   {
     name: "Christoph Steinlehner",
-    title: "What if building faster just means building the wrong thing faster?",
+    title:
+      "What if building faster just means building the wrong thing faster?",
     format: "Workshop",
     image: speakerChristophImg,
+    slug: "building-faster-building-wrong-thing-faster",
   },
   {
     name: "Harshil Agrawal",
     title: "Why, and how you need to sandbox AI-Generated Code?",
     format: "Workshop",
     image: speakerHarshilImg,
+    slug: "sandbox-ai-generated-code",
   },
   {
     name: "Tereza Iofciu",
     title: "Turn Your Agent Into Your Own Nemesis",
     format: "Workshop",
     image: speakerTerezaImg,
+    slug: "turn-your-agent-into-your-own-nemesis",
   },
   {
     name: "Henning Thies",
     title: "Personal AI: Coding Agents Beyond Coding",
     format: "Lightning Talk",
     image: speakerHenningImg,
+    slug: "personal-ai-coding-agents-beyond-coding",
   },
   {
     name: "Tilman Dietrich",
-    title: "Automating AI Research Delivery — From Papers to Spotify, Substack, Newsletter & YouTube",
+    title:
+      "Automating AI Research Delivery — From Papers to Spotify, Substack, Newsletter & YouTube",
     format: "Lightning Talk",
     image: speakerTilmanImg,
+    slug: "automating-ai-research-delivery",
   },
   {
     name: "Jannik Streek",
-    title: "Beyond the Vibes: Lessons from Using Spec Driven Development Frameworks for Agentic Coding",
+    title:
+      "Beyond the Vibes: Lessons from Using Spec Driven Development Frameworks for Agentic Coding",
     format: "Lightning Talk",
     image: speakerJannikImg,
+    slug: "beyond-the-vibes",
   },
   {
     name: "Nele Lea Uhlemann",
     title: "DIY or Delegate: A Custom Learning Skill for AI Coding Agents",
     format: "Lightning Talk",
     image: speakerNeleImg,
+    slug: "diy-or-delegate",
   },
   {
     name: "Marvin Kruse",
-    title: "Kiro made me do it: Falling back in love with coding (the hard way)",
+    title:
+      "Kiro made me do it: Falling back in love with coding (the hard way)",
     format: "Lightning Talk",
     image: speakerMarvinImg,
+    slug: "kiro-made-me-do-it",
   },
   {
     name: "Aleksandr Lossenko",
-    title: "How a 3-Day Hackathon Gave Non-Engineers Access to the Codebase at Remote.com",
+    title:
+      "How a 3-Day Hackathon Gave Non-Engineers Access to the Codebase at Remote.com",
     format: "Lightning Talk",
     image: speakerAleksandrImg,
+    slug: "hackathon-gave-non-engineers-access",
   },
 ];
 
@@ -232,19 +266,22 @@ const partnerConferences = [
   {
     name: "reher*sal",
     date: "Feb 6, 2026",
-    description: "Non-profit conference empowering FLINTA* speakers in tech to become more visible on stage.",
+    description:
+      "Non-profit conference empowering FLINTA* speakers in tech to become more visible on stage.",
     url: "https://rehersal.io/",
   },
   {
     name: "Social Developers Conference",
     date: "Mar 21, 2026",
-    description: "Community conference making technology accessible to all and driving positive social impact.",
+    description:
+      "Community conference making technology accessible to all and driving positive social impact.",
     url: "https://socialdevelopersclub.de/",
   },
   {
     name: "code.talks",
     date: "Nov 4–5, 2026",
-    description: "Germany's largest developer conference — 3,500+ devs, 100+ sessions, at KINOPOLIS HafenCity.",
+    description:
+      "Germany's largest developer conference — 3,500+ devs, 100+ sessions, at KINOPOLIS HafenCity.",
     url: "https://codetalks.com/",
   },
 ];
@@ -252,35 +289,43 @@ const partnerConferences = [
 const faqs = [
   {
     question: "When and where is the conference?",
-    answer: "Agentic Conf Hamburg 2026 takes place on March 22, 2026 at SAE Institute Hamburg, Feldstr. 66, 20359 Hamburg.",
+    answer:
+      "Agentic Conf Hamburg 2026 takes place on March 22, 2026 at SAE Institute Hamburg, Feldstr. 66, 20359 Hamburg.",
   },
   {
     question: "What time does the conference run?",
-    answer: "The conference runs from 09:00 to 18:00, with registration opening at 08:30.",
+    answer:
+      "The conference runs from 09:00 to 18:00, with registration opening at 08:30.",
   },
   {
     question: "How many attendees are expected?",
-    answer: "We're expecting 200–300 practitioners. A focused, high-quality gathering of people actually building with AI.",
+    answer:
+      "We're expecting 200–300 practitioners. A focused, high-quality gathering of people actually building with AI.",
   },
   {
     question: "Will there be food and drinks?",
-    answer: "Yes, we'll provide coffee and refreshments throughout the day. More details coming soon.",
+    answer:
+      "Yes, we'll provide coffee and refreshments throughout the day. More details coming soon.",
   },
   {
     question: "How can I become a speaker?",
-    answer: "Our Call for Papers has closed. The speaker lineup has been announced — check out the Speakers section above!",
+    answer:
+      "Our Call for Papers has closed. The speaker lineup has been announced — check out the Speakers section above!",
   },
   {
     question: "Is there parking available?",
-    answer: "Street parking is available in the area. The venue is also easily accessible by public transport (U-Bahn Feldstraße).",
+    answer:
+      "Street parking is available in the area. The venue is also easily accessible by public transport (U-Bahn Feldstraße).",
   },
   {
     question: "What is the refund policy?",
-    answer: "Tickets are non-refundable, but they are transferable. If you can't attend, you can transfer your ticket to someone else — just email us at hello@agentic.hamburg. Full refunds are only offered if we cancel or significantly change the event.",
+    answer:
+      "Tickets are non-refundable, but they are transferable. If you can't attend, you can transfer your ticket to someone else — just email us at hello@agentic.hamburg. Full refunds are only offered if we cancel or significantly change the event.",
   },
   {
     question: "How do I get an invoice?",
-    answer: "Email us at hello@agentic.hamburg and we'll provide you with a proper invoice for your business ticket.",
+    answer:
+      "Email us at hello@agentic.hamburg and we'll provide you with a proper invoice for your business ticket.",
   },
 ];
 ---
@@ -305,22 +350,40 @@ const faqs = [
         <h1 class="conf-title">Agentic Conf<br />Hamburg 2026</h1>
 
         <p class="conf-tagline">
-          Software engineering is being rewritten. This is where we figure out what comes next — together.<br />
+          Software engineering is being rewritten. This is where we figure out
+          what comes next — together.<br />
           Talks, demos, workshops, and good vibes.
         </p>
 
         <div class="hero-ctas">
-          <a href={ticketUrl} target="_blank" rel="noopener noreferrer" class="cta-primary">
+          <a
+            href={ticketUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="cta-primary"
+          >
             Get Tickets
-            <svg class="cta-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            <svg
+              class="cta-arrow"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
             </svg>
           </a>
         </div>
 
         <div class="hero-venue">
           <svg class="venue-icon" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+            <path
+              fill-rule="evenodd"
+              d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+              clip-rule="evenodd"></path>
           </svg>
           <span>Medienbunker (SAE Institute Hamburg)</span>
         </div>
@@ -333,12 +396,34 @@ const faqs = [
       <div class="logo-strip-logos">
         <img src={sponsorAfcSvg.src} alt="AFC" class="logo-strip-img" />
         <img src={sponsorVorwerkSvg.src} alt="Vorwerk" class="logo-strip-img" />
-        <Image src={sponsorHackersWizardsImg} alt="Hackers and Wizards" class="logo-strip-img" width={120} />
-        <img src={sponsorTegtmeierSvg.src} alt="Tegtmeier" class="logo-strip-img" />
-        <img src={sponsorAdessoSvg.src} alt="Adesso Insurance Solutions" class="logo-strip-img" />
-        <img src={sponsorDlSchoolSvg.src} alt="DL School" class="logo-strip-img" />
+        <Image
+          src={sponsorHackersWizardsImg}
+          alt="Hackers and Wizards"
+          class="logo-strip-img"
+          width={120}
+        />
+        <img
+          src={sponsorTegtmeierSvg.src}
+          alt="Tegtmeier"
+          class="logo-strip-img"
+        />
+        <img
+          src={sponsorAdessoSvg.src}
+          alt="Adesso Insurance Solutions"
+          class="logo-strip-img"
+        />
+        <img
+          src={sponsorDlSchoolSvg.src}
+          alt="DL School"
+          class="logo-strip-img"
+        />
         <img src={sponsorInnoqSvg.src} alt="INNOQ" class="logo-strip-img" />
-        <Image src={sponsorFobizzImg} alt="Fobizz" class="logo-strip-img" width={80} />
+        <Image
+          src={sponsorFobizzImg}
+          alt="Fobizz"
+          class="logo-strip-img"
+          width={80}
+        />
       </div>
     </div>
 
@@ -374,42 +459,61 @@ const faqs = [
         <h2 class="section-title">From Meetup to Conference</h2>
         <div class="prose prose-lg">
           <p>
-            What started as a small gathering of developers curious about AI coding tools has grown into Hamburg's largest agentic coding community with over 1,000 members.
+            What started as a small gathering of developers curious about AI
+            coding tools has grown into Hamburg's largest agentic coding
+            community with over 1,000 members.
           </p>
           <p>
-            After four successful meetups with 100+ developers at each event, we're taking the next step: a full-day conference dedicated to the practitioners who are actually building with AI, not just talking about it.
+            After four successful meetups with 100+ developers at each event,
+            we're taking the next step: a full-day conference dedicated to the
+            practitioners who are actually building with AI, not just talking
+            about it.
           </p>
           <p>
-            Expect real workflows, live demos, and honest discussions about what's working in agentic development. No vendor pitches, no theoretical frameworks—just builders sharing their craft.
+            Expect real workflows, live demos, and honest discussions about
+            what's working in agentic development. No vendor pitches, no
+            theoretical frameworks—just builders sharing their craft.
           </p>
         </div>
       </div>
     </section>
 
     <!-- Speakers Section -->
-    <section class="conf-section conf-speakers">
+    <section class="conf-section conf-speakers" id="speakers">
       <div class="mx-auto max-w-4xl px-4">
         <p class="section-label">The Lineup</p>
         <h2 class="section-title">Speakers</h2>
         <div class="speakers-grid">
-          {speakers.map(speaker => (
-            <article class="speaker-card">
-              <Image
-                src={speaker.image}
-                alt={speaker.name}
-                width={48}
-                height={48}
-                class="speaker-photo"
-              />
-              <div class="speaker-info">
-                <h3 class="speaker-name">{speaker.name}</h3>
-                <p class="speaker-talk">{speaker.title}</p>
-                <span class:list={["speaker-format", `format-${speaker.format.toLowerCase().replace(" ", "-")}`]}>
-                  {speaker.format}
-                </span>
-              </div>
-            </article>
-          ))}
+          {
+            speakerCards.map(speaker => (
+              <a
+                href={`/conf-2026/sessions/${speaker.slug}/`}
+                class="speaker-card-link"
+              >
+                <article class="speaker-card">
+                  <Image
+                    src={speaker.image}
+                    alt={speaker.name}
+                    width={48}
+                    height={48}
+                    class="speaker-photo"
+                  />
+                  <div class="speaker-info">
+                    <h3 class="speaker-name">{speaker.name}</h3>
+                    <p class="speaker-talk">{speaker.title}</p>
+                    <span
+                      class:list={[
+                        "speaker-format",
+                        `format-${speaker.format.toLowerCase().replace(" ", "-")}`,
+                      ]}
+                    >
+                      {speaker.format}
+                    </span>
+                  </div>
+                </article>
+              </a>
+            ))
+          }
         </div>
         <p class="speakers-more">Schedule coming soon.</p>
       </div>
@@ -433,17 +537,29 @@ const faqs = [
           <div class="venue-info">
             <div class="venue-address">
               <svg class="info-icon" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                <path
+                  fill-rule="evenodd"
+                  d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                  clip-rule="evenodd"></path>
               </svg>
-              <a href="https://maps.google.com/?q=Feldstr.+66,+20359+Hamburg" target="_blank" rel="noopener noreferrer" class="venue-address-link">
+              <a
+                href="https://maps.google.com/?q=Feldstr.+66,+20359+Hamburg"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="venue-address-link"
+              >
                 <strong>Feldstr. 66</strong> (Medienbunker)<br />
                 20359 Hamburg
               </a>
             </div>
             <div class="venue-transport">
               <svg class="info-icon" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
-                <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7a1 1 0 00-1 1v6.05A2.5 2.5 0 0115.95 16H17a1 1 0 001-1v-5a1 1 0 00-.293-.707l-2-2A1 1 0 0015 7h-1z" />
+                <path
+                  d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"
+                ></path>
+                <path
+                  d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7a1 1 0 00-1 1v6.05A2.5 2.5 0 0115.95 16H17a1 1 0 001-1v-5a1 1 0 00-.293-.707l-2-2A1 1 0 0015 7h-1z"
+                ></path>
               </svg>
               <div>
                 <strong>U-Bahn Feldstraße</strong><br />
@@ -483,13 +599,22 @@ const faqs = [
         <h2 class="section-title">Built by the Community, for the Community</h2>
         <div class="expect-content">
           <p class="expect-intro">
-            How you code. How your team works. How your company ships. It's all being rewritten — and no playbook exists yet. This conference is where we write it together.
+            How you code. How your team works. How your company ships. It's all
+            being rewritten — and no playbook exists yet. This conference is
+            where we write it together.
           </p>
           <p class="expect-description">
-            This conference is focused on all things agentic: software engineering, ops, cloud, UX/design, product development—the entire stack of building and operating digital products. Expect fast-paced talks, lightning sessions, live demos, hands-on workshops, hack sessions, hardware experiments, open mics—and whatever else you bring to the table.
+            This conference is focused on all things agentic: software
+            engineering, ops, cloud, UX/design, product development—the entire
+            stack of building and operating digital products. Expect fast-paced
+            talks, lightning sessions, live demos, hands-on workshops, hack
+            sessions, hardware experiments, open mics—and whatever else you
+            bring to the table.
           </p>
           <p class="expect-vision">
-            Our goal is simple: create a space with good vibes where people learn from each other and leave energized with fresh ideas to try on Monday morning.
+            Our goal is simple: create a space with good vibes where people
+            learn from each other and leave energized with fresh ideas to try on
+            Monday morning.
           </p>
         </div>
       </div>
@@ -504,7 +629,9 @@ const faqs = [
           <div class="marquee-track">
             <div class="testimonial-card">
               <div class="testimonial-rating">★★★★★</div>
-              <p class="testimonial-text">"Engaging and informative sessions"</p>
+              <p class="testimonial-text">
+                "Engaging and informative sessions"
+              </p>
             </div>
             <div class="testimonial-card">
               <div class="testimonial-rating">★★★★★</div>
@@ -529,7 +656,9 @@ const faqs = [
             <!-- Duplicate for seamless loop -->
             <div class="testimonial-card">
               <div class="testimonial-rating">★★★★★</div>
-              <p class="testimonial-text">"Engaging and informative sessions"</p>
+              <p class="testimonial-text">
+                "Engaging and informative sessions"
+              </p>
             </div>
             <div class="testimonial-card">
               <div class="testimonial-rating">★★★★★</div>
@@ -552,10 +681,24 @@ const faqs = [
         <p class="section-description">
           Secure your spot at Hamburg's first agentic coding conference.
         </p>
-        <a href={ticketUrl} target="_blank" rel="noopener noreferrer" class="cta-primary cta-large">
+        <a
+          href={ticketUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="cta-primary cta-large"
+        >
           Get Tickets on Luma
-          <svg class="cta-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          <svg
+            class="cta-icon"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
           </svg>
         </a>
       </div>
@@ -570,26 +713,97 @@ const faqs = [
         <div class="sponsor-tier">
           <h3 class="tier-title">Practitioner Sponsors</h3>
           <div class="sponsor-logos sponsor-logos-practitioner">
-            <a href="https://www.autofleetcontrol.de/" target="_blank" rel="noopener noreferrer" class="sponsor-logo-wrapper">
-              <img src={sponsorAfcSvg.src} alt="AFC" class="sponsor-logo" loading="lazy" />
+            <a
+              href="https://www.autofleetcontrol.de/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="sponsor-logo-wrapper"
+            >
+              <img
+                src={sponsorAfcSvg.src}
+                alt="AFC"
+                class="sponsor-logo"
+                loading="lazy"
+              />
             </a>
-            <a href="https://www.vorwerk.com/" target="_blank" rel="noopener noreferrer" class="sponsor-logo-wrapper">
-              <img src={sponsorVorwerkSvg.src} alt="Vorwerk" class="sponsor-logo" loading="lazy" />
+            <a
+              href="https://www.vorwerk.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="sponsor-logo-wrapper"
+            >
+              <img
+                src={sponsorVorwerkSvg.src}
+                alt="Vorwerk"
+                class="sponsor-logo"
+                loading="lazy"
+              />
             </a>
-            <a href="https://www.hackersandwizards.dev/" target="_blank" rel="noopener noreferrer" class="sponsor-logo-wrapper">
-              <Image src={sponsorHackersWizardsImg} alt="Hackers and Wizards" class="sponsor-logo" width={200} loading="lazy" />
+            <a
+              href="https://www.hackersandwizards.dev/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="sponsor-logo-wrapper"
+            >
+              <Image
+                src={sponsorHackersWizardsImg}
+                alt="Hackers and Wizards"
+                class="sponsor-logo"
+                width={200}
+                loading="lazy"
+              />
             </a>
-            <a href="https://www.tegtmeier.de/" target="_blank" rel="noopener noreferrer" class="sponsor-logo-wrapper">
-              <img src={sponsorTegtmeierSvg.src} alt="Tegtmeier" class="sponsor-logo" loading="lazy" />
+            <a
+              href="https://www.tegtmeier.de/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="sponsor-logo-wrapper"
+            >
+              <img
+                src={sponsorTegtmeierSvg.src}
+                alt="Tegtmeier"
+                class="sponsor-logo"
+                loading="lazy"
+              />
             </a>
-            <a href="https://www.adesso-insure.de/" target="_blank" rel="noopener noreferrer" class="sponsor-logo-wrapper">
-              <img src={sponsorAdessoSvg.src} alt="Adesso Insurance Solutions" class="sponsor-logo" loading="lazy" />
+            <a
+              href="https://www.adesso-insure.de/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="sponsor-logo-wrapper"
+            >
+              <img
+                src={sponsorAdessoSvg.src}
+                alt="Adesso Insurance Solutions"
+                class="sponsor-logo"
+                loading="lazy"
+              />
             </a>
-            <a href="https://school.digitale-leute.de/" target="_blank" rel="noopener noreferrer" class="sponsor-logo-wrapper">
-              <img src={sponsorDlSchoolSvg.src} alt="DL School" class="sponsor-logo" loading="lazy" />
+            <a
+              href="https://school.digitale-leute.de/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="sponsor-logo-wrapper"
+            >
+              <img
+                src={sponsorDlSchoolSvg.src}
+                alt="DL School"
+                class="sponsor-logo"
+                loading="lazy"
+              />
             </a>
-            <a href="https://www.innoq.com/" target="_blank" rel="noopener noreferrer" class="sponsor-logo-wrapper">
-              <img src={sponsorInnoqSvg.src} alt="INNOQ" class="sponsor-logo" loading="lazy" />
+            <a
+              href="https://www.innoq.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="sponsor-logo-wrapper"
+            >
+              <img
+                src={sponsorInnoqSvg.src}
+                alt="INNOQ"
+                class="sponsor-logo"
+                loading="lazy"
+              />
             </a>
           </div>
         </div>
@@ -597,8 +811,19 @@ const faqs = [
         <div class="sponsor-tier">
           <h3 class="tier-title">Team Sponsors</h3>
           <div class="sponsor-logos sponsor-logos-team">
-            <a href="https://fobizz.com/" target="_blank" rel="noopener noreferrer" class="sponsor-logo-wrapper">
-              <Image src={sponsorFobizzImg} alt="Fobizz" class="sponsor-logo" width={140} loading="lazy" />
+            <a
+              href="https://fobizz.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="sponsor-logo-wrapper"
+            >
+              <Image
+                src={sponsorFobizzImg}
+                alt="Fobizz"
+                class="sponsor-logo"
+                width={140}
+                loading="lazy"
+              />
             </a>
           </div>
         </div>
@@ -611,24 +836,31 @@ const faqs = [
         <p class="section-label">The Team</p>
         <h2 class="section-title">Organizers</h2>
         <div class="organizers-grid">
-          {organizers.map(organizer => (
-            <article class="organizer-card">
-              <a href={organizer.linkedin} target="_blank" rel="noopener noreferrer" class="organizer-link">
-                <div class="organizer-image-wrapper">
-                  <Image
-                    src={organizer.image}
-                    alt={organizer.name}
-                    width={200}
-                    height={200}
-                    loading="lazy"
-                    class="organizer-image"
-                  />
-                </div>
-                <h4 class="organizer-name">{organizer.name}</h4>
-                <p class="organizer-role">{organizer.role}</p>
-              </a>
-            </article>
-          ))}
+          {
+            organizers.map(organizer => (
+              <article class="organizer-card">
+                <a
+                  href={organizer.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="organizer-link"
+                >
+                  <div class="organizer-image-wrapper">
+                    <Image
+                      src={organizer.image}
+                      alt={organizer.name}
+                      width={200}
+                      height={200}
+                      loading="lazy"
+                      class="organizer-image"
+                    />
+                  </div>
+                  <h4 class="organizer-name">{organizer.name}</h4>
+                  <p class="organizer-role">{organizer.role}</p>
+                </a>
+              </article>
+            ))
+          }
         </div>
       </div>
     </section>
@@ -639,15 +871,19 @@ const faqs = [
         <p class="section-label">Questions?</p>
         <h2 class="section-title">FAQ</h2>
         <div class="faq-list">
-          {faqs.map(faq => (
-            <details class="faq-item">
-              <summary class="faq-question">{faq.question}</summary>
-              <p class="faq-answer">{faq.answer}</p>
-            </details>
-          ))}
+          {
+            faqs.map(faq => (
+              <details class="faq-item">
+                <summary class="faq-question">{faq.question}</summary>
+                <p class="faq-answer">{faq.answer}</p>
+              </details>
+            ))
+          }
         </div>
         <p class="faq-contact">
-          Still have questions? Email us at <a href="mailto:hello@agentic.hamburg">hello@agentic.hamburg</a>
+          Still have questions? Email us at <a
+            href="mailto:hello@agentic.hamburg">hello@agentic.hamburg</a
+          >
         </p>
       </div>
     </section>
@@ -658,22 +894,40 @@ const faqs = [
         <p class="section-label">Hamburg Tech Scene</p>
         <h2 class="section-title">Local Conference Partner Network</h2>
         <p class="section-description">
-          Conferences we're proud to stand alongside — Hamburg's tech community is vibrant.
+          Conferences we're proud to stand alongside — Hamburg's tech community
+          is vibrant.
         </p>
         <div class="partners-grid">
-          {partnerConferences.map(conf => (
-            <a href={conf.url} target="_blank" rel="noopener noreferrer" class="partner-card">
-              <div class="partner-date">{conf.date}</div>
-              <h3 class="partner-name">{conf.name}</h3>
-              <p class="partner-description">{conf.description}</p>
-              <span class="partner-link-text">
-                Learn more
-                <svg class="partner-arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </span>
-            </a>
-          ))}
+          {
+            partnerConferences.map(conf => (
+              <a
+                href={conf.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="partner-card"
+              >
+                <div class="partner-date">{conf.date}</div>
+                <h3 class="partner-name">{conf.name}</h3>
+                <p class="partner-description">{conf.description}</p>
+                <span class="partner-link-text">
+                  Learn more
+                  <svg
+                    class="partner-arrow"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M13 7l5 5m0 0l-5 5m5-5H6"
+                    />
+                  </svg>
+                </span>
+              </a>
+            ))
+          }
         </div>
       </div>
     </section>
@@ -712,7 +966,11 @@ const faqs = [
   .stat-value {
     font-size: 2rem;
     font-weight: 800;
-    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    background: linear-gradient(
+      135deg,
+      var(--color-primary),
+      var(--color-accent)
+    );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -735,12 +993,21 @@ const faqs = [
   .stat-divider {
     width: 1px;
     height: 40px;
-    background: linear-gradient(180deg, transparent, rgba(247, 127, 0, 0.3), transparent);
+    background: linear-gradient(
+      180deg,
+      transparent,
+      rgba(247, 127, 0, 0.3),
+      transparent
+    );
   }
 
   @media (max-width: 600px) {
-    .stat-divider { display: none; }
-    .stats-container { gap: 1.5rem; }
+    .stat-divider {
+      display: none;
+    }
+    .stats-container {
+      gap: 1.5rem;
+    }
   }
 
   /* Logo Strip */
@@ -804,8 +1071,20 @@ const faqs = [
 
   .testimonial-marquee {
     margin-top: 2rem;
-    mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
-    -webkit-mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+    mask-image: linear-gradient(
+      90deg,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent
+    );
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent,
+      black 10%,
+      black 90%,
+      transparent
+    );
   }
 
   .marquee-track {
@@ -816,8 +1095,12 @@ const faqs = [
   }
 
   @keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
   }
 
   .testimonial-card {
@@ -884,7 +1167,11 @@ const faqs = [
     display: inline-flex;
     align-items: center;
     gap: 1rem;
-    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    background: linear-gradient(
+      135deg,
+      var(--color-primary),
+      var(--color-accent)
+    );
     color: white;
     padding: 0.75rem 1.5rem;
     border-radius: 50px;
@@ -1334,6 +1621,12 @@ const faqs = [
     gap: 1.25rem;
     max-width: 900px;
     margin: 0 auto;
+  }
+
+  .speaker-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
   }
 
   .speaker-card {

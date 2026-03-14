@@ -1,0 +1,351 @@
+---
+import { Image } from "astro:assets";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import { sessions } from "@/data/sessions";
+import { speakerImages } from "@/data/speaker-images";
+
+export function getStaticPaths() {
+  return sessions.map(session => ({
+    params: { slug: session.slug },
+    props: { session },
+  }));
+}
+
+const { session } = Astro.props;
+const formatClass = `format-${session.format.toLowerCase().replace(" ", "-")}`;
+const paragraphs = session.description.split("\n\n").filter(Boolean);
+---
+
+<Layout
+  title={`${session.title} - Agentic Conf Hamburg 2026`}
+  description={session.description.slice(0, 160)}
+>
+  <Header />
+
+  <main>
+    <section class="session-hero">
+      <div class="session-container">
+        <a href="/conf-2026/#speakers" class="back-link">
+          <svg
+            width="20"
+            height="20"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M11 17l-5-5m0 0l5-5m-5 5h12"></path>
+          </svg>
+          Back to Conference
+        </a>
+
+        <div class="session-meta">
+          <span class:list={["session-format", formatClass]}
+            >{session.format}</span
+          >
+          <span class="session-level">{session.level}</span>
+          <span class="session-language">{session.language}</span>
+        </div>
+
+        <h1 class="session-title">{session.title}</h1>
+
+        <div class="speakers-row">
+          {
+            session.speakers.map(speaker => {
+              const img = speakerImages[speaker];
+              return (
+                <div class="speaker-badge">
+                  {img && (
+                    <Image
+                      src={img}
+                      alt={speaker}
+                      width={56}
+                      height={56}
+                      class="speaker-avatar"
+                    />
+                  )}
+                  <span class="speaker-badge-name">{speaker}</span>
+                </div>
+              );
+            })
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="session-content">
+      <div class="session-container">
+        <div class="session-description">
+          {
+            paragraphs.map(p => {
+              const trimmed = p.trim();
+              if (trimmed.startsWith("- ")) {
+                const items = trimmed
+                  .split("\n")
+                  .filter(l => l.trim().startsWith("- "));
+                return (
+                  <ul>
+                    {items.map(item => (
+                      <li>{item.replace(/^-\s*/, "")}</li>
+                    ))}
+                  </ul>
+                );
+              }
+              return <p>{trimmed}</p>;
+            })
+          }
+        </div>
+
+        <div class="session-sidebar">
+          <div class="sidebar-card">
+            <h3>Session Details</h3>
+            <dl>
+              <dt>Format</dt>
+              <dd>{session.format}</dd>
+              <dt>Level</dt>
+              <dd>{session.level}</dd>
+              <dt>Language</dt>
+              <dd>{session.language}</dd>
+            </dl>
+          </div>
+
+          <a href="https://lu.ma/45lfeyeh" class="ticket-cta">
+            Get Your Ticket
+            <svg
+              width="16"
+              height="16"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .session-hero {
+    background: linear-gradient(135deg, #faf8f5 0%, #fff5f0 100%);
+    padding: 3rem 1rem 2.5rem;
+    border-bottom: 1px solid rgba(44, 62, 58, 0.08);
+  }
+
+  .session-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    transition: color 0.2s;
+  }
+
+  .back-link:hover {
+    color: var(--color-primary);
+  }
+
+  .session-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .session-format {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  .format-full-talk {
+    background: rgba(232, 136, 127, 0.15);
+    color: #c0554c;
+  }
+
+  .format-workshop {
+    background: rgba(247, 127, 0, 0.12);
+    color: #b56e00;
+  }
+
+  .format-lightning-talk {
+    background: rgba(44, 62, 58, 0.1);
+    color: var(--color-text-primary);
+  }
+
+  .session-level,
+  .session-language {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    background: rgba(44, 62, 58, 0.06);
+    color: var(--color-text-secondary);
+  }
+
+  .session-title {
+    font-family: "Quicksand", sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .speakers-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .speaker-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: white;
+    padding: 0.5rem 1rem 0.5rem 0.5rem;
+    border-radius: 40px;
+    border: 1px solid rgba(44, 62, 58, 0.08);
+  }
+
+  .speaker-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .speaker-badge-name {
+    font-weight: 600;
+    color: var(--color-text-primary);
+    font-size: 0.95rem;
+  }
+
+  .session-content {
+    padding: 3rem 1rem;
+  }
+
+  .session-content .session-container {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .session-description {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--color-text-primary);
+  }
+
+  .session-description p {
+    margin-bottom: 1.25rem;
+  }
+
+  .session-description ul {
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+  }
+
+  .session-description li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+  }
+
+  .sidebar-card {
+    background: #faf8f5;
+    border-radius: 16px;
+    padding: 1.5rem;
+    border: 1px solid rgba(44, 62, 58, 0.08);
+    margin-bottom: 1rem;
+  }
+
+  .sidebar-card h3 {
+    font-family: "Quicksand", sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 1rem;
+  }
+
+  .sidebar-card dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.5rem 1rem;
+  }
+
+  .sidebar-card dt {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+  }
+
+  .sidebar-card dd {
+    font-size: 0.85rem;
+    color: var(--color-text-primary);
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .ticket-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    background: var(--color-primary);
+    color: white;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+  }
+
+  .ticket-cta:hover {
+    background: var(--color-accent);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(232, 136, 127, 0.3);
+  }
+
+  @media (max-width: 768px) {
+    .session-title {
+      font-size: 1.6rem;
+    }
+
+    .session-content .session-container {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .session-sidebar {
+      order: -1;
+    }
+  }
+</style>
