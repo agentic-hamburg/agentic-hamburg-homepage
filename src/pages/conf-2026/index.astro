@@ -356,13 +356,9 @@ const faqs = [
         </p>
 
         <div class="hero-ctas">
-          <a
-            href={ticketUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="cta-primary"
-          >
-            Get Tickets
+          <span class="sold-out-badge">Sold Out</span>
+          <a href="#newsletter" class="cta-secondary">
+            Get Updates
             <svg
               class="cta-arrow"
               fill="none"
@@ -673,34 +669,45 @@ const faqs = [
       </div>
     </section>
 
-    <!-- Tickets Section -->
-    <section class="conf-section conf-tickets">
+    <!-- Newsletter Section -->
+    <section id="newsletter" class="conf-section conf-tickets">
       <div class="mx-auto max-w-4xl px-4 text-center">
-        <p class="section-label">Join Us</p>
-        <h2 class="section-title">Get Your Ticket</h2>
+        <p class="section-label">Sold Out</p>
+        <h2 class="section-title">Stay in the Loop</h2>
         <p class="section-description">
-          Secure your spot at Hamburg's first agentic coding conference.
+          Tickets are sold out! Subscribe to get updates on waitlist openings,
+          recordings, and future events.
         </p>
-        <a
-          href={ticketUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="cta-primary cta-large"
+        <form
+          id="conf-newsletter-form"
+          action="/api/subscribe"
+          method="post"
+          class="conf-newsletter-form"
         >
-          Get Tickets on Luma
-          <svg
-            class="cta-icon"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-          </svg>
-        </a>
+          <div class="conf-newsletter-inputs">
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter your email address"
+              required
+              class="conf-newsletter-email"
+              aria-label="Email address"
+            />
+            <button type="submit" class="conf-newsletter-button">
+              <span class="button-text">Subscribe</span>
+              <span class="button-loading" aria-hidden="true"
+                >Subscribing...</span
+              >
+            </button>
+          </div>
+        </form>
+        <div
+          id="conf-form-message"
+          class="conf-form-message hidden"
+          role="alert"
+          aria-live="polite"
+        >
+        </div>
       </div>
     </section>
 
@@ -1226,8 +1233,44 @@ const faqs = [
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
     gap: 1rem;
     margin-bottom: 3rem;
+  }
+
+  .sold-out-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: var(--color-text-secondary);
+    color: white;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1.125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    color: var(--color-primary);
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1.125rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid var(--color-primary);
+  }
+
+  .cta-secondary:hover {
+    background: var(--color-primary);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(247, 127, 0, 0.4);
   }
 
   .cta-arrow {
@@ -1429,7 +1472,7 @@ const faqs = [
     font-weight: 600;
   }
 
-  /* Tickets Section */
+  /* Newsletter / Sold Out Section */
   .conf-tickets {
     background: linear-gradient(
       135deg,
@@ -1444,20 +1487,96 @@ const faqs = [
     color: white;
   }
 
-  .cta-large {
-    font-size: 1.25rem;
-    padding: 1.25rem 2.5rem;
+  .conf-newsletter-form {
+    max-width: 500px;
+    margin: 0 auto;
   }
 
-  .conf-tickets .cta-primary {
+  .conf-newsletter-inputs {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .conf-newsletter-email {
+    flex: 1;
+    padding: 0.875rem 1.25rem;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    font-size: 1rem;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+
+  .conf-newsletter-email::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .conf-newsletter-email:focus {
+    border-color: white;
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .conf-newsletter-button {
+    position: relative;
+    padding: 0.875rem 2rem;
     background: white;
     color: var(--color-primary);
-    border-color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
   }
 
-  .conf-tickets .cta-primary:hover {
+  .conf-newsletter-button:hover {
     background: var(--color-bg-light);
-    border-color: var(--color-bg-light);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .conf-newsletter-button .button-text {
+    display: inline;
+  }
+
+  .conf-newsletter-button .button-loading {
+    display: none;
+  }
+
+  .conf-newsletter-button.form-loading .button-text {
+    display: none;
+  }
+
+  .conf-newsletter-button.form-loading .button-loading {
+    display: inline;
+  }
+
+  .conf-form-message {
+    margin-top: 0.75rem;
+    font-size: 0.95rem;
+  }
+
+  .conf-form-message.message-success {
+    color: #d4ffd4;
+  }
+
+  .conf-form-message.message-error {
+    color: #ffd4d4;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  @media (max-width: 480px) {
+    .conf-newsletter-inputs {
+      flex-direction: column;
+    }
   }
 
   /* Organizers Section */
@@ -1865,3 +1984,65 @@ const faqs = [
     height: 1rem;
   }
 </style>
+
+<script>
+  function initConfNewsletter() {
+    const form = document.getElementById(
+      "conf-newsletter-form"
+    ) as HTMLFormElement | null;
+    const messageDiv = document.getElementById(
+      "conf-form-message"
+    ) as HTMLDivElement | null;
+
+    if (!form || !messageDiv) return;
+
+    const submitButton = form.querySelector(
+      'button[type="submit"]'
+    ) as HTMLButtonElement;
+
+    form.addEventListener("submit", async (e: Event) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      messageDiv.classList.add("hidden");
+      messageDiv.classList.remove("message-success", "message-error");
+
+      submitButton.classList.add("form-loading");
+      submitButton.disabled = true;
+
+      try {
+        const formData = new FormData(form);
+        const response = await fetch("/api/subscribe", {
+          method: "POST",
+          body: formData,
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          messageDiv.textContent =
+            result.message || "Successfully subscribed!";
+          messageDiv.classList.add("message-success");
+          messageDiv.classList.remove("hidden");
+          form.reset();
+        } else {
+          messageDiv.textContent =
+            result.error || "Something went wrong. Please try again.";
+          messageDiv.classList.add("message-error");
+          messageDiv.classList.remove("hidden");
+        }
+      } catch {
+        messageDiv.textContent =
+          "Network error. Please check your connection and try again.";
+        messageDiv.classList.add("message-error");
+        messageDiv.classList.remove("hidden");
+      } finally {
+        submitButton.classList.remove("form-loading");
+        submitButton.disabled = false;
+      }
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", initConfNewsletter);
+  document.addEventListener("astro:page-load", initConfNewsletter);
+</script>
