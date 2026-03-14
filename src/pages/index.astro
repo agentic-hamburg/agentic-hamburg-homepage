@@ -13,7 +13,7 @@ import { communityStats } from "../config/community";
     <div class="banner-content">
       <span class="banner-badge">March 22, 2026</span>
       <span class="banner-text"
-        >Agentic Conf Hamburg — Tickets now available</span
+        >Agentic Conf Hamburg — Sold Out</span
       >
       <svg
         class="banner-arrow"
@@ -92,9 +92,8 @@ import { communityStats } from "../config/community";
           <article class="activity-card card-conference">
             <div class="card-glow"></div>
             <div class="card-content">
-              <div class="card-badge">
-                <span class="badge-live"></span>
-                Tickets Available
+              <div class="card-badge badge-sold-out">
+                Sold Out
               </div>
 
               <div class="card-date">
@@ -135,13 +134,8 @@ import { communityStats } from "../config/community";
               </div>
 
               <div class="card-actions">
-                <a
-                  href="https://lu.ma/45lfeyeh"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="btn-primary"
-                >
-                  <span>Get Tickets</span>
+                <a href="/conf-2026" class="btn-primary">
+                  <span>View Program</span>
                   <svg
                     viewBox="0 0 24 24"
                     fill="none"
@@ -151,7 +145,6 @@ import { communityStats } from "../config/community";
                     <path d="M5 12h14M12 5l7 7-7 7"></path>
                   </svg>
                 </a>
-                <a href="/conf-2026" class="btn-ghost"> Learn more </a>
               </div>
             </div>
           </article>
@@ -299,17 +292,12 @@ import { communityStats } from "../config/community";
         <div class="cta-content">
           <h2 class="cta-title">Ready to Build?</h2>
           <p class="cta-text">
-            Join Hamburg's most active AI agent community. Conference tickets
-            are limited.
+            Join Hamburg's most active AI agent community. Subscribe for
+            updates on waitlist, recordings, and future events.
           </p>
           <div class="cta-actions">
-            <a
-              href="https://lu.ma/45lfeyeh"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn-cta"
-            >
-              <span>Get Conference Tickets</span>
+            <a href="/conf-2026/#newsletter" class="btn-cta">
+              <span>Subscribe for Updates</span>
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
@@ -674,6 +662,11 @@ import { communityStats } from "../config/community";
     padding: 0.5rem 1rem;
     border-radius: 50px;
     margin-bottom: 1.25rem;
+  }
+
+  .badge-sold-out {
+    background: rgba(44, 62, 58, 0.15);
+    color: var(--color-text-secondary);
   }
 
   .badge-live {

@@ -114,8 +114,11 @@ const paragraphs = session.description.split("\n\n").filter(Boolean);
             </dl>
           </div>
 
-          <a href="https://lu.ma/45lfeyeh" class="ticket-cta">
-            Get Your Ticket
+          <div class="ticket-sold-out">
+            <span class="sold-out-text">Sold Out</span>
+          </div>
+          <a href="/conf-2026/#newsletter" class="ticket-cta ticket-cta--newsletter">
+            Get Updates
             <svg
               width="16"
               height="16"
@@ -310,6 +313,25 @@ const paragraphs = session.description.split("\n\n").filter(Boolean);
     color: var(--color-text-primary);
     font-weight: 600;
     margin: 0;
+  }
+
+  .ticket-sold-out {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    background: var(--color-text-secondary);
+    border-radius: 12px;
+    margin-bottom: 0.5rem;
+  }
+
+  .sold-out-text {
+    color: white;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
   }
 
   .ticket-cta {
