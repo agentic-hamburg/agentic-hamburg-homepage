@@ -12,15 +12,30 @@ import { slugifyStr } from "@/utils/slugify";
 export const prerender = true;
 
 export async function getStaticPaths() {
-  const posts = await getCollection("news", ({ data }) => import.meta.env.DEV || !data.draft);
+  const posts = await getCollection(
+    "news",
+    ({ data }) => import.meta.env.DEV || !data.draft
+  );
   const sortedPosts = getSortedPosts(posts);
 
   return sortedPosts.map((post, index) => ({
     params: { slug: post.id },
     props: {
       post,
-      prevPost: index > 0 ? { id: sortedPosts[index - 1].id, title: sortedPosts[index - 1].data.title } : null,
-      nextPost: index < sortedPosts.length - 1 ? { id: sortedPosts[index + 1].id, title: sortedPosts[index + 1].data.title } : null,
+      prevPost:
+        index > 0
+          ? {
+              id: sortedPosts[index - 1].id,
+              title: sortedPosts[index - 1].data.title,
+            }
+          : null,
+      nextPost:
+        index < sortedPosts.length - 1
+          ? {
+              id: sortedPosts[index + 1].id,
+              title: sortedPosts[index + 1].data.title,
+            }
+          : null,
     },
   }));
 }
@@ -148,7 +163,10 @@ const postData = {
 
   // Track page view and blog post view
   document.addEventListener("DOMContentLoaded", () => {
-    trackPageView(window.location.pathname, `${postData.title} | Agentic Hamburg`);
+    trackPageView(
+      window.location.pathname,
+      `${postData.title} | Agentic Hamburg`
+    );
     trackBlogPostView(
       postData.id,
       postData.title,
@@ -211,7 +229,10 @@ const postData = {
 
   // Handle Astro view transitions
   document.addEventListener("astro:page-load", () => {
-    trackPageView(window.location.pathname, `${postData.title} | Agentic Hamburg`);
+    trackPageView(
+      window.location.pathname,
+      `${postData.title} | Agentic Hamburg`
+    );
     trackBlogPostView(
       postData.id,
       postData.title,

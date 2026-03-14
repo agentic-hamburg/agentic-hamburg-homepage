@@ -19,8 +19,8 @@ const getUniqueTags = (posts: CollectionEntry<"news">[]): TagInfo[] => {
       }
     });
 
-  return Array.from(tags, ([tag, tagName]) => ({ tag, tagName })).sort(
-    (a, b) => a.tag.localeCompare(b.tag)
+  return Array.from(tags, ([tag, tagName]) => ({ tag, tagName })).sort((a, b) =>
+    a.tag.localeCompare(b.tag)
   );
 };
 

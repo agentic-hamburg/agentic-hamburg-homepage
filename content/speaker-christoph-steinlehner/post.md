@@ -25,7 +25,7 @@ You can follow Christoph on [LinkedIn](https://www.linkedin.com/in/csteinlehner/
 
 ## The Workshop: What if building faster just means building the wrong thing faster?
 
-AI makes execution faster than ever. But knowing *which* features to build? That's the real bottleneck.
+AI makes execution faster than ever. But knowing _which_ features to build? That's the real bottleneck.
 
 When building products and services, we face four fundamental risks: Will people even care? (Value risk.) Can they use it? (Usability risk.) Can we build it? (Feasibility risk.) And should we build it? (Business viability risk.) Speed only helps if you're running in the right direction.
 

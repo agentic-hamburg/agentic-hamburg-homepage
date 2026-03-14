@@ -1,5 +1,5 @@
 ---
-title: "Speaker Spotlight: Daniel Moll – \"This (web) is for everyone!\" – Reclaiming the Web with Agentic Engineering"
+title: 'Speaker Spotlight: Daniel Moll – "This (web) is for everyone!" – Reclaiming the Web with Agentic Engineering'
 description: "Daniel Moll explores how we can reclaim the web for humans with agentic engineering – through privacy by design, clear human-machine interfaces, and minimalist web stacks."
 author: Agentic Hamburg Team
 pubDatetime: 2026-03-09T18:00:00+01:00

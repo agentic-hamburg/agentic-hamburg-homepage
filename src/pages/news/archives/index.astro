@@ -7,7 +7,10 @@ import getPostsByGroupCondition from "@/utils/getPostsByGroupCondition";
 
 export const prerender = true;
 
-const posts = await getCollection("news", ({ data }) => import.meta.env.DEV || !data.draft);
+const posts = await getCollection(
+  "news",
+  ({ data }) => import.meta.env.DEV || !data.draft
+);
 const groupedPosts = getPostsByGroupCondition(posts);
 
 const dateFormat = new Intl.DateTimeFormat("en-US", {

@@ -22,6 +22,7 @@ npm run ci           # Full CI check (typecheck + lint + format:check)
 ## Architecture
 
 ### Tech Stack
+
 - **Framework**: Astro 5 with TypeScript (strict mode)
 - **Styling**: Tailwind CSS 3 with custom CSS variables in `src/styles/global.css`
 - **Font**: Quicksand (via @fontsource)
@@ -30,6 +31,7 @@ npm run ci           # Full CI check (typecheck + lint + format:check)
 - **Newsletter**: ConvertKit API
 
 ### Directory Structure
+
 - `src/pages/` - Astro pages (file-based routing)
 - `src/pages/api/` - Server-side API endpoints (prerender = false)
 - `src/components/` - Reusable Astro components
@@ -42,17 +44,21 @@ npm run ci           # Full CI check (typecheck + lint + format:check)
 - `tools/contentmachine/` - Go CLI for distributing content to blog + social media
 
 ### Key Patterns
+
 - Path alias: `@/*` maps to `./src/*`
 - API routes use `export const prerender = false` for SSR
 - CSS variables defined in `:root` for theming (see `global.css`)
 - Components use Astro's scoped `<style>` blocks
 
 ### Environment Variables
+
 Required for newsletter functionality:
+
 - `CONVERTKIT_API_KEY`
 - `CONVERTKIT_FORM_ID`
 
 Required for content pipeline:
+
 - `GOOGLE_API_KEY` - Gemini API key for banner generation
 - `BLOG_CONTENT_PATH` - Path to blog content directory (default: `src/data/news/blog`)
 - `BLOG_BASE_URL` - Base URL of the blog (default: `https://agentic.hamburg`)
@@ -90,4 +96,5 @@ Body is plain markdown. Images referenced as `![alt](./image.png)` are converted
 See `BANNER_GUIDELINES.md` for image generation style guide.
 
 ## Linting Rules
+
 - `no-console` is an error (except `console.error` and `console.warn` in API routes)

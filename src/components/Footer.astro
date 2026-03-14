@@ -4,10 +4,16 @@ import { useTranslations } from "../lib/i18n/utils";
 const t = useTranslations();
 ---
 
-<footer class="site-footer w-full border-t" style="border-color: rgba(44, 62, 58, 0.12);">
+<footer
+  class="site-footer w-full border-t"
+  style="border-color: rgba(44, 62, 58, 0.12);"
+>
   <div class="mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
     <div class="flex flex-col items-center justify-center">
-      <p class="text-center text-sm" style="color: var(--color-text-secondary);">
+      <p
+        class="text-center text-sm"
+        style="color: var(--color-text-secondary);"
+      >
         Built with care in Hamburg &middot;
         <a href="/imprint" class="link">{t.footer.imprint}</a> &middot;
         <a href="/privacy" class="link">Privacy</a> &middot;

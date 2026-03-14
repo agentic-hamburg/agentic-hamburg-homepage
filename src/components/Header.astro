@@ -14,7 +14,10 @@ const isNews = currentPath.startsWith("/news");
 const isAbout = currentPath.includes("/about");
 ---
 
-<header class="site-header relative z-50 w-full border-b border-[var(--color-secondary)]" style="border-opacity: 0.1;">
+<header
+  class="site-header relative z-50 w-full border-b border-[var(--color-secondary)]"
+  style="border-opacity: 0.1;"
+>
   <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
     <div class="flex h-20 items-center justify-between">
       <div class="flex items-center">
@@ -31,29 +34,17 @@ const isAbout = currentPath.includes("/about");
         </a>
       </div>
       <nav class="flex items-center space-x-6 text-lg font-semibold">
-        <a
-          href="/"
-          class:list={["nav-link", { active: isHome }]}
-          >Home</a
-        >
-        <a
-          href="/conf-2026"
-          class:list={["nav-link", { active: isConference }]}
+        <a href="/" class:list={["nav-link", { active: isHome }]}>Home</a>
+        <a href="/conf-2026" class:list={["nav-link", { active: isConference }]}
           >{t.header.conference}</a
         >
-        <a
-          href="/meetups"
-          class:list={["nav-link", { active: isMeetups }]}
+        <a href="/meetups" class:list={["nav-link", { active: isMeetups }]}
           >{t.header.meetups}</a
         >
-        <a
-          href="/news"
-          class:list={["nav-link", { active: isNews }]}
+        <a href="/news" class:list={["nav-link", { active: isNews }]}
           >{t.header.news}</a
         >
-        <a
-          href="/about"
-          class:list={["nav-link", { active: isAbout }]}
+        <a href="/about" class:list={["nav-link", { active: isAbout }]}
           >{t.header.about}</a
         >
       </nav>
