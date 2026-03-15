@@ -114,25 +114,6 @@ const paragraphs = session.description.split("\n\n").filter(Boolean);
             </dl>
           </div>
 
-          <div class="ticket-sold-out">
-            <span class="sold-out-text">Sold Out</span>
-          </div>
-          <a href="/conf-2026/#newsletter" class="ticket-cta ticket-cta--newsletter">
-            Get Updates
-            <svg
-              width="16"
-              height="16"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-            </svg>
-          </a>
         </div>
       </div>
     </section>
@@ -315,46 +296,6 @@ const paragraphs = session.description.split("\n\n").filter(Boolean);
     margin: 0;
   }
 
-  .ticket-sold-out {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding: 0.875rem 1.5rem;
-    background: var(--color-text-secondary);
-    border-radius: 12px;
-    margin-bottom: 0.5rem;
-  }
-
-  .sold-out-text {
-    color: white;
-    font-weight: 700;
-    font-size: 0.95rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-  }
-
-  .ticket-cta {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    width: 100%;
-    padding: 0.875rem 1.5rem;
-    background: var(--color-primary);
-    color: white;
-    border-radius: 12px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 0.95rem;
-    transition: all 0.3s ease;
-  }
-
-  .ticket-cta:hover {
-    background: var(--color-accent);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(232, 136, 127, 0.3);
-  }
 
   @media (max-width: 768px) {
     .session-title {
