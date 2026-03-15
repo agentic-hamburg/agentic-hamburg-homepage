@@ -1,0 +1,354 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import { workshops } from "@/data/workshops";
+
+export const prerender = false;
+
+---
+
+<Layout title="Conference Dashboard - Agentic Hamburg Conf 2026">
+  <Header />
+
+  <div class="flex min-h-screen flex-col" style="background: var(--color-bg-cream);">
+    <main class="mx-auto w-full max-w-5xl flex-grow px-4 py-12 sm:px-6 lg:px-8">
+      <div class="mb-8 flex items-center justify-between">
+        <h1
+          class="text-3xl font-extrabold tracking-tight sm:text-4xl"
+          style="color: var(--color-text-primary);"
+        >
+          Conference Dashboard
+        </h1>
+        <div class="flex items-center gap-4">
+          <a
+            href="/conf-2026"
+            class="rounded-lg px-4 py-2 text-sm font-semibold transition-colors"
+            style="background: var(--color-secondary); color: white;"
+          >
+            Back to Conference
+          </a>
+        </div>
+      </div>
+
+      <!-- Workshops Section -->
+      <section class="mb-12">
+        <h2
+          class="mb-6 text-2xl font-bold"
+          style="color: var(--color-text-primary); font-family: var(--font-display);"
+        >
+          Workshops
+        </h2>
+        <p class="mb-6 text-sm" style="color: var(--color-text-secondary);">
+          Register for workshops via their individual Luma event pages. Spots are limited!
+        </p>
+        <div class="grid gap-4 md:grid-cols-2">
+          {workshops.map(workshop => (
+            <a
+              href={workshop.lumaUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="workshop-card block rounded-xl border p-6 transition-all hover:-translate-y-0.5 hover:shadow-lg"
+            >
+              <div class="mb-2 flex items-center justify-between">
+                <span
+                  class="rounded-full px-3 py-1 text-xs font-semibold"
+                  style="background: var(--color-bg-light); color: var(--color-primary-dark);"
+                >
+                  {workshop.level}
+                </span>
+                {workshop.time !== "TBD" && (
+                  <span class="text-xs" style="color: var(--color-text-secondary);">
+                    {workshop.time}
+                  </span>
+                )}
+              </div>
+              <h3
+                class="mb-2 text-lg font-bold"
+                style="color: var(--color-text-primary);"
+              >
+                {workshop.title}
+              </h3>
+              <p class="mb-3 text-sm" style="color: var(--color-text-secondary);">
+                {workshop.description}
+              </p>
+              <p class="text-sm font-semibold" style="color: var(--color-primary-dark);">
+                {workshop.speakers.join(", ")}
+              </p>
+              <div
+                class="mt-3 text-xs font-semibold"
+                style="color: var(--color-primary);"
+              >
+                Register on Luma &rarr;
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <!-- Open Space Ideas Section -->
+      <section>
+        <div class="mb-2 flex items-center gap-3">
+          <h2
+            class="text-2xl font-bold"
+            style="color: var(--color-text-primary); font-family: var(--font-display);"
+          >
+            Open Space Ideas
+          </h2>
+          <span
+            id="pending-count"
+            class="hidden rounded-full px-2.5 py-0.5 text-xs font-semibold"
+            style="background: #fef3c7; color: #92400e;"
+          ></span>
+        </div>
+        <p class="mb-6 text-sm" style="color: var(--color-text-secondary);">
+          Suggest topics you'd like to see discussed during the Open Space sessions.
+          You don't have to lead the session yourself — just throw in ideas! Voting happens on-site.
+          Submissions will appear here after a quick review by the organizers.
+        </p>
+
+        <!-- Submission Form -->
+        <div
+          class="mb-8 rounded-xl border p-6"
+          style="background: white; border-color: rgba(44, 62, 58, 0.12);"
+        >
+          <h3
+            class="mb-4 text-lg font-bold"
+            style="color: var(--color-text-primary);"
+          >
+            Suggest a topic
+          </h3>
+          <form id="idea-form" class="space-y-4">
+            <div>
+              <label
+                for="idea-name"
+                class="mb-1 block text-sm font-semibold"
+                style="color: var(--color-text-primary);"
+              >
+                Your name
+              </label>
+              <input
+                type="text"
+                id="idea-name"
+                name="name"
+                required
+                maxlength="80"
+                placeholder="e.g. Jane Doe"
+                class="idea-input w-full rounded-lg border px-4 py-2 text-sm"
+              />
+            </div>
+            <div>
+              <label
+                for="idea-title"
+                class="mb-1 block text-sm font-semibold"
+                style="color: var(--color-text-primary);"
+              >
+                Title
+              </label>
+              <input
+                type="text"
+                id="idea-title"
+                name="title"
+                required
+                maxlength="120"
+                placeholder="e.g. Comparing AI coding tools: Cursor vs Claude Code vs Copilot"
+                class="idea-input w-full rounded-lg border px-4 py-2 text-sm"
+              />
+            </div>
+            <div>
+              <label
+                for="idea-description"
+                class="mb-1 block text-sm font-semibold"
+                style="color: var(--color-text-primary);"
+              >
+                Description <span class="font-normal" style="color: var(--color-text-secondary);">(optional)</span>
+              </label>
+              <textarea
+                id="idea-description"
+                name="description"
+                rows="3"
+                maxlength="500"
+                placeholder="What should we talk about? You don't have to run the session yourself."
+                class="idea-input w-full rounded-lg border px-4 py-2 text-sm"
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              class="submit-btn rounded-lg px-6 py-2 text-sm font-semibold text-white transition-colors"
+            >
+              Suggest Topic
+            </button>
+          </form>
+          <p id="form-message" class="mt-3 hidden text-sm"></p>
+        </div>
+
+        <!-- Ideas List -->
+        <div id="ideas-list" class="space-y-3">
+          <div class="py-8 text-center" style="color: var(--color-text-secondary);">
+            Loading ideas...
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <Footer />
+  </div>
+</Layout>
+
+<style>
+  .workshop-card {
+    background: white;
+    border-color: rgba(44, 62, 58, 0.12);
+  }
+
+  .workshop-card:hover {
+    border-color: var(--color-primary);
+  }
+
+  .idea-input {
+    border-color: rgba(44, 62, 58, 0.2);
+    color: var(--color-text-primary);
+    outline: none;
+  }
+
+  .idea-input:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px rgba(232, 136, 127, 0.2);
+  }
+
+  .idea-input::placeholder {
+    color: var(--color-text-secondary);
+    opacity: 0.6;
+  }
+
+  .submit-btn {
+    background: var(--color-primary);
+  }
+
+  .submit-btn:hover {
+    background: var(--color-primary-dark);
+  }
+
+  .submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .idea-card {
+    background: white;
+    border-color: rgba(44, 62, 58, 0.12);
+  }
+
+</style>
+
+<script is:inline>
+  async function loadIdeas() {
+    const container = document.getElementById("ideas-list");
+    if (!container) return;
+
+    try {
+      const res = await fetch("/api/open-space/ideas");
+      const ideas = await res.json();
+
+      if (ideas.length === 0) {
+        container.innerHTML = `
+          <div class="py-8 text-center" style="color: var(--color-text-secondary);">
+            No topics yet — be the first to suggest one!
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = ideas
+        .map(
+          idea => `
+        <div class="idea-card rounded-xl border p-4" data-idea-id="${idea.id}">
+          <h4 class="font-bold" style="color: var(--color-text-primary);">${escapeHtml(idea.title)}</h4>
+          ${idea.description ? `<p class="mt-1 text-sm" style="color: var(--color-text-secondary);">${escapeHtml(idea.description)}</p>` : ""}
+          <p class="mt-2 text-xs" style="color: var(--color-text-secondary);">
+            suggested by ${escapeHtml(idea.authorName)}
+          </p>
+        </div>
+      `
+        )
+        .join("");
+    } catch {
+      container.innerHTML = `
+        <div class="py-8 text-center" style="color: var(--color-primary-dark);">
+          Failed to load ideas. Please refresh the page.
+        </div>
+      `;
+    }
+  }
+
+  function escapeHtml(str) {
+    const div = document.createElement("div");
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  // Form submission
+  const form = document.getElementById("idea-form");
+  const formMessage = document.getElementById("form-message");
+
+  form?.addEventListener("submit", async e => {
+    e.preventDefault();
+
+    const name = document.getElementById("idea-name").value.trim();
+    const title = document.getElementById("idea-title").value.trim();
+    const description = document.getElementById("idea-description").value.trim();
+
+    if (!name || !title) return;
+
+    const submitBtn = form.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Submitting...";
+
+    try {
+      const res = await fetch("/api/open-space/ideas", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, title, description }),
+      });
+
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.error || "Failed to submit");
+      }
+
+      form.reset();
+      formMessage.textContent = "Topic submitted! It will appear after review.";
+      formMessage.style.color = "var(--color-primary-dark)";
+      formMessage.classList.remove("hidden");
+
+      setTimeout(() => formMessage.classList.add("hidden"), 3000);
+
+      await loadIdeas();
+    } catch (err) {
+      formMessage.textContent = err.message;
+      formMessage.style.color = "var(--color-primary-dark)";
+      formMessage.classList.remove("hidden");
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Suggest Topic";
+    }
+  });
+
+  async function loadPendingCount() {
+    try {
+      const res = await fetch("/api/open-space/ideas?counts=true");
+      const counts = await res.json();
+      const badge = document.getElementById("pending-count");
+      if (badge && counts.pending > 0) {
+        badge.textContent = `${counts.pending} pending review`;
+        badge.classList.remove("hidden");
+      }
+    } catch {
+      // Silently fail — not critical
+    }
+  }
+
+  // Load ideas and pending count on page load
+  loadIdeas();
+  loadPendingCount();
+</script>

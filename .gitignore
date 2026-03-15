@@ -33,3 +33,6 @@ pnpm-debug.log*
 # Go build artifacts
 tools/bannergenerator/bannergenerator
 tools/contentmachine/distribute
+
+# clerk configuration (can include secrets)
+/.clerk/
