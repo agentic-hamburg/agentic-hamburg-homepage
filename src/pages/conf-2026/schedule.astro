@@ -1,0 +1,981 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import { Image } from "astro:assets";
+import roomPlanImg from "@/assets/sae-room-plan.jpg";
+import {
+  schedule,
+  trackMeta,
+  lightningBlock1Slugs,
+  lightningBlock2Slugs,
+} from "@/data/schedule";
+import { sessions } from "@/data/sessions";
+import type { Track } from "@/data/schedule";
+
+const tracks: Track[] = ["main", "small", "workshopA", "workshopB"];
+
+function toMinutes(t: string) {
+  const [h, m] = t.split(":").map(Number);
+  return h * 60 + m;
+}
+
+function fmtTime(totalMinutes: number) {
+  const h = Math.floor(totalMinutes / 60)
+    .toString()
+    .padStart(2, "0");
+  const m = (totalMinutes % 60).toString().padStart(2, "0");
+  return `${h}:${m}`;
+}
+
+function endTime(slot: { time: string; duration: number }) {
+  return fmtTime(toMinutes(slot.time) + slot.duration);
+}
+
+// ── Timeline positioning ──
+const PX_PER_MIN = 3;
+const START = toMinutes("09:00");
+const END = toMinutes("18:00");
+const TOTAL_HEIGHT = (END - START) * PX_PER_MIN;
+
+function getTop(time: string) {
+  return (toMinutes(time) - START) * PX_PER_MIN;
+}
+function getHeight(duration: number) {
+  return duration * PX_PER_MIN;
+}
+
+// Collect time labels (unique start times of all slots)
+const timeLabels = [
+  ...new Set(schedule.map(s => s.time)),
+].sort((a, b) => toMinutes(a) - toMinutes(b));
+
+// Categorize slots
+const trackSlots = (track: Track) =>
+  schedule.filter(s => s.track === track);
+const plenarySlots = schedule.filter(
+  s => s.track === "plenary",
+);
+const breakSlots = schedule.filter(s => s.track === "break");
+
+// Group slots by time for the mobile list view
+const timeGroups = new Map<
+  string,
+  (typeof schedule)[number][]
+>();
+for (const slot of schedule) {
+  const existing = timeGroups.get(slot.time) ?? [];
+  existing.push(slot);
+  timeGroups.set(slot.time, existing);
+}
+const sortedTimes = [...timeGroups.keys()].sort(
+  (a, b) => toMinutes(a) - toMinutes(b),
+);
+
+function getSession(slug: string) {
+  return sessions.find(s => s.slug === slug);
+}
+---
+
+<Layout
+  title="Schedule - Agentic Conf Hamburg 2026"
+  description="Full conference schedule for Agentic Conf Hamburg 2026. March 22 at SAE Institute Hamburg."
+>
+  <Header />
+
+  <main>
+    <section class="schedule-hero">
+      <div class="schedule-container">
+        <a href="/conf-2026/" class="back-link">
+          <svg
+            width="20"
+            height="20"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M11 17l-5-5m0 0l5-5m-5 5h12"></path>
+          </svg>
+          Back to Conference
+        </a>
+        <h1 class="schedule-title">Schedule</h1>
+        <p class="schedule-subtitle">
+          March 22, 2026 &middot; SAE Institute Hamburg &middot; 09:00 – 18:00
+        </p>
+        <div class="track-legend">
+          {
+            tracks.map(t => (
+              <span
+                class="legend-chip"
+                style={`background: ${trackMeta[t].bg}; color: ${trackMeta[t].color}; border: 1px solid ${trackMeta[t].color}22;`}
+              >
+                {trackMeta[t].label}
+              </span>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ DESKTOP TIMELINE ═══ -->
+    <section class="schedule-grid-section">
+      <div class="schedule-container">
+        <!-- Track column headers -->
+        <div class="tl-header">
+          <div class="tl-header-time"></div>
+          {
+            tracks.map(t => (
+              <div
+                class="tl-header-track"
+                style={`color: ${trackMeta[t].color};`}
+              >
+                {trackMeta[t].label}
+              </div>
+            ))
+          }
+        </div>
+
+        <!-- Timeline body -->
+        <div class="tl-body" style={`height: ${TOTAL_HEIGHT}px;`}>
+          <!-- Time axis labels -->
+          <div class="tl-axis">
+            {
+              timeLabels.map(t => (
+                <div
+                  class="tl-time-label"
+                  style={`top: ${getTop(t)}px;`}
+                >
+                  {t}
+                </div>
+              ))
+            }
+          </div>
+
+          <!-- Horizontal gridlines -->
+          {
+            timeLabels.map(t => (
+              <div
+                class="tl-gridline"
+                style={`top: ${getTop(t)}px;`}
+              />
+            ))
+          }
+
+          <!-- Break bands (span all tracks) -->
+          {
+            breakSlots.map(slot => (
+              <div
+                class="tl-break"
+                style={`top: ${getTop(slot.time)}px; height: ${getHeight(slot.duration)}px;`}
+              >
+                <span class="tl-break-label">
+                  {slot.title}
+                </span>
+                <span class="tl-break-time">
+                  {slot.time} – {endTime(slot)}
+                </span>
+              </div>
+            ))
+          }
+
+          <!-- Plenary items (opening/closing span all, lightning blocks span main+small only) -->
+          {
+            plenarySlots.map(slot => {
+              const isLightning =
+                slot.type === "Lightning Block";
+              const lightSlugs =
+                slot.time === "12:10"
+                  ? lightningBlock1Slugs
+                  : lightningBlock2Slugs;
+
+              return (
+                <div
+                  class:list={[
+                    "tl-plenary",
+                    {
+                      "tl-plenary--stages-only": isLightning,
+                    },
+                  ]}
+                  style={`top: ${getTop(slot.time)}px; height: ${getHeight(slot.duration)}px;`}
+                >
+                  <div class="tl-plenary-inner">
+                    <span class="tl-plenary-type">
+                      {slot.type}
+                    </span>
+                    <span class="tl-plenary-title">
+                      {slot.title}
+                    </span>
+                    <span class="tl-plenary-time">
+                      {slot.time} – {endTime(slot)}
+                    </span>
+                  </div>
+                  {isLightning && (
+                    <div class="tl-lightning-list">
+                      {lightSlugs.map((slug, i) => {
+                        const s = getSession(slug);
+                        return s ? (
+                          <>
+                            {i > 0 && (
+                              <span class="tl-lightning-sep">
+                                &middot;
+                              </span>
+                            )}
+                            <a
+                              href={`/conf-2026/sessions/${slug}/`}
+                              class="tl-lightning-link"
+                              title={s.title}
+                            >
+                              {s.speakers.join(", ")}
+                            </a>
+                          </>
+                        ) : null;
+                      })}
+                    </div>
+                  )}
+                </div>
+              );
+            })
+          }
+
+          <!-- Track columns -->
+          <div class="tl-tracks">
+            {
+              tracks.map(track => {
+                const meta = trackMeta[track];
+                const slots = trackSlots(track);
+                return (
+                  <div class="tl-col">
+                    {slots.map(slot => {
+                      const hasLink = !!slot.sessionSlug;
+                      const top = getTop(slot.time);
+                      const height = getHeight(slot.duration);
+                      const style = `top: ${top}px; height: ${height}px; background: ${meta.bg}; border-left: 3px solid ${meta.color};`;
+
+                      const content = (
+                        <>
+                          <span
+                            class="tl-card-type"
+                            style={`color: ${meta.color};`}
+                          >
+                            {slot.type}
+                          </span>
+                          <span class="tl-card-title">
+                            {slot.title}
+                          </span>
+                          {slot.speakers.length > 0 && (
+                            <span
+                              class="tl-card-speakers"
+                              style={`color: ${meta.color};`}
+                            >
+                              {slot.speakers.join(", ")}
+                            </span>
+                          )}
+                          <span class="tl-card-time">
+                            {slot.time} – {endTime(slot)}
+                          </span>
+                        </>
+                      );
+
+                      return hasLink ? (
+                        <a
+                          href={`/conf-2026/sessions/${slot.sessionSlug}/`}
+                          class="tl-card tl-card--link"
+                          style={style}
+                        >
+                          {content}
+                        </a>
+                      ) : (
+                        <div class="tl-card" style={style}>
+                          {content}
+                        </div>
+                      );
+                    })}
+                  </div>
+                );
+              })
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ MOBILE LIST ═══ -->
+    <section class="schedule-list-section">
+      <div class="schedule-container">
+        {
+          sortedTimes.map(time => {
+            const slots = timeGroups.get(time)!;
+            const isBreak = slots.every(
+              s => s.track === "break",
+            );
+            if (isBreak) {
+              const slot = slots[0];
+              return (
+                <div class="list-break">
+                  <span class="list-break-time">{time}</span>
+                  <span class="list-break-title">
+                    {slot.title}
+                  </span>
+                  <span class="list-break-end">
+                    until {endTime(slot)}
+                  </span>
+                </div>
+              );
+            }
+
+            const pSlot = slots.find(
+              s => s.track === "plenary",
+            );
+            const tSlots = slots.filter(
+              s => s.track !== "plenary" && s.track !== "break",
+            );
+
+            return (
+              <div class="list-time-block">
+                <div class="list-time-header">
+                  <span class="list-time">{time}</span>
+                </div>
+
+                {pSlot && (
+                  <div class="list-plenary-card">
+                    <span class="list-plenary-type">
+                      {pSlot.type}
+                    </span>
+                    <span class="list-plenary-title">
+                      {pSlot.title}
+                    </span>
+                    <span class="list-plenary-end">
+                      {time} – {endTime(pSlot)}
+                    </span>
+                    {pSlot.type === "Lightning Block" && (
+                      <div class="list-lightning-speakers">
+                        {(pSlot.time === "12:10"
+                          ? lightningBlock1Slugs
+                          : lightningBlock2Slugs
+                        ).map(slug => {
+                          const s = getSession(slug);
+                          return s ? (
+                            <a
+                              href={`/conf-2026/sessions/${slug}/`}
+                              class="list-lightning-link"
+                            >
+                              <span class="list-lightning-name">
+                                {s.speakers.join(", ")}
+                              </span>
+                              <span class="list-lightning-title">
+                                {s.title}
+                              </span>
+                            </a>
+                          ) : null;
+                        })}
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {tSlots.map(slot => {
+                  const meta = trackMeta[slot.track];
+                  const hasLink = !!slot.sessionSlug;
+
+                  const cardContent = (
+                    <>
+                      <div class="list-session-meta">
+                        <span
+                          class="list-track-badge"
+                          style={`background: ${meta.bg}; color: ${meta.color};`}
+                        >
+                          {meta.label}
+                        </span>
+                        <span class="list-session-type">
+                          {slot.type}
+                        </span>
+                        <span class="list-session-duration">
+                          {slot.duration} min
+                        </span>
+                      </div>
+                      <span class="list-session-title">
+                        {slot.title}
+                      </span>
+                      {slot.speakers.length > 0 && (
+                        <span
+                          class="list-session-speakers"
+                          style={`color: ${meta.color};`}
+                        >
+                          {slot.speakers.join(", ")}
+                        </span>
+                      )}
+                    </>
+                  );
+
+                  return hasLink ? (
+                    <a
+                      href={`/conf-2026/sessions/${slot.sessionSlug}/`}
+                      class="list-session-card"
+                      style={`border-left: 3px solid ${meta.color};`}
+                    >
+                      {cardContent}
+                    </a>
+                  ) : (
+                    <div
+                      class="list-session-card"
+                      style={`border-left: 3px solid ${meta.color};`}
+                    >
+                      {cardContent}
+                    </div>
+                  );
+                })}
+              </div>
+            );
+          })
+        }
+      </div>
+    </section>
+
+    <section class="room-plan-section">
+      <div class="schedule-container">
+        <h2 class="room-plan-title">Venue Map</h2>
+        <Image
+          src={roomPlanImg}
+          alt="SAE Institute Hamburg room plan showing St. Pauli, Altona, Main Area, and The Space"
+          class="room-plan-img"
+          widths={[600, 900]}
+          sizes="(max-width: 900px) 100vw, 900px"
+        />
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* ── Hero ── */
+  .schedule-hero {
+    background: linear-gradient(135deg, #faf8f5 0%, #fff5f0 100%);
+    padding: 3rem 1rem 2rem;
+    border-bottom: 1px solid rgba(44, 62, 58, 0.08);
+  }
+
+  .schedule-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    transition: color 0.2s;
+  }
+
+  .back-link:hover {
+    color: var(--color-primary);
+  }
+
+  .schedule-title {
+    font-family: "Quicksand", sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+
+  .schedule-subtitle {
+    color: var(--color-text-secondary);
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .track-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .legend-chip {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .room-plan-section {
+    padding: 2rem 1rem 3rem;
+  }
+
+  .room-plan-title {
+    font-family: "Quicksand", sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 0.75rem;
+  }
+
+  .room-plan-img {
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    border-radius: 12px;
+    border: 1px solid rgba(44, 62, 58, 0.08);
+  }
+
+  /* ═══════════════════════════════════════════════
+     DESKTOP TIMELINE (absolute-positioned cards)
+     ═══════════════════════════════════════════════ */
+  .schedule-grid-section {
+    padding: 2rem 1rem 3rem;
+  }
+
+  /* ── Column headers ── */
+  .tl-header {
+    display: grid;
+    grid-template-columns: 60px repeat(4, 1fr);
+    border: 1px solid rgba(44, 62, 58, 0.08);
+    border-bottom: 2px solid rgba(44, 62, 58, 0.1);
+    border-radius: 12px 12px 0 0;
+    background: #faf8f5;
+    position: sticky;
+    top: 0;
+    z-index: 30;
+  }
+
+  .tl-header-time {
+    border-right: 1px solid rgba(44, 62, 58, 0.06);
+  }
+
+  .tl-header-track {
+    padding: 0.6rem 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    text-align: center;
+    border-left: 1px solid rgba(44, 62, 58, 0.06);
+  }
+
+  /* ── Timeline body ── */
+  .tl-body {
+    position: relative;
+    border: 1px solid rgba(44, 62, 58, 0.08);
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+    background: white;
+    overflow: hidden;
+  }
+
+  /* ── Time axis (left column) ── */
+  .tl-axis {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 100%;
+    border-right: 1px solid rgba(44, 62, 58, 0.08);
+    z-index: 10;
+    background: #faf8f5;
+  }
+
+  .tl-time-label {
+    position: absolute;
+    right: 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-text-secondary);
+    line-height: 1;
+    transform: translateY(-1px);
+  }
+
+  /* ── Gridlines ── */
+  .tl-gridline {
+    position: absolute;
+    left: 60px;
+    right: 0;
+    height: 0;
+    border-top: 1px solid rgba(44, 62, 58, 0.04);
+    z-index: 1;
+  }
+
+  /* ── Break bands ── */
+  .tl-break {
+    position: absolute;
+    left: 60px;
+    right: 0;
+    z-index: 5;
+    background: rgba(250, 250, 249, 0.95);
+    border-top: 1px solid rgba(44, 62, 58, 0.06);
+    border-bottom: 1px solid rgba(44, 62, 58, 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .tl-break-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    opacity: 0.5;
+  }
+
+  .tl-break-time {
+    font-size: 0.7rem;
+    color: var(--color-text-secondary);
+    opacity: 0.35;
+  }
+
+  /* ── Plenary items ── */
+  .tl-plenary {
+    position: absolute;
+    left: 60px;
+    right: 0;
+    z-index: 12;
+    background: linear-gradient(
+      135deg,
+      rgba(250, 248, 245, 0.97) 0%,
+      rgba(255, 245, 240, 0.97) 100%
+    );
+    border-top: 1px solid rgba(232, 136, 127, 0.15);
+    border-bottom: 1px solid rgba(232, 136, 127, 0.15);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    overflow: visible;
+  }
+
+  .tl-plenary--stages-only {
+    /* Span exactly the first 2 of 4 track columns (50% of track area) */
+    right: auto;
+    width: calc((100% - 60px) / 2);
+  }
+
+  .tl-plenary-inner {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+
+  .tl-plenary-type {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-primary);
+  }
+
+  .tl-plenary-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+  }
+
+  .tl-plenary-time {
+    font-size: 0.65rem;
+    color: var(--color-text-secondary);
+    opacity: 0.5;
+  }
+
+  .tl-lightning-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.15rem;
+    margin-top: 0.2rem;
+  }
+
+  .tl-lightning-link {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-decoration: none;
+    padding: 0.1rem 0.35rem;
+    border-radius: 3px;
+    transition: background 0.12s;
+    white-space: nowrap;
+  }
+
+  .tl-lightning-link:hover {
+    background: rgba(232, 136, 127, 0.12);
+    text-decoration: underline;
+  }
+
+  .tl-lightning-sep {
+    font-size: 0.6rem;
+    color: var(--color-text-secondary);
+    opacity: 0.4;
+  }
+
+  /* ── Track columns ── */
+  .tl-tracks {
+    position: absolute;
+    top: 0;
+    left: 60px;
+    right: 0;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    z-index: 6;
+    pointer-events: none;
+  }
+
+  .tl-col {
+    position: relative;
+    border-left: 1px solid rgba(44, 62, 58, 0.06);
+    pointer-events: auto;
+  }
+
+  /* ── Session cards (absolute positioned) ── */
+  .tl-card {
+    position: absolute;
+    left: 3px;
+    right: 3px;
+    border-radius: 6px;
+    padding: 0.4rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition:
+      transform 0.12s,
+      box-shadow 0.12s;
+  }
+
+  .tl-card--link:hover {
+    transform: translateX(1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    z-index: 10;
+  }
+
+  .tl-card-type {
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    flex-shrink: 0;
+  }
+
+  .tl-card-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--color-text-primary);
+  }
+
+  .tl-card-speakers {
+    font-size: 0.7rem;
+    font-weight: 500;
+  }
+
+  .tl-card-time {
+    font-size: 0.6rem;
+    color: var(--color-text-secondary);
+    opacity: 0.6;
+    margin-top: auto;
+  }
+
+  /* ═══════════════════════════════════════════════
+     MOBILE LIST
+     ═══════════════════════════════════════════════ */
+  .schedule-list-section {
+    display: none;
+    padding: 1rem 0 3rem;
+  }
+
+  .list-time-block {
+    margin-bottom: 0;
+  }
+
+  .list-time-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--color-bg-cream);
+    padding: 0.75rem 1rem 0.375rem;
+    border-bottom: 1px solid rgba(44, 62, 58, 0.08);
+  }
+
+  .list-time {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+  }
+
+  .list-session-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 0.75rem 1rem 0.75rem 1.25rem;
+    border-bottom: 1px solid rgba(44, 62, 58, 0.05);
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.12s;
+  }
+
+  a.list-session-card:hover {
+    background: rgba(232, 136, 127, 0.04);
+  }
+
+  .list-session-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .list-track-badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.15rem 0.5rem;
+    border-radius: 12px;
+  }
+
+  .list-session-type {
+    font-size: 0.7rem;
+    color: var(--color-text-secondary);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .list-session-duration {
+    font-size: 0.7rem;
+    color: var(--color-text-secondary);
+    opacity: 0.6;
+  }
+
+  .list-session-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--color-text-primary);
+  }
+
+  .list-session-speakers {
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  .list-break {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: #fafaf9;
+    border-bottom: 1px solid rgba(44, 62, 58, 0.06);
+  }
+
+  .list-break-time {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-text-secondary);
+    opacity: 0.5;
+  }
+
+  .list-break-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    opacity: 0.5;
+  }
+
+  .list-break-end {
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+    opacity: 0.35;
+  }
+
+  .list-plenary-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0.75rem 1rem;
+    background: linear-gradient(135deg, #faf8f5 0%, #fff5f0 100%);
+    border-bottom: 1px solid rgba(44, 62, 58, 0.06);
+  }
+
+  .list-plenary-type {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-primary);
+  }
+
+  .list-plenary-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+  }
+
+  .list-plenary-end {
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+    opacity: 0.6;
+  }
+
+  .list-lightning-speakers {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    margin-top: 0.375rem;
+  }
+
+  .list-lightning-link {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border: 1px solid rgba(44, 62, 58, 0.08);
+    border-radius: 6px;
+    padding: 0.4rem 0.75rem;
+    text-decoration: none;
+  }
+
+  .list-lightning-name {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+
+  .list-lightning-title {
+    font-size: 0.75rem;
+    color: var(--color-text-primary);
+    line-height: 1.3;
+  }
+
+  /* ═══════════════════════════════════════════════
+     RESPONSIVE
+     ═══════════════════════════════════════════════ */
+  @media (max-width: 900px) {
+    .schedule-grid-section {
+      display: none;
+    }
+
+    .schedule-list-section {
+      display: block;
+    }
+
+    .schedule-title {
+      font-size: 2rem;
+    }
+  }
+
+  @media (min-width: 901px) {
+    .schedule-list-section {
+      display: none;
+    }
+  }
+</style>

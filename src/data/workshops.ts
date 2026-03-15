@@ -41,7 +41,7 @@ export const workshops: Workshop[] = [
     description:
       "Go beyond the hype and dive into the practical architecture of sandboxing AI-generated code. Learn how to integrate an LLM to generate code and run it in a secure, isolated environment.",
     level: "Intermediate",
-    time: "10:00 – 11:30",
+    time: "14:00 – 15:30",
     lumaEventId: "evt-tHqoP7jcmDFYUY1",
     lumaUrl: "https://luma.com/15ntjibp",
   },
@@ -52,7 +52,7 @@ export const workshops: Workshop[] = [
     description:
       "Configure an AI agent into a personal work companion that reflects how you actually work, strengthens your weak spots, and asks the right questions. Leave with a functioning Nemesis. No coding experience needed.",
     level: "Introductory",
-    time: "10:00 – 11:30",
+    time: "14:00 – 15:30",
     lumaEventId: "evt-lFfWNDw6hgu5AIC",
     lumaUrl: "https://luma.com/2uxjdzfa",
   },
