@@ -76,9 +76,9 @@ export const schedule: ScheduleSlot[] = [
     duration: 25,
     track: "small",
     type: "Full Talk",
-    title: "You Don't Need a Bigger Model. You Need a Better AI Harness",
-    speakers: ["Björn Rochel"],
-    sessionSlug: "you-dont-need-a-bigger-model",
+    title: '"This (web) is for everyone!" — Sir Tim Berners-Lee.',
+    speakers: ["Daniel Moll"],
+    sessionSlug: "this-web-is-for-everyone",
   },
   {
     time: "10:00",
@@ -107,19 +107,18 @@ export const schedule: ScheduleSlot[] = [
     duration: 25,
     track: "main",
     type: "Full Talk",
-    title: "Stop Building Features. Build the Factory That Builds Them.",
-    speakers: ["Benedikt Stemmildt", "Leo Peters"],
-    sessionSlug: "stop-building-features-build-the-factory",
+    title: "From Runbooks to Models: AI-Native Operations",
+    speakers: ["Paul Stack"],
+    sessionSlug: "from-runbooks-to-models",
   },
   {
     time: "10:30",
     duration: 25,
     track: "small",
     type: "Full Talk",
-    title:
-      "Onboarding Your Agent: How eventim integrates agentic engineering into enterprise workflows",
-    speakers: ["Fabian Meyer"],
-    sessionSlug: "onboarding-your-agent",
+    title: "My agent went rogue: 5 failure modes and how to contain them",
+    speakers: ["Luise Freese"],
+    sessionSlug: "my-agent-went-rogue",
   },
 
   // ── BREAK ──
@@ -138,18 +137,19 @@ export const schedule: ScheduleSlot[] = [
     duration: 25,
     track: "main",
     type: "Full Talk",
-    title: "My agent went rogue: 5 failure modes and how to contain them",
-    speakers: ["Luise Freese"],
-    sessionSlug: "my-agent-went-rogue",
+    title: "You Don't Need a Bigger Model. You Need a Better AI Harness",
+    speakers: ["Björn Rochel"],
+    sessionSlug: "you-dont-need-a-bigger-model",
   },
   {
     time: "11:10",
     duration: 25,
     track: "small",
     type: "Full Talk",
-    title: "A tiny intelligent being lives inside a box under my desk",
-    speakers: ["Luis Bezzenberger"],
-    sessionSlug: "a-tiny-intelligent-being",
+    title:
+      "Onboarding Your Agent: How eventim integrates agentic engineering into enterprise workflows",
+    speakers: ["Fabian Meyer"],
+    sessionSlug: "onboarding-your-agent",
   },
 
   // ── OPEN SPACE (11:30) ──
@@ -176,19 +176,18 @@ export const schedule: ScheduleSlot[] = [
     duration: 25,
     track: "main",
     type: "Full Talk",
-    title:
-      "Humans still needed: Learnings from refactoring an ancient codebase",
-    speakers: ["Benedikt Terhechte"],
-    sessionSlug: "humans-still-needed",
+    title: "Stop Building Features. Build the Factory That Builds Them.",
+    speakers: ["Benedikt Stemmildt", "Leo Peters"],
+    sessionSlug: "stop-building-features-build-the-factory",
   },
   {
     time: "11:40",
     duration: 25,
     track: "small",
     type: "Full Talk",
-    title: "From Runbooks to Models: AI-Native Operations",
-    speakers: ["Paul Stack"],
-    sessionSlug: "from-runbooks-to-models",
+    title: "From Intentional Sprawl to a Deliberate Stack: Rolling Out Codex",
+    speakers: ["Alexander Stolle"],
+    sessionSlug: "from-intentional-sprawl-to-a-deliberate-stack",
   },
 
   // ── LIGHTNING BLOCK 1 (12:10) ──
@@ -222,9 +221,10 @@ export const schedule: ScheduleSlot[] = [
     duration: 25,
     track: "main",
     type: "Full Talk",
-    title: "From Intentional Sprawl to a Deliberate Stack: Rolling Out Codex",
-    speakers: ["Alexander Stolle"],
-    sessionSlug: "from-intentional-sprawl-to-a-deliberate-stack",
+    title:
+      "Requirements-Driven Development: The Missing Layer in Agentic Coding",
+    speakers: ["Xesca Alabart"],
+    sessionSlug: "requirements-driven-development",
   },
   {
     time: "14:00",
@@ -232,9 +232,9 @@ export const schedule: ScheduleSlot[] = [
     track: "small",
     type: "Full Talk",
     title:
-      "Requirements-Driven Development: The Missing Layer in Agentic Coding",
-    speakers: ["Xesca Alabart"],
-    sessionSlug: "requirements-driven-development",
+      "Humans still needed: Learnings from refactoring an ancient codebase",
+    speakers: ["Benedikt Terhechte"],
+    sessionSlug: "humans-still-needed",
   },
   {
     time: "14:00",
@@ -270,9 +270,9 @@ export const schedule: ScheduleSlot[] = [
     duration: 25,
     track: "small",
     type: "Full Talk",
-    title: '"This (web) is for everyone!" — Sir Tim Berners-Lee.',
-    speakers: ["Daniel Moll"],
-    sessionSlug: "this-web-is-for-everyone",
+    title: "A tiny intelligent being lives inside a box under my desk",
+    speakers: ["Luis Bezzenberger"],
+    sessionSlug: "a-tiny-intelligent-being",
   },
 
   // ── AFTERNOON BLOCK 7 (15:00) ──
@@ -313,19 +313,19 @@ export const schedule: ScheduleSlot[] = [
     duration: 25,
     track: "main",
     type: "Full Talk",
-    title:
-      "We're Not Developers. We Built a 116K LoC Production System Anyway.",
-    speakers: ["Daniel Schreiber", "Felix Behrendt"],
-    sessionSlug: "were-not-developers",
+    title: "Driving AI: How MOIA Scales LLM Expertise",
+    speakers: ["Waqas Ahmed", "Christoph Hübner"],
+    sessionSlug: "driving-ai-how-moia-scales-llm-expertise",
   },
   {
     time: "16:00",
     duration: 25,
     track: "small",
     type: "Full Talk",
-    title: "Driving AI: How MOIA Scales LLM Expertise",
-    speakers: ["Waqas Ahmed", "Christoph Hübner"],
-    sessionSlug: "driving-ai-how-moia-scales-llm-expertise",
+    title:
+      "We're Not Developers. We Built a 116K LoC Production System Anyway.",
+    speakers: ["Daniel Schreiber", "Felix Behrendt"],
+    sessionSlug: "were-not-developers",
   },
   {
     time: "16:00",
