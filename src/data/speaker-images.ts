@@ -1,6 +1,6 @@
 import bjoernRochel from "@/assets/speakers/bjoern-rochel.jpg";
 import benediktStemmildt from "@/assets/speakers/benedikt-stemmildt.jpg";
-import henrikEdler from "@/assets/speakers/henrik-edler.png";
+import wolfBruening from "@/assets/speakers/wolf-bruening.jpg";
 import anastasiaKaravdina from "@/assets/speakers/anastasia-karavdina.jpg";
 import paulStack from "@/assets/speakers/paul-stack.jpg";
 import arnaudJean from "@/assets/speakers/arnaud-jean.png";
@@ -32,7 +32,7 @@ export const speakerImages: Record<string, ImageMetadata> = {
   "Björn Rochel": bjoernRochel,
   "Benedikt Stemmildt": benediktStemmildt,
   "Leo Peters": leoPeters,
-  "Henrik Edler": henrikEdler,
+  "Wolf Brüning": wolfBruening,
   "Anastasia Karavdina": anastasiaKaravdina,
   "Paul Stack": paulStack,
   "Arnaud Jean": arnaudJean,

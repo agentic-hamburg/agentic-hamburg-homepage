@@ -44,20 +44,14 @@ Two hard truths: you can't copy someone else's factory, because it's deeply coup
 No slides. In this talk, I'll open a real factory from a real client project and walk through how it's built, how it runs, and why this is the path from AI-assisted to genuinely autonomous.`,
   },
   {
-    slug: "claude-code-for-everything-except-coding",
+    slug: "build-the-right-ai-product",
     title:
-      "Claude Code for everything except coding: The PM we've been looking for",
-    speakers: ["Henrik Edler"],
+      "Build the right AI product - The good, the bad and the ugly of product discovery in the AI era",
+    speakers: ["Wolf Brüning"],
     format: "Full Talk",
     level: "Intermediate",
     language: "English",
-    description: `Everyone talks about AI coding assistants. I use Claude Code to do everything except coding.
-
-As a program lead managing 15+ projects, I kept hitting the same gaps: discussions that never became documented decisions, features kicked off without clear problem statements, inconsistent artifacts that teams struggled to pick up. We knew best practices — we just never had time to follow them consistently.
-
-So I built workflows that embed those best practices into the process itself. The AI acts as a facilitating scribe: it nudges you with the right questions, challenges incomplete inputs, and pushes you to understand what you're actually trying to achieve before documenting anything. From project to epic to user story, the system guides you through structured creation — and the output is documentation that teams (and future AI agents) can actually work from.
-
-This talk shares the real architecture: the skill, template-driven workflows, parallel subagents for context without token explosion and patterns that turn messy discussions into solid work packages. I'll show what works, what failed and why quality at scale requires discipline baked into the process — not heroic effort.`,
+    description: `In this talk I would like to talk about the changes AI can (or might) bring about in Product Discovery. What have we tried and learned so far? Where can AI take us further and which paths are dangerous to take. The talk will underline the importance of Product Discovery in modern product development, take a general optimistic stance on AI but also will encourage critical thinking.`,
   },
   {
     slug: "ai-coding-assistants-in-enterprises",
