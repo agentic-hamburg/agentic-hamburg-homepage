@@ -6,7 +6,8 @@
     "node": ">=22.19.0"
   },
   "scripts": {
-    "dev": "astro dev",
+    "dev": "netlify dev",
+    "dev:astro": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
@@ -16,6 +17,8 @@
     "lint:fix": "eslint . --fix",
     "typecheck": "astro check",
     "typecheck:watch": "astro check --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "ci": "npm run typecheck && npm run lint && npm run format:check"
   },
   "dependencies": {
@@ -25,6 +28,7 @@
     "@astrojs/tailwind": "^6.0.2",
     "@fontsource/dm-serif-display": "^5.2.8",
     "@fontsource/quicksand": "^5.2.10",
+    "@netlify/blobs": "^10.7.2",
     "@tailwindcss/typography": "^0.5.18",
     "astro": "^5.11.1",
     "lodash.kebabcase": "^4.1.1",
@@ -43,6 +47,7 @@
     "prettier-plugin-svelte": "^3.5.1",
     "prettier-plugin-tailwindcss": "^0.6.12",
     "typescript": "^5.8.3",
-    "typescript-eslint": "^8.34.0"
+    "typescript-eslint": "^8.34.0",
+    "vitest": "^4.1.0"
   }
 }

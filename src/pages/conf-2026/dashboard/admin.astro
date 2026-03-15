@@ -1,0 +1,286 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+
+export const prerender = false;
+---
+
+<Layout title="Admin - Open Space Moderation">
+  <Header />
+
+  <div class="flex min-h-screen flex-col" style="background: var(--color-bg-cream);">
+    <main class="mx-auto w-full max-w-5xl flex-grow px-4 py-12 sm:px-6 lg:px-8">
+      <div class="mb-8 flex items-center justify-between">
+        <h1
+          class="text-3xl font-extrabold tracking-tight sm:text-4xl"
+          style="color: var(--color-text-primary);"
+        >
+          Open Space Moderation
+        </h1>
+        <a
+          href="/conf-2026/dashboard"
+          class="rounded-lg px-4 py-2 text-sm font-semibold transition-colors"
+          style="background: var(--color-secondary); color: white;"
+        >
+          Back to Dashboard
+        </a>
+      </div>
+
+      <!-- Filter tabs -->
+      <div class="mb-6 flex gap-2">
+        <button
+          class="filter-btn active rounded-lg px-4 py-2 text-sm font-semibold"
+          data-filter="pending"
+        >
+          Pending
+        </button>
+        <button
+          class="filter-btn rounded-lg px-4 py-2 text-sm font-semibold"
+          data-filter="approved"
+        >
+          Approved
+        </button>
+        <button
+          class="filter-btn rounded-lg px-4 py-2 text-sm font-semibold"
+          data-filter="rejected"
+        >
+          Rejected
+        </button>
+        <button
+          class="filter-btn rounded-lg px-4 py-2 text-sm font-semibold"
+          data-filter="all"
+        >
+          All
+        </button>
+      </div>
+
+      <div id="admin-ideas-list" class="space-y-3">
+        <div class="py-8 text-center" style="color: var(--color-text-secondary);">
+          Loading...
+        </div>
+      </div>
+    </main>
+
+    <Footer />
+  </div>
+</Layout>
+
+<style>
+  .filter-btn {
+    background: white;
+    color: var(--color-text-secondary);
+    border: 2px solid rgba(44, 62, 58, 0.12);
+    transition: all 0.15s ease;
+  }
+
+  .filter-btn:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary-dark);
+  }
+
+  .filter-btn.active {
+    background: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+  }
+
+  .idea-card {
+    background: white;
+    border-color: rgba(44, 62, 58, 0.12);
+  }
+
+  .action-btn {
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    transition: all 0.15s ease;
+    border: none;
+    cursor: pointer;
+  }
+
+  .action-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .btn-approve {
+    background: #d1fae5;
+    color: #065f46;
+  }
+
+  .btn-approve:hover:not(:disabled) {
+    background: #a7f3d0;
+  }
+
+  .btn-reject {
+    background: #fee2e2;
+    color: #991b1b;
+  }
+
+  .btn-reject:hover:not(:disabled) {
+    background: #fecaca;
+  }
+
+  .btn-delete {
+    background: #f3f4f6;
+    color: #6b7280;
+  }
+
+  .btn-delete:hover:not(:disabled) {
+    background: #e5e7eb;
+  }
+
+  .status-badge {
+    display: inline-block;
+    padding: 0.125rem 0.5rem;
+    border-radius: 9999px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+  }
+
+  .status-pending {
+    background: #fef3c7;
+    color: #92400e;
+  }
+
+  .status-approved {
+    background: #d1fae5;
+    color: #065f46;
+  }
+
+  .status-rejected {
+    background: #fee2e2;
+    color: #991b1b;
+  }
+</style>
+
+<script is:inline>
+  let currentFilter = "pending";
+  let allIdeas = [];
+
+  async function loadIdeas() {
+    const container = document.getElementById("admin-ideas-list");
+    if (!container) return;
+
+    try {
+      const res = await fetch("/api/open-space/ideas?all=true");
+      allIdeas = await res.json();
+      renderIdeas();
+    } catch {
+      container.innerHTML = `
+        <div class="py-8 text-center" style="color: var(--color-primary-dark);">
+          Failed to load ideas. Please refresh.
+        </div>
+      `;
+    }
+  }
+
+  function updateFilterCounts() {
+    const counts = { pending: 0, approved: 0, rejected: 0, all: allIdeas.length };
+    allIdeas.forEach(i => { counts[i.status] = (counts[i.status] || 0) + 1; });
+
+    document.querySelectorAll(".filter-btn").forEach(btn => {
+      const filter = btn.dataset.filter;
+      const count = counts[filter] || 0;
+      const label = filter.charAt(0).toUpperCase() + filter.slice(1);
+      btn.textContent = `${label} (${count})`;
+    });
+  }
+
+  function renderIdeas() {
+    const container = document.getElementById("admin-ideas-list");
+    if (!container) return;
+
+    updateFilterCounts();
+
+    const filtered =
+      currentFilter === "all"
+        ? allIdeas
+        : allIdeas.filter(i => i.status === currentFilter);
+
+    if (filtered.length === 0) {
+      container.innerHTML = `
+        <div class="py-8 text-center" style="color: var(--color-text-secondary);">
+          No ${currentFilter === "all" ? "" : currentFilter} ideas.
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = filtered
+      .map(
+        idea => `
+      <div class="idea-card rounded-xl border p-4" data-idea-id="${idea.id}">
+        <div class="flex items-start justify-between gap-4">
+          <div class="flex-grow">
+            <div class="mb-1 flex items-center gap-2">
+              <span class="status-badge status-${idea.status}">${idea.status}</span>
+              <span class="text-xs" style="color: var(--color-text-secondary);">
+                ${new Date(idea.createdAt).toLocaleString()}
+              </span>
+            </div>
+            <h4 class="font-bold" style="color: var(--color-text-primary);">${escapeHtml(idea.title)}</h4>
+            ${idea.description ? `<p class="mt-1 text-sm" style="color: var(--color-text-secondary);">${escapeHtml(idea.description)}</p>` : ""}
+            <p class="mt-1 text-xs" style="color: var(--color-text-secondary);">
+              by ${escapeHtml(idea.authorName)}
+            </p>
+          </div>
+          <div class="flex flex-shrink-0 gap-2">
+            ${idea.status !== "approved" ? `<button class="action-btn btn-approve" onclick="moderate('${idea.id}', 'approve')">Approve</button>` : ""}
+            ${idea.status !== "rejected" ? `<button class="action-btn btn-reject" onclick="moderate('${idea.id}', 'reject')">Reject</button>` : ""}
+            <button class="action-btn btn-delete" onclick="moderate('${idea.id}', 'delete')">Delete</button>
+          </div>
+        </div>
+      </div>
+    `
+      )
+      .join("");
+  }
+
+  function escapeHtml(str) {
+    const div = document.createElement("div");
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  window.moderate = async function (ideaId, action) {
+    const card = document.querySelector(`[data-idea-id="${ideaId}"]`);
+    if (!card) return;
+
+    // Disable all buttons in this card
+    card.querySelectorAll("button").forEach(b => (b.disabled = true));
+
+    try {
+      const res = await fetch("/api/open-space/moderate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ideaId, action }),
+      });
+
+      if (!res.ok) throw new Error("Failed");
+
+      // Reload ideas
+      await loadIdeas();
+    } catch {
+      card.querySelectorAll("button").forEach(b => (b.disabled = false));
+    }
+  };
+
+  // Filter tab clicks
+  document.querySelectorAll(".filter-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document
+        .querySelectorAll(".filter-btn")
+        .forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      currentFilter = btn.dataset.filter;
+      renderIdeas();
+    });
+  });
+
+  loadIdeas();
+</script>
