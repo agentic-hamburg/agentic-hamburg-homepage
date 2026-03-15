@@ -5,6 +5,7 @@ import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import { sessions } from "@/data/sessions";
 import { speakerImages } from "@/data/speaker-images";
+import { getScheduleForSession } from "@/data/schedule";
 
 export function getStaticPaths() {
   return sessions.map(session => ({
@@ -16,6 +17,7 @@ export function getStaticPaths() {
 const { session } = Astro.props;
 const formatClass = `format-${session.format.toLowerCase().replace(" ", "-")}`;
 const paragraphs = session.description.split("\n\n").filter(Boolean);
+const scheduleInfo = getScheduleForSession(session.slug);
 ---
 
 <Layout
@@ -75,6 +77,24 @@ const paragraphs = session.description.split("\n\n").filter(Boolean);
             })
           }
         </div>
+
+        {scheduleInfo && (
+          <div class="schedule-info">
+            <span class="schedule-info-time">
+              <svg class="schedule-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              {scheduleInfo.time}
+            </span>
+            <span class="schedule-info-divider" aria-hidden="true">&middot;</span>
+            <span class="schedule-info-track">
+              <span class="track-dot" style={`background: ${scheduleInfo.trackColor}`} />
+              {scheduleInfo.trackLabel}
+            </span>
+            <span class="schedule-info-divider" aria-hidden="true">&middot;</span>
+            <span class="schedule-info-duration">{scheduleInfo.duration} min</span>
+          </div>
+        )}
       </div>
     </section>
 
@@ -105,6 +125,21 @@ const paragraphs = session.description.split("\n\n").filter(Boolean);
           <div class="sidebar-card">
             <h3>Session Details</h3>
             <dl>
+              {scheduleInfo && (
+                <>
+                  <dt>Time</dt>
+                  <dd>{scheduleInfo.time}</dd>
+                  <dt>Room</dt>
+                  <dd>
+                    <span class="sidebar-track">
+                      <span class="track-dot" style={`background: ${scheduleInfo.trackColor}`} />
+                      {scheduleInfo.trackLabel}
+                    </span>
+                  </dd>
+                  <dt>Duration</dt>
+                  <dd>{scheduleInfo.duration} min</dd>
+                </>
+              )}
               <dt>Format</dt>
               <dd>{session.format}</dd>
               <dt>Level</dt>
@@ -114,6 +149,9 @@ const paragraphs = session.description.split("\n\n").filter(Boolean);
             </dl>
           </div>
 
+          <a href="/conf-2026/schedule/" class="sidebar-schedule-link">
+            View Full Schedule →
+          </a>
         </div>
       </div>
     </section>
@@ -230,6 +268,57 @@ const paragraphs = session.description.split("\n\n").filter(Boolean);
     font-size: 0.95rem;
   }
 
+  .schedule-info {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+    padding: 0.75rem 1.25rem;
+    background: white;
+    border: 1px solid rgba(44, 62, 58, 0.08);
+    border-radius: 12px;
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    width: fit-content;
+  }
+
+  .schedule-icon {
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
+  }
+
+  .schedule-info-time,
+  .schedule-info-track,
+  .schedule-info-duration {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .schedule-info-divider {
+    color: var(--color-text-secondary);
+    opacity: 0.4;
+    font-size: 1.2rem;
+    line-height: 1;
+  }
+
+  .track-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .sidebar-track {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
   .session-content {
     padding: 3rem 1rem;
   }
@@ -297,6 +386,24 @@ const paragraphs = session.description.split("\n\n").filter(Boolean);
   }
 
 
+  .sidebar-schedule-link {
+    display: block;
+    text-align: center;
+    padding: 0.65rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-decoration: none;
+    border: 1px solid rgba(247, 127, 0, 0.25);
+    border-radius: 10px;
+    transition: all 0.2s ease;
+  }
+
+  .sidebar-schedule-link:hover {
+    background: rgba(247, 127, 0, 0.08);
+    border-color: var(--color-primary);
+  }
+
   @media (max-width: 768px) {
     .session-title {
       font-size: 1.6rem;
@@ -309,6 +416,10 @@ const paragraphs = session.description.split("\n\n").filter(Boolean);
 
     .session-sidebar {
       order: -1;
+    }
+
+    .schedule-info {
+      flex-wrap: wrap;
     }
   }
 </style>

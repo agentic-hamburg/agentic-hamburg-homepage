@@ -190,11 +190,11 @@ export const schedule: ScheduleSlot[] = [
     sessionSlug: "from-intentional-sprawl-to-a-deliberate-stack",
   },
 
-  // ── LIGHTNING BLOCK 1 (12:10) ──
+  // ── LIGHTNING BLOCK 1 + TALK (12:10) ──
   {
     time: "12:10",
     duration: 30,
-    track: "plenary",
+    track: "main",
     type: "Lightning Block",
     title: "Lightning Talks — Block 1",
     speakers: [
@@ -203,6 +203,16 @@ export const schedule: ScheduleSlot[] = [
       "Jannik Streek",
       "Aleksandr Lossenko",
     ],
+  },
+  {
+    time: "12:10",
+    duration: 25,
+    track: "small",
+    type: "Full Talk",
+    title:
+      "We're Not Developers. We Built a 116K LoC Production System Anyway.",
+    speakers: ["Daniel Schreiber", "Felix Behrendt"],
+    sessionSlug: "were-not-developers",
   },
 
   // ── LUNCH ──
@@ -319,13 +329,11 @@ export const schedule: ScheduleSlot[] = [
   },
   {
     time: "16:00",
-    duration: 25,
+    duration: 75,
     track: "small",
-    type: "Full Talk",
-    title:
-      "We're Not Developers. We Built a 116K LoC Production System Anyway.",
-    speakers: ["Daniel Schreiber", "Felix Behrendt"],
-    sessionSlug: "were-not-developers",
+    type: "Open Space",
+    title: "Open Space",
+    speakers: [],
   },
   {
     time: "16:00",
@@ -348,7 +356,7 @@ export const schedule: ScheduleSlot[] = [
   {
     time: "16:30",
     duration: 45,
-    track: "plenary",
+    track: "main",
     type: "Lightning Block",
     title: "Lightning Talks — Block 2",
     speakers: ["Marvin Kruse", "Tilman Dietrich"],
@@ -387,3 +395,46 @@ export const lightningBlock2Slugs = [
   "kiro-made-me-do-it",
   "automating-ai-research-delivery",
 ];
+
+// Helper: look up schedule info for a session by slug
+export function getScheduleForSession(slug: string) {
+  // Direct match via sessionSlug
+  const slot = schedule.find(s => s.sessionSlug === slug);
+  if (slot) {
+    return {
+      time: slot.time,
+      duration: slot.duration,
+      track: slot.track,
+      trackLabel: trackMeta[slot.track].label,
+      trackColor: trackMeta[slot.track].color,
+    };
+  }
+
+  // Lightning talk: check block arrays
+  if (lightningBlock1Slugs.includes(slug)) {
+    const block = schedule.find(s => s.title === "Lightning Talks — Block 1");
+    if (block) {
+      return {
+        time: block.time,
+        duration: block.duration,
+        track: block.track,
+        trackLabel: trackMeta[block.track].label,
+        trackColor: trackMeta[block.track].color,
+      };
+    }
+  }
+  if (lightningBlock2Slugs.includes(slug)) {
+    const block = schedule.find(s => s.title === "Lightning Talks — Block 2");
+    if (block) {
+      return {
+        time: block.time,
+        duration: block.duration,
+        track: block.track,
+        trackLabel: trackMeta[block.track].label,
+        trackColor: trackMeta[block.track].color,
+      };
+    }
+  }
+
+  return null;
+}
