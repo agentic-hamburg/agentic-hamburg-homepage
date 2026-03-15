@@ -511,7 +511,9 @@ const faqs = [
             ))
           }
         </div>
-        <p class="speakers-more">Schedule coming soon.</p>
+        <p class="speakers-more">
+          <a href="/conf-2026/schedule/" class="schedule-link">View full schedule →</a>
+        </p>
       </div>
     </section>
 
@@ -584,7 +586,12 @@ const faqs = [
         <div class="schedule-simple">
           <span class="schedule-time-large">09:00 – 18:00</span>
         </div>
-        <p class="schedule-note">Detailed agenda coming soon.</p>
+        <p class="schedule-highlights">
+          4 tracks · 20+ talks · Workshops · Lightning Talks · Open Spaces
+        </p>
+        <a href="/conf-2026/schedule/" class="schedule-cta">
+          View Full Schedule →
+        </a>
       </div>
     </section>
 
@@ -1438,9 +1445,37 @@ const faqs = [
     color: var(--color-primary);
   }
 
-  .schedule-note {
+  .schedule-highlights {
     color: var(--color-text-secondary);
-    font-style: italic;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .schedule-cta {
+    display: inline-block;
+    padding: 0.9rem 2.5rem;
+    background: var(--color-primary);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.15rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .schedule-cta:hover {
+    background: var(--color-primary-dark, #a3443c);
+    transform: translateY(-1px);
+  }
+
+  .schedule-link {
+    color: var(--color-primary);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .schedule-link:hover {
+    text-decoration: underline;
   }
 
   /* What to Expect Section */
