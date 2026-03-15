@@ -310,7 +310,7 @@ const faqs = [
   {
     question: "How can I become a speaker?",
     answer:
-      "Our Call for Papers has closed. The speaker lineup has been announced — check out the Speakers section above!",
+      "The speaker lineup is finalized and the full schedule is live! Check out the Speakers section or view the full schedule for all session details.",
   },
   {
     question: "Is there parking available?",
@@ -356,9 +356,8 @@ const faqs = [
         </p>
 
         <div class="hero-ctas">
-          <span class="sold-out-badge">Sold Out</span>
-          <a href="#newsletter" class="cta-secondary">
-            Get Updates
+          <a href="/conf-2026/schedule/" class="cta-primary">
+            View Schedule
             <svg
               class="cta-arrow"
               fill="none"
@@ -372,16 +371,21 @@ const faqs = [
                 d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
             </svg>
           </a>
+          <a href="#newsletter" class="cta-tertiary">
+            Get Updates
+          </a>
         </div>
-
-        <div class="hero-venue">
-          <svg class="venue-icon" fill="currentColor" viewBox="0 0 20 20">
-            <path
-              fill-rule="evenodd"
-              d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-              clip-rule="evenodd"></path>
-          </svg>
-          <span>Medienbunker (SAE Institute Hamburg)</span>
+        <div class="hero-meta">
+          <span class="sold-out-tag">Sold Out</span>
+          <div class="hero-venue">
+            <svg class="venue-icon" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                fill-rule="evenodd"
+                d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                clip-rule="evenodd"></path>
+            </svg>
+            <span>Medienbunker (SAE Institute Hamburg)</span>
+          </div>
         </div>
       </div>
     </section>
@@ -468,7 +472,12 @@ const faqs = [
           <p>
             Expect real workflows, live demos, and honest discussions about
             what's working in agentic development. No vendor pitches, no
-            theoretical frameworks—just builders sharing their craft.
+            theoretical frameworks — just builders sharing their craft.
+          </p>
+          <p class="about-vision">
+            Our goal is simple: create a space with good vibes where people
+            learn from each other and leave energized with fresh ideas to try on
+            Monday morning.
           </p>
         </div>
       </div>
@@ -514,6 +523,23 @@ const faqs = [
         <p class="speakers-more">
           <a href="/conf-2026/schedule/" class="schedule-link">View full schedule →</a>
         </p>
+      </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section class="conf-section conf-schedule">
+      <div class="mx-auto max-w-4xl px-4 text-center">
+        <p class="section-label">The Day</p>
+        <h2 class="section-title">Schedule</h2>
+        <div class="schedule-simple">
+          <span class="schedule-time-large">09:00 – 18:00</span>
+        </div>
+        <p class="schedule-highlights">
+          4 tracks · 20+ talks · Workshops · Lightning Talks · Open Spaces
+        </p>
+        <a href="/conf-2026/schedule/" class="schedule-cta">
+          View Full Schedule →
+        </a>
       </div>
     </section>
 
@@ -574,51 +600,6 @@ const faqs = [
               <li><strong>The Space:</strong> Open space</li>
             </ul>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Schedule Section -->
-    <section class="conf-section conf-schedule">
-      <div class="mx-auto max-w-4xl px-4 text-center">
-        <p class="section-label">The Day</p>
-        <h2 class="section-title">Schedule</h2>
-        <div class="schedule-simple">
-          <span class="schedule-time-large">09:00 – 18:00</span>
-        </div>
-        <p class="schedule-highlights">
-          4 tracks · 20+ talks · Workshops · Lightning Talks · Open Spaces
-        </p>
-        <a href="/conf-2026/schedule/" class="schedule-cta">
-          View Full Schedule →
-        </a>
-      </div>
-    </section>
-
-    <!-- What to Expect Section -->
-    <section class="conf-section conf-expect">
-      <div class="mx-auto max-w-4xl px-4">
-        <p class="section-label">What to Expect</p>
-        <h2 class="section-title">Built by the Community, for the Community</h2>
-        <div class="expect-content">
-          <p class="expect-intro">
-            How you code. How your team works. How your company ships. It's all
-            being rewritten — and no playbook exists yet. This conference is
-            where we write it together.
-          </p>
-          <p class="expect-description">
-            This conference is focused on all things agentic: software
-            engineering, ops, cloud, UX/design, product development—the entire
-            stack of building and operating digital products. Expect fast-paced
-            talks, lightning sessions, live demos, hands-on workshops, hack
-            sessions, hardware experiments, open mics—and whatever else you
-            bring to the table.
-          </p>
-          <p class="expect-vision">
-            Our goal is simple: create a space with good vibes where people
-            learn from each other and leave energized with fresh ideas to try on
-            Monday morning.
-          </p>
         </div>
       </div>
     </section>
@@ -1245,17 +1226,31 @@ const faqs = [
     margin-bottom: 3rem;
   }
 
-  .sold-out-badge {
-    display: inline-flex;
+  .hero-meta {
+    display: flex;
     align-items: center;
-    padding: 1rem 2rem;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  @media (max-width: 480px) {
+    .hero-meta {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+
+  .sold-out-tag {
+    display: inline-block;
+    padding: 0.35rem 0.9rem;
     background: var(--color-text-secondary);
     color: white;
-    border-radius: 8px;
+    border-radius: 50px;
     font-weight: 700;
-    font-size: 1.125rem;
+    font-size: 0.7rem;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
+    opacity: 0.7;
   }
 
   .cta-secondary {
@@ -1278,6 +1273,23 @@ const faqs = [
     color: white;
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(247, 127, 0, 0.4);
+  }
+
+  .cta-tertiary {
+    display: inline-flex;
+    align-items: center;
+    color: var(--color-text-secondary);
+    padding: 0.5rem 0;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    border-bottom: 1px solid transparent;
+  }
+
+  .cta-tertiary:hover {
+    color: var(--color-primary);
+    border-bottom-color: var(--color-primary);
   }
 
   .cta-arrow {
@@ -1342,6 +1354,12 @@ const faqs = [
     color: var(--color-text-secondary);
     margin-bottom: 1.5rem;
     text-align: center;
+  }
+
+  .conf-about .prose p.about-vision {
+    color: var(--color-primary);
+    font-weight: 600;
+    font-size: 1.2rem;
   }
 
   /* Venue Section */
@@ -1476,35 +1494,6 @@ const faqs = [
 
   .schedule-link:hover {
     text-decoration: underline;
-  }
-
-  /* What to Expect Section */
-  .expect-content {
-    max-width: 700px;
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  .expect-intro {
-    font-size: 1.25rem;
-    line-height: 1.8;
-    color: var(--color-text-primary);
-    font-weight: 500;
-    margin-bottom: 1.5rem;
-  }
-
-  .expect-description {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: var(--color-text-secondary);
-    margin-bottom: 1.5rem;
-  }
-
-  .expect-vision {
-    font-size: 1.2rem;
-    line-height: 1.8;
-    color: var(--color-primary);
-    font-weight: 600;
   }
 
   /* Newsletter / Sold Out Section */

@@ -221,10 +221,9 @@ export const schedule: ScheduleSlot[] = [
     duration: 25,
     track: "main",
     type: "Full Talk",
-    title:
-      "Requirements-Driven Development: The Missing Layer in Agentic Coding",
-    speakers: ["Xesca Alabart"],
-    sessionSlug: "requirements-driven-development",
+    title: "Woop Coding!",
+    speakers: ["Hendrik Mans"],
+    sessionSlug: "woop-coding",
   },
   {
     time: "14:00",
@@ -261,9 +260,10 @@ export const schedule: ScheduleSlot[] = [
     duration: 25,
     track: "main",
     type: "Full Talk",
-    title: "Woop Coding!",
-    speakers: ["Hendrik Mans"],
-    sessionSlug: "woop-coding",
+    title:
+      "Requirements-Driven Development: The Missing Layer in Agentic Coding",
+    speakers: ["Xesca Alabart"],
+    sessionSlug: "requirements-driven-development",
   },
   {
     time: "14:30",
