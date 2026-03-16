@@ -19,7 +19,7 @@ Workshop events for Agentic Conf Hamburg 2026 are managed as **private (unlisted
 - **Visibility:** Private (unlisted) — only accessible via direct link
 - **Capacity:** 15 participants per workshop
 - **Location:** SAE Institute Hamburg, Feldstraße 66, 20359 Hamburg
-- **Time:** March 22, 2026 (times are placeholder 10:00–11:30 CET — update when schedule is set)
+- **Time:** March 22, 2026 — Morning workshops: 10:00–11:30 CET, Afternoon workshops: 14:00–15:30 CET
 
 ## API Reference
 
