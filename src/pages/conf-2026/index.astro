@@ -42,6 +42,11 @@ import sponsorTegtmeierSvg from "@/assets/sponsors/tegtmeier_rgb.svg";
 import sponsorAdessoSvg from "@/assets/sponsors/adesso-insurance-solutions_rgb.svg";
 import sponsorDlSchoolSvg from "@/assets/sponsors/dl-school_rgb.svg";
 import sponsorInnoqSvg from "@/assets/sponsors/innoq_rgb.svg";
+import volunteerEkasImg from "@/assets/volunteers/ekas-preet-singh.jpg";
+import volunteerViktoriiaImg from "@/assets/volunteers/viktoriia-vasilieva.png";
+import volunteerOlcayImg from "@/assets/volunteers/olcay-chasan.jpg";
+import volunteerSiddiqImg from "@/assets/volunteers/siddiq-zaryab.jpg";
+import volunteerAlainImg from "@/assets/volunteers/alain-blankenburg.jpg";
 
 const ticketUrl = "https://lu.ma/45lfeyeh";
 
@@ -63,6 +68,34 @@ const organizers = [
     role: "AI/ML Team Herder",
     image: sebastianReimannImg,
     linkedin: "https://www.linkedin.com/in/sebastian-reimann-b1a2042a4/",
+  },
+];
+
+const volunteers = [
+  {
+    name: "Ekas Preet Singh",
+    image: volunteerEkasImg,
+    linkedin: "https://www.linkedin.com/in/ekas",
+  },
+  {
+    name: "Viktoriia Vasilieva",
+    image: volunteerViktoriiaImg,
+    linkedin: "https://www.linkedin.com/in/victoria-vasilieva",
+  },
+  {
+    name: "Olcay Chasan",
+    image: volunteerOlcayImg,
+    linkedin: "https://www.linkedin.com/in/olcay-chasan/",
+  },
+  {
+    name: "Siddiq Zaryab",
+    image: volunteerSiddiqImg,
+    linkedin: "https://www.linkedin.com/in/siddiqzaryab/",
+  },
+  {
+    name: "Alain Blankenburg-Schröder",
+    image: volunteerAlainImg,
+    linkedin: "https://www.linkedin.com/in/alainblankenburg",
   },
 ];
 
@@ -852,6 +885,43 @@ const faqs = [
                   </div>
                   <h4 class="organizer-name">{organizer.name}</h4>
                   <p class="organizer-role">{organizer.role}</p>
+                </a>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Volunteers Section -->
+    <section class="conf-section conf-volunteers">
+      <div class="mx-auto max-w-4xl px-4">
+        <p class="section-label">The Crew</p>
+        <h2 class="section-title">Volunteers</h2>
+        <p class="volunteers-intro">
+          These amazing people help make this event possible. Thank you!
+        </p>
+        <div class="volunteers-grid">
+          {
+            volunteers.map(volunteer => (
+              <article class="volunteer-card">
+                <a
+                  href={volunteer.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="volunteer-link"
+                >
+                  <div class="volunteer-image-wrapper">
+                    <Image
+                      src={volunteer.image}
+                      alt={volunteer.name}
+                      width={200}
+                      height={200}
+                      loading="lazy"
+                      class="volunteer-image"
+                    />
+                  </div>
+                  <h4 class="volunteer-name">{volunteer.name}</h4>
                 </a>
               </article>
             ))
@@ -1668,6 +1738,78 @@ const faqs = [
     text-transform: uppercase;
     letter-spacing: 0.1em;
     color: var(--color-primary);
+  }
+
+  /* Volunteers Section */
+  .volunteers-intro {
+    text-align: center;
+    color: var(--color-text-secondary);
+    margin-bottom: 2rem;
+    font-size: 1.05rem;
+  }
+
+  .volunteers-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 768px) {
+    .volunteers-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .volunteers-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+  }
+
+  .volunteer-card {
+    text-align: center;
+  }
+
+  .volunteer-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease;
+  }
+
+  .volunteer-link:hover {
+    transform: translateY(-4px);
+  }
+
+  .volunteer-link:hover .volunteer-image-wrapper {
+    box-shadow: 0 8px 20px rgba(247, 127, 0, 0.3);
+  }
+
+  .volunteer-image-wrapper {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 0.75rem;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--color-primary);
+    box-shadow: 0 4px 12px rgba(247, 127, 0, 0.15);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .volunteer-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .volunteer-name {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
   }
 
   /* FAQ Section */
