@@ -1,0 +1,29 @@
+---
+title: "Sponsor Spotlight: hackers&wizards – Structured Agentic Engineering for Enterprise Teams"
+description: "hackers&wizards sponsors Agentic Conf Hamburg 2026 – helping engineering teams adopt AI tools with structure, not chaos, backed by data from 100+ enterprise teams."
+author: Agentic Hamburg Team
+pubDatetime: 2026-03-18T21:00:00+01:00
+tags:
+  - conference
+  - sponsor
+  - agentic-conf
+featured: false
+draft: true
+socialMediaHashtags: "#AgenticConf #AgenticHamburg #AICoding #hackersandwizards"
+---
+
+We're proud to have **hackers&wizards** as a sponsor of [Agentic Conf Hamburg](https://agentic.hamburg) on March 22nd!
+
+## About hackers&wizards
+
+Hamburg-based hackers&wizards provides Agentic Engineering Enablement — training, consulting, and community that transforms scattered AI tool adoption into systematic team practices. Founded by Benedikt Stemmildt and Stefan Munz with 20+ years of enterprise experience each, the team has trained 30+ teams and delivered 40+ conference talks on agentic software engineering. Their embedded consulting integrates directly with team rituals until agentic practices become permanent habits.
+
+## Why They Support Agentic Conf
+
+hackers&wizards lives and breathes agentic engineering — it's literally their entire business. They've seen firsthand what works and what doesn't when teams adopt AI coding tools, and they're bringing that experience to the Agentic Conf community. If you want to learn how to make AI tools actually work for your team, find them at the conference.
+
+## See You at the Conference
+
+A huge thank you to hackers&wizards for making Agentic Conf Hamburg possible!
+
+👉 **The conference is sold out! Visit [agentic.hamburg](https://agentic.hamburg) to stay updated.**

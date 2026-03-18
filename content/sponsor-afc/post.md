@@ -1,0 +1,29 @@
+---
+title: "Sponsor Spotlight: AFC – Digital Fleet Management at Scale"
+description: "Auto Fleet Control (AFC) sponsors Agentic Conf Hamburg 2026 – combining 25 years of fleet expertise with technology and automation to solve complex challenges at scale."
+author: Agentic Hamburg Team
+pubDatetime: 2026-03-18T21:00:00+01:00
+tags:
+  - conference
+  - sponsor
+  - agentic-conf
+featured: false
+draft: true
+socialMediaHashtags: "#AgenticConf #AgenticHamburg #AICoding #AFC"
+---
+
+We're proud to have **Auto Fleet Control (AFC)** as a sponsor of [Agentic Conf Hamburg](https://agentic.hamburg) on March 22nd!
+
+## About AFC
+
+Founded in 1998 and headquartered in Hamburg, Auto Fleet Control (AFC) is one of Germany's leading independent providers of digital claims management, risk management, and fleet insurance solutions. With over 1 million claims processed and 140,000 vehicles under management, AFC combines 25+ years of operational expertise with a strong technology backbone. Their flagship platform PRIME integrates damage management, risk management, and fleet insurance into a single intelligent system — and their AI-powered CompanionAI app lets drivers report claims in minutes instead of days.
+
+## Why They Support Agentic Conf
+
+Fleet management is a domain where automation and intelligent agents can have massive impact — from automated claims processing to predictive maintenance. AFC is expanding its engineering capabilities and investing in the community that's pushing the boundaries of what's possible with agentic AI.
+
+## See You at the Conference
+
+A huge thank you to AFC for making Agentic Conf Hamburg possible!
+
+👉 **The conference is sold out! Visit [agentic.hamburg](https://agentic.hamburg) to stay updated.**

@@ -1,0 +1,29 @@
+---
+title: "Sponsor Spotlight: Vorwerk – Innovation Meets Tradition"
+description: "Vorwerk sponsors Agentic Conf Hamburg 2026 – a global family enterprise investing in the future of technology and engineering."
+author: Agentic Hamburg Team
+pubDatetime: 2026-03-18T21:00:00+01:00
+tags:
+  - conference
+  - sponsor
+  - agentic-conf
+featured: false
+draft: true
+socialMediaHashtags: "#AgenticConf #AgenticHamburg #AICoding #Vorwerk"
+---
+
+We're proud to have **Vorwerk** as a sponsor of [Agentic Conf Hamburg](https://agentic.hamburg) on March 22nd!
+
+## About Vorwerk
+
+Founded in 1883 and headquartered in Wuppertal, Vorwerk is a family-owned global enterprise with over 9,000 employees and 3.17 billion EUR in revenue. Known for the iconic Thermomix kitchen system and Kobold cleaning products, Vorwerk is actively investing in AI and robotics — including a partnership with NVIDIA to develop robot-enabled home experiences. With R&D labs across Germany, Italy, Switzerland, China, and Spain, Vorwerk is transforming from a premium appliance maker into a technology-driven smart home ecosystem company.
+
+## Why They Support Agentic Conf
+
+Vorwerk's commitment to innovation extends beyond their products. By sponsoring Agentic Conf Hamburg, they're supporting the community of engineers and builders who are defining how software gets built in the age of AI.
+
+## See You at the Conference
+
+A huge thank you to Vorwerk for making Agentic Conf Hamburg possible!
+
+👉 **The conference is sold out! Visit [agentic.hamburg](https://agentic.hamburg) to stay updated.**
