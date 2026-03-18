@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import logoImage from "../assets/logo-agentic-conf.png";
+import logoImage from "../assets/logo-header.png";
 import { useTranslations } from "../lib/i18n/utils";
 
 const t = useTranslations();
@@ -25,9 +25,9 @@ const isAbout = currentPath.includes("/about");
           <Image
             src={logoImage}
             alt="Agentic Hamburg"
-            width={160}
-            height={160}
-            class="h-12 w-auto rounded-lg"
+            width={400}
+            height={97}
+            class="h-10 w-auto rounded-md"
             loading="eager"
             decoding="sync"
           />
