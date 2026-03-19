@@ -1,0 +1,29 @@
+---
+title: "Sponsor Spotlight: Digitale Leute School – Bootcamps for the AI Era"
+description: "Digitale Leute School sponsors Agentic Conf Hamburg 2026 – offering bootcamps in AI Software Engineering, Product Management, and Product Design."
+author: Agentic Hamburg Team
+pubDatetime: 2026-03-18T21:00:00+01:00
+tags:
+  - conference
+  - sponsor
+  - agentic-conf
+featured: false
+draft: false
+socialMediaHashtags: "#AgenticConf #AgenticHamburg #AICoding #DigitaleLeute"
+---
+
+We're proud to have **Digitale Leute School** as a sponsor of [Agentic Conf Hamburg](https://agentic.hamburg) on March 22nd!
+
+## About Digitale Leute School
+
+Digitale Leute School grew out of the Digitale Leute magazine and its conference, the Digitale Leute Summit. Since 2017, the DL team has been bringing together leading minds from product, tech, and design. The result is the AZAV-certified DL School, offering bootcamps in AI Software Engineering, Vibe Coding, Product Management, Product Ownership, and Product Design. With over 1,000 alumni and trainers from companies like Airbnb, Zalando, and AWS, the school is educating the next generation of digital talent.
+
+## Why They Support Agentic Conf
+
+Digitale Leute School has been at the forefront of tech education in Germany, and their new AI Software Engineering bootcamp is a natural fit for the agentic coding community. By sponsoring Agentic Conf Hamburg, they're connecting with the practitioners who are shaping how we build software with AI.
+
+## See You at the Conference
+
+A huge thank you to Digitale Leute School for making Agentic Conf Hamburg possible!
+
+👉 **The conference is sold out! Visit [agentic.hamburg](https://agentic.hamburg) to stay updated.**

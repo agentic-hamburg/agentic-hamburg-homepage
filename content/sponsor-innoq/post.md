@@ -1,0 +1,29 @@
+---
+title: "Sponsor Spotlight: INNOQ – Technology Consulting for the AI Era"
+description: "INNOQ sponsors Agentic Conf Hamburg 2026 – helping organizations use data as a key resource, from decentralized data architectures to practical generative AI applications."
+author: Agentic Hamburg Team
+pubDatetime: 2026-03-18T21:00:00+01:00
+tags:
+  - conference
+  - sponsor
+  - agentic-conf
+featured: false
+draft: false
+socialMediaHashtags: "#AgenticConf #AgenticHamburg #AICoding #INNOQ"
+---
+
+We're proud to have **INNOQ** as a sponsor of [Agentic Conf Hamburg](https://agentic.hamburg) on March 22nd!
+
+## About INNOQ
+
+Founded in 1998, INNOQ is a technology consulting company with around 150 employees across offices in Germany (Monheim am Rhein, Hamburg, Berlin, Cologne, Munich) and Switzerland. They specialize in software architecture, custom development, data & AI, IT security, and legacy modernization — always manufacturer-independent. INNOQ is known as a thought leader in the German tech community, actively contributing through blogs, podcasts, conferences, and training programs. Their current hot topics include agentic software engineering, Data Mesh, and responsible generative AI.
+
+## Why They Support Agentic Conf
+
+INNOQ has long been a thought leader in the German tech community, known for their deep expertise in software architecture and emerging technologies. Their focus on practical, responsible AI applications aligns perfectly with the Agentic Conf mission of bringing together practitioners who are shaping how we build with AI.
+
+## See You at the Conference
+
+A huge thank you to INNOQ for making Agentic Conf Hamburg possible!
+
+👉 **The conference is sold out! Visit [agentic.hamburg](https://agentic.hamburg) to stay updated.**
