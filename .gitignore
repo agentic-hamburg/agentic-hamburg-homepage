@@ -5,6 +5,7 @@ dist/
 
 # netlify
 .netlify/
+deno.lock
 
 # dependencies
 node_modules/

@@ -95,6 +95,34 @@ Body is plain markdown. Images referenced as `![alt](./image.png)` are converted
 
 See `BANNER_GUIDELINES.md` for image generation style guide.
 
+### Sponsor spotlight banners
+
+Sponsor banners use a **two-step process** — Gemini generates the layout, then ImageMagick composites the Agentic logo:
+
+1. Generate with only the sponsor logo (one `--images` arg, no agentic logo):
+   ```bash
+   cd tools/bannergenerator
+   go run main.go --post sponsor-<name> \
+     --images "/absolute/path/to/sponsor-logo.png" \
+     --prompt 'Sponsor spotlight banner. Solid salmon pink background. Place the image (sponsor logo) large and centered. Add text "Sponsor Spotlight" above the logo in dark teal color. Add text "<Sponsor Name>" below the logo in dark teal color. Bottom left text in dark teal: "Agentic Conf Hamburg - March 22, 2026". Bottom right text in dark teal: "https://agentic.hamburg". All text must be dark teal. Clean minimal design, no shadows, no overlays. Leave the top right corner empty.' \
+     --count 1
+   ```
+2. Composite the Agentic logo into the top-right corner with ImageMagick:
+   ```bash
+   magick content/sponsor-<name>/banner.png \
+     \( content/sponsors/agentic-conf-logo.png -resize x90 \) \
+     -gravity NorthEast -geometry +30+20 -composite \
+     content/sponsor-<name>/banner.png
+   ```
+
+Key details:
+- The Agentic logo is at `content/sponsors/agentic-conf-logo.png` (beehive dots + "agentic conf hamburg" text)
+- Brand colors: salmon pink background, dark teal text (`#2c3e3a`)
+- Do NOT pass the agentic logo to Gemini — it renders it poorly. Always composite afterwards.
+- Sponsor logos are in `content/sponsors/`
+- The bannergenerator must run from `tools/bannergenerator/` (Go module resolution)
+- Use absolute paths for image files with special characters (e.g. `&` in filenames)
+
 ## Linting Rules
 
 - `no-console` is an error (except `console.error` and `console.warn` in API routes)

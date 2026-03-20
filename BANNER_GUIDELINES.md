@@ -28,3 +28,11 @@
 - Stock photo clichés (handshakes, suited people pointing at screens)
 - Dark or moody atmospheres unless specifically requested
 - Literal robot/AI depictions (no humanoid robots)
+
+## Sponsor spotlight banners
+
+Sponsor banners are an exception to the "no text" rule — they include text elements and logos.
+
+**Two-step process:** Generate the banner with Gemini (sponsor logo only), then composite the Agentic logo with ImageMagick. Do NOT pass the Agentic logo to Gemini as a second image — it consistently renders it incorrectly.
+
+See `CLAUDE.md` → "Sponsor spotlight banners" for the full workflow and commands.
