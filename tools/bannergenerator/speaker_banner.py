@@ -6,7 +6,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 # Config
 W, H = 1536, 864
-BG = (212, 165, 154)  # #D4A59A
+BG = (251, 157, 161)  # #FB9DA1
 TEAL = (27, 75, 90)   # #1B4B5A
 
 FONT_BOLD = "/System/Library/Fonts/Supplemental/Arial Bold.ttf"
