@@ -4,8 +4,8 @@
     {
       "name": "dev",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
-      "port": 8888
+      "runtimeArgs": ["run", "dev:astro"],
+      "port": 4321
     }
   ]
 }
