@@ -27,6 +27,7 @@ import aleksandrLossenko from "@/assets/speakers/aleksandr-lossenko.jpg";
 import waqasAhmed from "@/assets/speakers/waqas-ahmed.jpg";
 import christophHubner from "@/assets/speakers/christoph-hubner.jpg";
 import fabianMeyer from "@/assets/speakers/fabian-meyer.jpg";
+import thorstenJonas from "@/assets/speakers/thorsten-jonas.jpg";
 
 export const speakerImages: Record<string, ImageMetadata> = {
   "Björn Rochel": bjoernRochel,
@@ -58,4 +59,5 @@ export const speakerImages: Record<string, ImageMetadata> = {
   "Waqas Ahmed": waqasAhmed,
   "Christoph Hübner": christophHubner,
   "Fabian Meyer": fabianMeyer,
+  "Thorsten Jonas": thorstenJonas,
 };
