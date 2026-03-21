@@ -398,6 +398,16 @@ Kiro's spec driven approach felt like a refreshing alternative to so called "vib
 This talk takes an honest, experience driven look at where spec driven AI tools truly shine, where they introduce new kinds of complexity, and why solid software engineering fundamentals are still essential — even (and especially) when AI is doing most of the typing.`,
   },
   {
+    slug: "lets-not-take-ai-as-it-is",
+    title:
+      "Let's not take AI as it is — let's shape how it should be",
+    speakers: ["Thorsten Jonas"],
+    format: "Full Talk",
+    level: "Introductory and overview",
+    language: "English",
+    description: `This talk challenges the current assumption that AI is a fixed reality we have to adapt to. Today's mainstream AI is shaped — and limited — by the goals, values, and infrastructures of big tech, while hiding significant societal and environmental costs. When we design and build "for AI as it is," we unintentionally reinforce those power structures and impacts. This talk is not about declining AI. Instead it is an invitation to design, use and build the AI we want: systems that are fair, transparent, sustainable, and aligned with human sovereignty rather than corporate control. Sounds hard to achieve? It's not. We will explore how our decisions shape who holds power, how data is governed, and what futures become possible when we stop designing and building for AI as it is and move to an approach of actively shaping how it should be with our actions and decisions.`,
+  },
+  {
     slug: "hackathon-gave-non-engineers-access",
     title:
       "How a 3-Day Hackathon Gave Non-Engineers Access to the Codebase at Remote.com",

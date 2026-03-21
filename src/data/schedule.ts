@@ -115,10 +115,9 @@ export const schedule: ScheduleSlot[] = [
     time: "10:30",
     duration: 25,
     track: "small",
-    type: "Full Talk",
-    title: "My agent went rogue: 5 failure modes and how to contain them",
-    speakers: ["Luise Freese"],
-    sessionSlug: "my-agent-went-rogue",
+    type: "Lightning Block",
+    title: "Lightning Talks",
+    speakers: ["Henning Thies", "Aleksandr Lossenko"],
   },
 
   // ── BREAK ──
@@ -197,12 +196,7 @@ export const schedule: ScheduleSlot[] = [
     track: "main",
     type: "Lightning Block",
     title: "Lightning Talks — Block 1",
-    speakers: [
-      "Nele Lea Uhlemann",
-      "Henning Thies",
-      "Jannik Streek",
-      "Aleksandr Lossenko",
-    ],
+    speakers: ["Nele Lea Uhlemann", "Jannik Streek"],
   },
   {
     time: "12:10",
@@ -329,11 +323,13 @@ export const schedule: ScheduleSlot[] = [
   },
   {
     time: "16:00",
-    duration: 75,
+    duration: 25,
     track: "small",
-    type: "Open Space",
-    title: "Open Space",
-    speakers: [],
+    type: "Full Talk",
+    title:
+      "Let's not take AI as it is — let's shape how it should be",
+    speakers: ["Thorsten Jonas"],
+    sessionSlug: "lets-not-take-ai-as-it-is",
   },
   {
     time: "16:00",
@@ -386,8 +382,11 @@ export const schedule: ScheduleSlot[] = [
 // Lightning talk slugs for linking from lightning blocks
 export const lightningBlock1Slugs = [
   "diy-or-delegate",
-  "personal-ai-coding-agents-beyond-coding",
   "beyond-the-vibes",
+];
+
+export const lightningBlockSmallSlugs = [
+  "personal-ai-coding-agents-beyond-coding",
   "hackathon-gave-non-engineers-access",
 ];
 
@@ -413,6 +412,20 @@ export function getScheduleForSession(slug: string) {
   // Lightning talk: check block arrays
   if (lightningBlock1Slugs.includes(slug)) {
     const block = schedule.find(s => s.title === "Lightning Talks — Block 1");
+    if (block) {
+      return {
+        time: block.time,
+        duration: block.duration,
+        track: block.track,
+        trackLabel: trackMeta[block.track].label,
+        trackColor: trackMeta[block.track].color,
+      };
+    }
+  }
+  if (lightningBlockSmallSlugs.includes(slug)) {
+    const block = schedule.find(
+      s => s.title === "Lightning Talks" && s.track === "small",
+    );
     if (block) {
       return {
         time: block.time,
