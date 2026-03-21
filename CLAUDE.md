@@ -6,6 +6,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is the Agentic Hamburg community website - a meetup group for developers interested in AI coding tools. Built with Astro 5, deployed on Netlify.
 
+## Design System
+
+Brand colors and design tokens are documented in `design-system/colors.md`. Key colors:
+- **Salmon** `#FB9DA1` — banner backgrounds, cards, promotional materials
+- **Teal** `#244043` — text, headings, logo, UI elements
+
 ## Commands
 
 ```bash
