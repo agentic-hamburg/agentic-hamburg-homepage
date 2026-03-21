@@ -117,7 +117,7 @@ export const schedule: ScheduleSlot[] = [
     track: "small",
     type: "Lightning Block",
     title: "Lightning Talks",
-    speakers: ["Henning Thies", "Aleksandr Lossenko"],
+    speakers: ["Henning Thies", "Jannik Streek"],
   },
 
   // ── BREAK ──
@@ -196,7 +196,7 @@ export const schedule: ScheduleSlot[] = [
     track: "main",
     type: "Lightning Block",
     title: "Lightning Talks — Block 1",
-    speakers: ["Nele Lea Uhlemann", "Jannik Streek"],
+    speakers: ["Nele Lea Uhlemann", "Aleksandr Lossenko"],
   },
   {
     time: "12:10",
@@ -382,12 +382,12 @@ export const schedule: ScheduleSlot[] = [
 // Lightning talk slugs for linking from lightning blocks
 export const lightningBlock1Slugs = [
   "diy-or-delegate",
-  "beyond-the-vibes",
+  "hackathon-gave-non-engineers-access",
 ];
 
 export const lightningBlockSmallSlugs = [
   "personal-ai-coding-agents-beyond-coding",
-  "hackathon-gave-non-engineers-access",
+  "beyond-the-vibes",
 ];
 
 export const lightningBlock2Slugs = [
