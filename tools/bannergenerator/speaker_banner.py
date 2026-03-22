@@ -35,7 +35,7 @@ def make_circle_photo(photo_path, size=280):
 
 def generate_speaker_banner(
     output_path,
-    photo_path,
+    photo_paths,
     logo_path,
     speaker_name,
     speaker_title,
@@ -47,8 +47,10 @@ def generate_speaker_banner(
     img = Image.new("RGB", (W, H), BG)
     draw = ImageDraw.Draw(img)
 
-    # Load fonts
-    font_name = ImageFont.truetype(FONT_BOLD, 62)
+    # Load fonts — smaller for dual speakers to fit longer names
+    num_photos = len(photo_paths)
+    name_size = 48 if num_photos > 1 else 62
+    font_name = ImageFont.truetype(FONT_BOLD, name_size)
     font_title = ImageFont.truetype(FONT_REG, 34)
     font_talk = ImageFont.truetype(FONT_ITALIC, 38)
     font_small = ImageFont.truetype(FONT_REG, 24)
@@ -60,10 +62,18 @@ def generate_speaker_banner(
     logo = logo.resize((logo_w, logo_h), Image.LANCZOS)
     img.paste(logo, (W - logo_w - 40, 30), logo)
 
-    # --- Measure text widths to compute total content width ---
-    circle_size = 420
+    # --- Photo sizing based on number of speakers ---
     gap_photo_text = 70
     talk_line_h = 50
+    num_photos = len(photo_paths)
+
+    if num_photos == 1:
+        circle_size = 420
+        photo_block_w = circle_size
+    else:
+        circle_size = 280
+        photo_gap = 20
+        photo_block_w = (circle_size * num_photos) + (photo_gap * (num_photos - 1))
 
     # Find widest text line
     name_w = draw.textlength(speaker_name, font=font_name)
@@ -74,7 +84,7 @@ def generate_speaker_banner(
     max_text_w = max(name_w, title_w, *talk_ws, info_w, url_w)
 
     # Total content width and horizontal centering
-    content_w = circle_size + gap_photo_text + max_text_w
+    content_w = photo_block_w + gap_photo_text + max_text_w
     content_left = (W - content_w) // 2
 
     # Vertical: calculate text block height
@@ -82,14 +92,21 @@ def generate_speaker_banner(
     content_h = max(circle_size, text_block_h)
     content_top = (H - content_h) // 2
 
-    # Place circular photo
-    photo = make_circle_photo(photo_path, circle_size)
-    photo_x = int(content_left)
-    photo_y = content_top + (content_h - circle_size) // 2
-    img.paste(photo, (photo_x, photo_y), photo)
+    # Place circular photo(s)
+    if num_photos == 1:
+        photo = make_circle_photo(photo_paths[0], circle_size)
+        photo_x = int(content_left)
+        photo_y = content_top + (content_h - circle_size) // 2
+        img.paste(photo, (photo_x, photo_y), photo)
+    else:
+        for i, pp in enumerate(photo_paths):
+            photo = make_circle_photo(pp, circle_size)
+            photo_x = int(content_left) + i * (circle_size + photo_gap)
+            photo_y = content_top + (content_h - circle_size) // 2
+            img.paste(photo, (photo_x, photo_y), photo)
 
     # Text block
-    tx = int(content_left + circle_size + gap_photo_text)
+    tx = int(content_left + photo_block_w + gap_photo_text)
     text_y = content_top + (content_h - text_block_h) // 2
 
     # Speaker name
@@ -119,7 +136,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="Generate speaker banner")
     parser.add_argument("--output", required=True)
-    parser.add_argument("--photo", required=True)
+    parser.add_argument("--photo", required=True, nargs="+", help="Speaker photo(s)")
     parser.add_argument("--logo", required=True)
     parser.add_argument("--name", required=True)
     parser.add_argument("--title", required=True)
@@ -128,7 +145,7 @@ if __name__ == "__main__":
 
     generate_speaker_banner(
         output_path=args.output,
-        photo_path=args.photo,
+        photo_paths=args.photo,
         logo_path=args.logo,
         speaker_name=args.name,
         speaker_title=args.title,
