@@ -35,7 +35,7 @@ function endTime(slot: { time: string; duration: number }) {
 // ── Timeline positioning ──
 const PX_PER_MIN = 3;
 const START = toMinutes("09:00");
-const END = toMinutes("18:00");
+const END = toMinutes("18:30");
 const TOTAL_HEIGHT = (END - START) * PX_PER_MIN;
 
 function getTop(time: string) {
@@ -104,7 +104,7 @@ function getSession(slug: string) {
         </a>
         <h1 class="schedule-title">Schedule</h1>
         <p class="schedule-subtitle">
-          March 22, 2026 &middot; SAE Institute Hamburg &middot; 09:00 – 18:00
+          March 22, 2026 &middot; SAE Institute Hamburg &middot; 09:00 – 18:30
         </p>
         <div class="track-legend">
           {
