@@ -151,21 +151,39 @@ export const schedule: ScheduleSlot[] = [
     sessionSlug: "onboarding-your-agent",
   },
 
-  // ── OPEN SPACE (12:00) ──
+  // ── OPEN SPACE SLOT 1 (12:15) ──
   {
-    time: "12:00",
-    duration: 70,
+    time: "12:15",
+    duration: 30,
     track: "workshopA",
     type: "Open Space",
-    title: "Open Space",
+    title: "AI & Environment Impact",
     speakers: [],
   },
   {
-    time: "12:00",
-    duration: 70,
+    time: "12:15",
+    duration: 30,
     track: "workshopB",
     type: "Open Space",
-    title: "Open Space",
+    title: "Vibe Coding on Vacation / Everything Except Code",
+    speakers: [],
+  },
+
+  // ── OPEN SPACE SLOT 2 (12:45) ──
+  {
+    time: "12:45",
+    duration: 30,
+    track: "workshopA",
+    type: "Open Space",
+    title: "Agentic Coding in Regulated Space",
+    speakers: [],
+  },
+  {
+    time: "12:45",
+    duration: 30,
+    track: "workshopB",
+    type: "Open Space",
+    title: "Agentic Ops",
     speakers: [],
   },
 
@@ -331,17 +349,36 @@ export const schedule: ScheduleSlot[] = [
     speakers: ["Thorsten Jonas"],
     sessionSlug: "lets-not-take-ai-as-it-is",
   },
+  // ── OPEN SPACE SLOT 3 (16:30) ──
   {
     time: "16:30",
-    duration: 75,
+    duration: 30,
+    track: "workshopA",
+    type: "Open Space",
+    title: "Requirements Engineering",
+    speakers: [],
+  },
+  {
+    time: "16:30",
+    duration: 30,
+    track: "workshopB",
+    type: "Open Space",
+    title: "Open Space",
+    speakers: [],
+  },
+
+  // ── OPEN SPACE SLOT 4 (17:00) ──
+  {
+    time: "17:00",
+    duration: 30,
     track: "workshopA",
     type: "Open Space",
     title: "Open Space",
     speakers: [],
   },
   {
-    time: "16:30",
-    duration: 75,
+    time: "17:00",
+    duration: 30,
     track: "workshopB",
     type: "Open Space",
     title: "Open Space",
