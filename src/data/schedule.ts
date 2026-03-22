@@ -53,7 +53,7 @@ export const schedule: ScheduleSlot[] = [
 
   // ── OPENING ──
   {
-    time: "09:30",
+    time: "10:00",
     duration: 20,
     track: "plenary",
     type: "Opening",
@@ -61,9 +61,9 @@ export const schedule: ScheduleSlot[] = [
     speakers: ["Organizers"],
   },
 
-  // ── MORNING BLOCK 1 (10:00) ──
+  // ── MORNING BLOCK 1 (10:30) ──
   {
-    time: "10:00",
+    time: "10:30",
     duration: 25,
     track: "main",
     type: "Full Talk",
@@ -72,7 +72,7 @@ export const schedule: ScheduleSlot[] = [
     sessionSlug: "woop-coding",
   },
   {
-    time: "10:00",
+    time: "10:30",
     duration: 25,
     track: "small",
     type: "Full Talk",
@@ -81,7 +81,7 @@ export const schedule: ScheduleSlot[] = [
     sessionSlug: "this-web-is-for-everyone",
   },
   {
-    time: "10:00",
+    time: "10:30",
     duration: 90,
     track: "workshopA",
     type: "Workshop",
@@ -91,7 +91,7 @@ export const schedule: ScheduleSlot[] = [
     sessionSlug: "create-your-own-rpg-with-agentic-ai",
   },
   {
-    time: "10:00",
+    time: "10:30",
     duration: 90,
     track: "workshopB",
     type: "Workshop",
@@ -101,9 +101,9 @@ export const schedule: ScheduleSlot[] = [
     sessionSlug: "building-faster-building-wrong-thing-faster",
   },
 
-  // ── MORNING BLOCK 2 (10:30) ──
+  // ── MORNING BLOCK 2 (11:00) ──
   {
-    time: "10:30",
+    time: "11:00",
     duration: 25,
     track: "main",
     type: "Full Talk",
@@ -112,7 +112,7 @@ export const schedule: ScheduleSlot[] = [
     sessionSlug: "from-runbooks-to-models",
   },
   {
-    time: "10:30",
+    time: "11:00",
     duration: 25,
     track: "small",
     type: "Lightning Block",
@@ -122,7 +122,7 @@ export const schedule: ScheduleSlot[] = [
 
   // ── BREAK ──
   {
-    time: "10:55",
+    time: "11:25",
     duration: 15,
     track: "break",
     type: "Break",
@@ -130,9 +130,9 @@ export const schedule: ScheduleSlot[] = [
     speakers: [],
   },
 
-  // ── MORNING BLOCK 3 (11:10) ──
+  // ── MORNING BLOCK 3 (11:40) ──
   {
-    time: "11:10",
+    time: "11:40",
     duration: 25,
     track: "main",
     type: "Full Talk",
@@ -141,7 +141,7 @@ export const schedule: ScheduleSlot[] = [
     sessionSlug: "you-dont-need-a-bigger-model",
   },
   {
-    time: "11:10",
+    time: "11:40",
     duration: 25,
     track: "small",
     type: "Full Talk",
@@ -151,9 +151,9 @@ export const schedule: ScheduleSlot[] = [
     sessionSlug: "onboarding-your-agent",
   },
 
-  // ── OPEN SPACE (11:30) ──
+  // ── OPEN SPACE (12:00) ──
   {
-    time: "11:30",
+    time: "12:00",
     duration: 70,
     track: "workshopA",
     type: "Open Space",
@@ -161,7 +161,7 @@ export const schedule: ScheduleSlot[] = [
     speakers: [],
   },
   {
-    time: "11:30",
+    time: "12:00",
     duration: 70,
     track: "workshopB",
     type: "Open Space",
@@ -169,9 +169,9 @@ export const schedule: ScheduleSlot[] = [
     speakers: [],
   },
 
-  // ── MORNING BLOCK 4 (11:40) ──
+  // ── MORNING BLOCK 4 (12:10) ──
   {
-    time: "11:40",
+    time: "12:10",
     duration: 25,
     track: "main",
     type: "Full Talk",
@@ -180,7 +180,7 @@ export const schedule: ScheduleSlot[] = [
     sessionSlug: "stop-building-features-build-the-factory",
   },
   {
-    time: "11:40",
+    time: "12:10",
     duration: 25,
     track: "small",
     type: "Full Talk",
@@ -189,9 +189,9 @@ export const schedule: ScheduleSlot[] = [
     sessionSlug: "from-intentional-sprawl-to-a-deliberate-stack",
   },
 
-  // ── LIGHTNING BLOCK 1 + TALK (12:10) ──
+  // ── LIGHTNING BLOCK 1 + TALK (12:40) ──
   {
-    time: "12:10",
+    time: "12:40",
     duration: 30,
     track: "main",
     type: "Lightning Block",
@@ -199,7 +199,7 @@ export const schedule: ScheduleSlot[] = [
     speakers: ["Nele Lea Uhlemann", "Aleksandr Lossenko"],
   },
   {
-    time: "12:10",
+    time: "12:40",
     duration: 25,
     track: "small",
     type: "Full Talk",
@@ -211,7 +211,7 @@ export const schedule: ScheduleSlot[] = [
 
   // ── LUNCH ──
   {
-    time: "12:40",
+    time: "13:10",
     duration: 80,
     track: "break",
     type: "Lunch",
@@ -219,9 +219,9 @@ export const schedule: ScheduleSlot[] = [
     speakers: [],
   },
 
-  // ── AFTERNOON BLOCK 5 (14:00) ──
+  // ── AFTERNOON BLOCK 5 (14:30) ──
   {
-    time: "14:00",
+    time: "14:30",
     duration: 25,
     track: "main",
     type: "Full Talk",
@@ -231,7 +231,7 @@ export const schedule: ScheduleSlot[] = [
     sessionSlug: "humans-still-needed",
   },
   {
-    time: "14:00",
+    time: "14:30",
     duration: 25,
     track: "small",
     type: "Full Talk",
@@ -240,7 +240,7 @@ export const schedule: ScheduleSlot[] = [
     sessionSlug: "ai-coding-assistants-in-enterprises",
   },
   {
-    time: "14:00",
+    time: "14:30",
     duration: 90,
     track: "workshopA",
     type: "Workshop",
@@ -249,7 +249,7 @@ export const schedule: ScheduleSlot[] = [
     sessionSlug: "turn-your-agent-into-your-own-nemesis",
   },
   {
-    time: "14:00",
+    time: "14:30",
     duration: 90,
     track: "workshopB",
     type: "Workshop",
@@ -258,9 +258,9 @@ export const schedule: ScheduleSlot[] = [
     sessionSlug: "sandbox-ai-generated-code",
   },
 
-  // ── AFTERNOON BLOCK 6 (14:30) ──
+  // ── AFTERNOON BLOCK 6 (15:00) ──
   {
-    time: "14:30",
+    time: "15:00",
     duration: 25,
     track: "main",
     type: "Full Talk",
@@ -270,7 +270,7 @@ export const schedule: ScheduleSlot[] = [
     sessionSlug: "requirements-driven-development",
   },
   {
-    time: "14:30",
+    time: "15:00",
     duration: 25,
     track: "small",
     type: "Full Talk",
@@ -279,9 +279,9 @@ export const schedule: ScheduleSlot[] = [
     sessionSlug: "a-tiny-intelligent-being",
   },
 
-  // ── AFTERNOON BLOCK 7 (15:00) ──
+  // ── AFTERNOON BLOCK 7 (15:30) ──
   {
-    time: "15:00",
+    time: "15:30",
     duration: 25,
     track: "main",
     type: "Full Talk",
@@ -291,7 +291,7 @@ export const schedule: ScheduleSlot[] = [
     sessionSlug: "build-the-right-ai-product",
   },
   {
-    time: "15:00",
+    time: "15:30",
     duration: 25,
     track: "small",
     type: "Full Talk",
@@ -301,9 +301,9 @@ export const schedule: ScheduleSlot[] = [
     sessionSlug: "the-mcp-playbook",
   },
 
-  // ── COFFEE BREAK (15:30) ──
+  // ── COFFEE BREAK (16:00) ──
   {
-    time: "15:30",
+    time: "16:00",
     duration: 30,
     track: "break",
     type: "Break",
@@ -311,9 +311,9 @@ export const schedule: ScheduleSlot[] = [
     speakers: [],
   },
 
-  // ── AFTERNOON BLOCK 8 (16:00) ──
+  // ── AFTERNOON BLOCK 8 (16:30) ──
   {
-    time: "16:00",
+    time: "16:30",
     duration: 25,
     track: "main",
     type: "Full Talk",
@@ -322,7 +322,7 @@ export const schedule: ScheduleSlot[] = [
     sessionSlug: "driving-ai-how-moia-scales-llm-expertise",
   },
   {
-    time: "16:00",
+    time: "16:30",
     duration: 25,
     track: "small",
     type: "Full Talk",
@@ -332,7 +332,7 @@ export const schedule: ScheduleSlot[] = [
     sessionSlug: "lets-not-take-ai-as-it-is",
   },
   {
-    time: "16:00",
+    time: "16:30",
     duration: 75,
     track: "workshopA",
     type: "Open Space",
@@ -340,7 +340,7 @@ export const schedule: ScheduleSlot[] = [
     speakers: [],
   },
   {
-    time: "16:00",
+    time: "16:30",
     duration: 75,
     track: "workshopB",
     type: "Open Space",
@@ -348,9 +348,9 @@ export const schedule: ScheduleSlot[] = [
     speakers: [],
   },
 
-  // ── LIGHTNING BLOCK 2 (16:30) ──
+  // ── LIGHTNING BLOCK 2 (17:00) ──
   {
-    time: "16:30",
+    time: "17:00",
     duration: 45,
     track: "main",
     type: "Lightning Block",
@@ -360,7 +360,7 @@ export const schedule: ScheduleSlot[] = [
 
   // ── CLOSING ──
   {
-    time: "17:15",
+    time: "17:45",
     duration: 15,
     track: "plenary",
     type: "Closing",
@@ -370,7 +370,7 @@ export const schedule: ScheduleSlot[] = [
 
   // ── AUSKLANG ──
   {
-    time: "17:30",
+    time: "18:00",
     duration: 30,
     track: "break",
     type: "Ausklang",
