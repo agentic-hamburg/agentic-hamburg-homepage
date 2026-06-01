@@ -8,12 +8,17 @@ import { communityStats } from "../config/community";
 <Layout title="Agentic Hamburg - Community for AI Agent Builders">
   <Header />
 
-  <!-- Conference Banner -->
-  <a href="/conf-2026" class="conf-banner">
+  <!-- Next Meetup Banner -->
+  <a
+    href="https://luma.com/agentic-a7oi"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="conf-banner"
+  >
     <div class="banner-content">
-      <span class="banner-badge">March 22, 2026</span>
+      <span class="banner-badge">June 9, 2026</span>
       <span class="banner-text"
-        >Agentic Conf Hamburg — Sold Out</span
+        >Agentic Coding Meetup #5 @ MOIA — Join the Waitlist</span
       >
       <svg
         class="banner-arrow"
@@ -88,13 +93,11 @@ import { communityStats } from "../config/community";
         </div>
 
         <div class="activities-grid">
-          <!-- Conference Card -->
-          <article class="activity-card card-conference">
+          <!-- Next Meetup Card -->
+          <article class="activity-card card-featured">
             <div class="card-glow"></div>
             <div class="card-content">
-              <div class="card-badge badge-sold-out">
-                Sold Out
-              </div>
+              <div class="card-badge">Upcoming</div>
 
               <div class="card-date">
                 <svg
@@ -107,16 +110,16 @@ import { communityStats } from "../config/community";
                   <rect x="3" y="4" width="18" height="18" rx="2"></rect>
                   <path d="M16 2v4M8 2v4M3 10h18"></path>
                 </svg>
-                March 22, 2026
+                June 9, 2026 · 18:00–22:00
               </div>
 
               <h3 class="card-title">
-                Agentic Conf<br />Hamburg 2026
+                Agentic Coding<br />Meetup #5
               </h3>
 
               <p class="card-description">
-                A full-day conference with talks, live demos, workshops, and
-                networking. The biggest agentic AI event in Northern Germany.
+                Talks, live demos, and networking with Hamburg's agentic coding
+                community — the next chapter after a sold-out conference.
               </p>
 
               <div class="card-venue">
@@ -130,12 +133,17 @@ import { communityStats } from "../config/community";
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"></path>
                   <circle cx="12" cy="10" r="3"></circle>
                 </svg>
-                <span>Medienbunker · SAE Institute Hamburg</span>
+                <span>MOIA GmbH · Stadthausbrücke 8, Hamburg</span>
               </div>
 
               <div class="card-actions">
-                <a href="/conf-2026" class="btn-primary">
-                  <span>View Program</span>
+                <a
+                  href="https://luma.com/agentic-a7oi"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn-primary"
+                >
+                  <span>Join the Waitlist</span>
                   <svg
                     viewBox="0 0 24 24"
                     fill="none"
@@ -145,12 +153,13 @@ import { communityStats } from "../config/community";
                     <path d="M5 12h14M12 5l7 7-7 7"></path>
                   </svg>
                 </a>
+                <a href="/meetups" class="btn-ghost">All meetups →</a>
               </div>
             </div>
           </article>
 
-          <!-- Meetups Card -->
-          <article class="activity-card card-meetups">
+          <!-- Conference Archive Card -->
+          <article class="activity-card card-secondary">
             <div class="card-content">
               <div class="card-badge badge-muted">
                 <svg
@@ -164,36 +173,22 @@ import { communityStats } from "../config/community";
                     d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                   ></path>
                 </svg>
-                Regular Events
+                Past Event · March 22, 2026
               </div>
 
               <h3 class="card-title card-title-small">
-                Agentic Coding<br />Meetup
+                Agentic Conf<br />Hamburg 2026
               </h3>
 
               <p class="card-description">
-                Regular meetups for talks, demos, and networking with Hamburg's
-                agentic coding community.
+                Our biggest event yet — a full day of talks, live demos, and
+                workshops on agentic software engineering. Relive the full
+                program and sessions.
               </p>
 
-              <div class="card-metrics">
-                <div class="metric">
-                  <span class="metric-value">{communityStats.meetupCount}</span>
-                  <span class="metric-label">events</span>
-                </div>
-                <div class="metric">
-                  <span class="metric-value">400+</span>
-                  <span class="metric-label">attendees</span>
-                </div>
-                <div class="metric">
-                  <span class="metric-value">78</span>
-                  <span class="metric-label">reviews</span>
-                </div>
-              </div>
-
               <div class="card-actions">
-                <a href="/meetups" class="btn-secondary">
-                  <span>View Meetups</span>
+                <a href="/conf-2026" class="btn-secondary">
+                  <span>View Program</span>
                   <svg
                     viewBox="0 0 24 24"
                     fill="none"
@@ -292,8 +287,8 @@ import { communityStats } from "../config/community";
         <div class="cta-content">
           <h2 class="cta-title">Ready to Build?</h2>
           <p class="cta-text">
-            Join Hamburg's most active AI agent community. Subscribe for
-            updates on waitlist, recordings, and future events.
+            Join Hamburg's most active AI agent community. Subscribe for updates
+            on waitlist, recordings, and future events.
           </p>
           <div class="cta-actions">
             <a href="/conf-2026/#newsletter" class="btn-cta">
@@ -606,7 +601,7 @@ import { communityStats } from "../config/community";
     transform: translateY(-8px);
   }
 
-  .card-conference {
+  .card-featured {
     background: linear-gradient(
       145deg,
       var(--color-bg-soft) 0%,
@@ -616,11 +611,11 @@ import { communityStats } from "../config/community";
     box-shadow: 0 4px 30px rgba(232, 136, 127, 0.12);
   }
 
-  .card-conference:hover {
+  .card-featured:hover {
     box-shadow: 0 20px 60px rgba(232, 136, 127, 0.25);
   }
 
-  .card-conference .card-glow {
+  .card-featured .card-glow {
     position: absolute;
     top: -50%;
     right: -50%;
@@ -634,12 +629,12 @@ import { communityStats } from "../config/community";
     pointer-events: none;
   }
 
-  .card-meetups {
+  .card-secondary {
     background: var(--color-bg-soft);
     border: 2px solid rgba(44, 62, 58, 0.08);
   }
 
-  .card-meetups:hover {
+  .card-secondary:hover {
     border-color: rgba(232, 136, 127, 0.3);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
   }
@@ -662,11 +657,6 @@ import { communityStats } from "../config/community";
     padding: 0.5rem 1rem;
     border-radius: 50px;
     margin-bottom: 1.25rem;
-  }
-
-  .badge-sold-out {
-    background: rgba(44, 62, 58, 0.15);
-    color: var(--color-text-secondary);
   }
 
   .badge-live {
@@ -751,36 +741,6 @@ import { communityStats } from "../config/community";
     height: 18px;
     color: var(--color-primary-dark);
     flex-shrink: 0;
-  }
-
-  .card-metrics {
-    display: flex;
-    gap: 1.5rem;
-    margin-bottom: 1.75rem;
-    padding: 1rem 0;
-    border-top: 1px solid rgba(44, 62, 58, 0.08);
-    border-bottom: 1px solid rgba(44, 62, 58, 0.08);
-  }
-
-  .metric {
-    display: flex;
-    flex-direction: column;
-    gap: 0.15rem;
-  }
-
-  .metric-value {
-    font-family: var(--font-display);
-    font-size: 1.25rem;
-    font-weight: 400;
-    color: var(--color-text-primary);
-  }
-
-  .metric-label {
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--color-text-secondary);
   }
 
   .card-actions {
@@ -1085,10 +1045,10 @@ import { communityStats } from "../config/community";
       animation: fadeInUp 0.6s ease-out backwards;
     }
 
-    .card-conference {
+    .card-featured {
       animation-delay: 0.1s;
     }
-    .card-meetups {
+    .card-secondary {
       animation-delay: 0.2s;
     }
 
