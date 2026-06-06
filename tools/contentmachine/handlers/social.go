@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-func HandleSocialMedia(cfg *config.Config, content *models.Content, dryRun bool) error {
+func HandleSocialMedia(cfg *config.Config, content *models.Content, dryRun bool, publish bool) error {
 	// Build blog post URL
 	folderName := generateFilenameFromTitle(content.Metadata.Title)
 	blogURL := fmt.Sprintf("%s/news/blog/%s/", strings.TrimSuffix(cfg.BlogBaseURL, "/"), folderName)
@@ -44,6 +44,89 @@ func HandleSocialMedia(cfg *config.Config, content *models.Content, dryRun bool)
 	fmt.Println("2. Adjust length as needed for platforms with shorter limits")
 	fmt.Println("3. Attach the banner image from the content/ folder")
 	fmt.Printf("%s\n\n", strings.Repeat("=", 80))
+
+	if !publish {
+		fmt.Println("Buffer publishing disabled. Add --publish-social to queue posts in Buffer.")
+		return nil
+	}
+
+	if dryRun {
+		fmt.Println("Dry run: would publish social posts to Buffer.")
+		return nil
+	}
+
+	client, err := NewBufferClient(cfg.BufferAPIToken)
+	if err != nil {
+		return err
+	}
+
+	if len(cfg.BufferChannelIDs) == 0 {
+		return fmt.Errorf("BUFFER_CHANNEL_IDS is required when --publish-social is used")
+	}
+
+	fmt.Println("\nBUFFER:")
+	for _, channelID := range cfg.BufferChannelIDs {
+		post, err := client.CreatePost(BufferPostInput{
+			Text:      mainPost,
+			ChannelID: channelID,
+			Mode:      cfg.BufferMode,
+			MediaURL:  cfg.BufferMediaURL,
+		})
+		if err != nil {
+			return fmt.Errorf("failed to publish to channel %s: %w", channelID, err)
+		}
+		fmt.Printf("  Created post %s for channel %s", post.ID, channelID)
+		if post.DueAt != "" {
+			fmt.Printf(" due at %s", post.DueAt)
+		}
+		fmt.Println()
+	}
+
+	return nil
+}
+
+func PublishBufferText(cfg *config.Config, text string, dryRun bool) error {
+	text = strings.TrimSpace(text)
+	if text == "" {
+		return fmt.Errorf("post text cannot be empty")
+	}
+
+	fmt.Println("BUFFER POST:")
+	fmt.Println(strings.Repeat("-", 70))
+	fmt.Println(text)
+	fmt.Println(strings.Repeat("-", 70))
+	fmt.Printf("Character count: %d\n", len(text))
+
+	if dryRun {
+		fmt.Println("Dry run: would publish text to Buffer.")
+		return nil
+	}
+
+	client, err := NewBufferClient(cfg.BufferAPIToken)
+	if err != nil {
+		return err
+	}
+
+	if len(cfg.BufferChannelIDs) == 0 {
+		return fmt.Errorf("BUFFER_CHANNEL_IDS is required when publishing text")
+	}
+
+	for _, channelID := range cfg.BufferChannelIDs {
+		post, err := client.CreatePost(BufferPostInput{
+			Text:      text,
+			ChannelID: channelID,
+			Mode:      cfg.BufferMode,
+			MediaURL:  cfg.BufferMediaURL,
+		})
+		if err != nil {
+			return fmt.Errorf("failed to publish to channel %s: %w", channelID, err)
+		}
+		fmt.Printf("Created Buffer post %s for channel %s", post.ID, channelID)
+		if post.DueAt != "" {
+			fmt.Printf(" due at %s", post.DueAt)
+		}
+		fmt.Println()
+	}
 
 	return nil
 }

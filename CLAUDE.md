@@ -69,6 +69,14 @@ Required for content pipeline:
 - `BLOG_CONTENT_PATH` - Path to blog content directory (default: `src/data/news/blog`)
 - `BLOG_BASE_URL` - Base URL of the blog (default: `https://agentic.hamburg`)
 
+Optional for Buffer social publishing:
+
+- `BUFFER_API_TOKEN` - Buffer GraphQL API token
+- `BUFFER_ORGANIZATION_ID` - Buffer organization ID used when listing channels
+- `BUFFER_CHANNEL_IDS` - Comma-separated Buffer channel IDs to post to, e.g. LinkedIn and Bluesky
+- `BUFFER_MODE` - Buffer publish mode (default: `addToQueue`)
+- `BUFFER_MEDIA_URL` - Optional public image URL to attach; local banner files cannot be uploaded directly
+
 ## Content Workflow
 
 ### Creating a new blog post
@@ -79,6 +87,18 @@ Required for content pipeline:
 4. Pick the best banner, rename to `banner.png` in the post folder
 5. Distribute: `./distribute-post.sh <post-folder>` (or `--dry-run` to preview)
 6. The content machine creates the blog post in `src/data/news/blog/YYYY/<slug>/index.mdx` and outputs social media text
+7. Optional Buffer publishing:
+   - Discover organizations/channels: `./distribute-post.sh --list-buffer-channels`
+   - Queue social posts: `./distribute-post.sh <post-folder> --publish-social`
+   - Override channels per run: `./distribute-post.sh <post-folder> --publish-social --buffer-channel-ids "linkedin_id,bluesky_id"`
+   - Queue standalone social copy: `./distribute-post.sh --publish-text "Standalone LinkedIn copy"`
+
+Buffer uses the current GraphQL API at `https://api.buffer.com`. The default workflow only prints social copy; it will not call Buffer unless `--publish-social` is passed. Image posts require a public media URL via `BUFFER_MEDIA_URL` or `--buffer-media-url`; the local `content/<post-folder>/banner.png` file is not uploaded by the content machine.
+
+LinkedIn/Buffer post style:
+
+- Do not add hashtags to Agentic Hamburg LinkedIn posts unless the user explicitly asks for them.
+- Prefer a short final CTA such as `Join us on June 9 in Hamburg.` over generic lines like `More details soon.`
 
 ### Post format (`content/<post-folder>/post.md`)
 

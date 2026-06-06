@@ -22,20 +22,28 @@ export BLOG_CONTENT_PATH
 BLOG_BASE_URL="${BLOG_BASE_URL:-https://agentic.hamburg}"
 export BLOG_BASE_URL
 
-# Check for --dry-run flag
-DRY_RUN=""
-if [[ "$*" == *"--dry-run"* ]]; then
-    DRY_RUN="--dry-run"
-fi
-
 # Get post folder name from first argument
 POST_FOLDER="$1"
 shift || true
 
 if [ -z "$POST_FOLDER" ]; then
-    echo "Usage: ./distribute-post.sh <post-folder> [--dry-run]"
+    echo "Usage: ./distribute-post.sh <post-folder> [--dry-run] [--publish-social]"
+    echo "       ./distribute-post.sh --list-buffer-channels"
+    echo "       ./distribute-post.sh --publish-text \"Post copy\""
     echo "Example: ./distribute-post.sh meetup-5-recap --dry-run"
     exit 1
+fi
+
+if [ "$POST_FOLDER" = "--list-buffer-channels" ]; then
+    cd "$SCRIPT_DIR/tools/contentmachine"
+    go run main.go --list-buffer-channels
+    exit 0
+fi
+
+if [ "$POST_FOLDER" = "--publish-text" ]; then
+    cd "$SCRIPT_DIR/tools/contentmachine"
+    go run main.go --publish-text "$@"
+    exit 0
 fi
 
 CONTENT_PATH="content/${POST_FOLDER}/post.md"
@@ -49,4 +57,4 @@ echo "Distributing post: ${POST_FOLDER}..."
 
 # Run the content machine with absolute path
 cd "$SCRIPT_DIR/tools/contentmachine"
-go run main.go --file "$SCRIPT_DIR/${CONTENT_PATH}" $DRY_RUN
+go run main.go --file "$SCRIPT_DIR/${CONTENT_PATH}" "$@"
