@@ -8,7 +8,7 @@ export const communityStats = {
   memberCount: "1000+",
 
   // Number of meetups held
-  meetupCount: "5",
+  meetupCount: "8",
 
   // Talks and demos across all meetups
   talksAndDemos: "10+",

@@ -14,7 +14,7 @@ import { communityStats } from "../config/community";
     <div class="banner-content">
       <span class="banner-badge">November 3, 2026 · 18:00 CET</span>
       <span class="banner-text"
-        >{nextMeetup.name} @ Google — Speakers &amp; agenda to follow</span
+        >{nextMeetup.name} @ Google — Agenda &amp; speakers to be announced</span
       >
       <svg
         class="banner-arrow"
@@ -57,7 +57,7 @@ import { communityStats } from "../config/community";
           <div class="stat-separator"></div>
           <div class="hero-stat">
             <span class="stat-number">{communityStats.meetupCount}</span>
-            <span class="stat-text">sold-out events</span>
+            <span class="stat-text">past meetups</span>
           </div>
           <div class="stat-separator"></div>
           <div class="hero-stat">
@@ -93,7 +93,7 @@ import { communityStats } from "../config/community";
           <article class="activity-card card-featured">
             <div class="card-glow"></div>
             <div class="card-content">
-              <div class="card-badge">Save the date</div>
+              <div class="card-badge">Upcoming Meetup</div>
 
               <div class="card-date">
                 <svg
@@ -134,11 +134,11 @@ import { communityStats } from "../config/community";
                 <span>{nextMeetup.venue} · {nextMeetup.address}</span>
               </div>
 
-              <p class="card-description">{nextMeetup.registrationStatus}</p>
+              <p class="card-description">{nextMeetup.language}</p>
 
               <div class="card-actions">
-                <a href="/meetups#next-meetup" class="btn-primary">
-                  <span>Meetup details</span>
+                <a href={nextMeetup.registrationUrl} class="btn-primary">
+                  <span>{nextMeetup.registrationLabel}</span>
                   <svg
                     viewBox="0 0 24 24"
                     fill="none"

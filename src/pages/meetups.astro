@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+import meetupCover from "../assets/meetup-9.png";
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
@@ -17,7 +19,7 @@ import PastEvents from "../components/PastEvents.astro";
     <div class="banner-content">
       <span class="banner-badge">November 3, 2026 · 18:00 CET</span>
       <span class="banner-text"
-        >{nextMeetup.name} @ Google — Speakers &amp; agenda to follow</span
+        >{nextMeetup.name} @ Google — Agenda &amp; speakers to be announced</span
       >
       <svg
         class="banner-arrow"
@@ -63,7 +65,16 @@ import PastEvents from "../components/PastEvents.astro";
     <section class="next-meetup" id="next-meetup">
       <div class="mx-auto max-w-4xl px-4 py-12">
         <div class="next-card">
-          <span class="next-badge">Save the date</span>
+          <Image
+            src={meetupCover}
+            alt="Agentic Coding Meetup #9 — November 3, 2026 at Google Hamburg, code.talks warm-up"
+            widths={[320, 480, 640]}
+            sizes="(min-width: 768px) 280px, (min-width: 400px) 320px, 80vw"
+            width={640}
+            format="webp"
+            class="next-cover"
+          />
+          <span class="next-badge">Upcoming Meetup</span>
           <h2 class="next-title">{nextMeetup.name}</h2>
           <div class="next-details">
             <div class="next-detail">
@@ -91,7 +102,16 @@ import PastEvents from "../components/PastEvents.astro";
             {nextMeetup.theme} at Google Hamburg.
             {nextMeetup.programStatus}
           </p>
-          <p class="next-description">{nextMeetup.registrationStatus}</p>
+          <p class="next-description">{nextMeetup.language}</p>
+          <p class="next-description">
+            {nextMeetup.lightningCall}
+            <a href={`mailto:${nextMeetup.contactEmail}`}
+              >Get in touch at {nextMeetup.contactEmail}</a
+            >.
+          </p>
+          <a href={nextMeetup.registrationUrl} class="meetup-link">
+            {nextMeetup.registrationLabel}
+          </a>
         </div>
       </div>
     </section>
@@ -338,6 +358,34 @@ import PastEvents from "../components/PastEvents.astro";
     border-radius: 20px;
     padding: 2.5rem;
     box-shadow: 0 4px 30px rgba(232, 136, 127, 0.12);
+  }
+
+  .next-cover {
+    display: block;
+    width: 280px;
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    float: right;
+    margin: 0 0 1.5rem 2rem;
+  }
+
+  .next-card::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  @media (max-width: 767px) {
+    .next-card {
+      padding: 1.5rem;
+    }
+
+    .next-cover {
+      float: none;
+      width: 320px;
+      margin: 0 auto 1.5rem;
+    }
   }
 
   .next-badge {
