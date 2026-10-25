@@ -44,10 +44,16 @@ import { communityStats } from "../config/community";
         </h1>
 
         <p class="hero-tagline">
-          Software engineering is being rewritten — how you code, how your team
-          works, how your company ships. No playbook exists yet. We're writing
-          it together.
+          Hamburg's community for developers building with coding agents. Real
+          workflows, live demos, no vendor pitches.
         </p>
+
+        <div class="hero-actions">
+          <a href={nextMeetup.registrationUrl} class="btn-primary">
+            Next meetup · Nov 3 · Register on Luma →
+          </a>
+          <a href="/meetups#next-meetup" class="btn-ghost">Meetup details →</a>
+        </div>
 
         <div class="hero-stats">
           <div class="hero-stat">
@@ -282,12 +288,12 @@ import { communityStats } from "../config/community";
         <div class="cta-content">
           <h2 class="cta-title">Ready to Build?</h2>
           <p class="cta-text">
-            Join Hamburg's most active AI agent community. Subscribe for updates
-            on waitlist, recordings, and future events.
+            Find upcoming meetups on our Luma calendar and add them to your
+            calendar. Event registration is separate.
           </p>
           <div class="cta-actions">
-            <a href="/conf-2026/#newsletter" class="btn-cta">
-              <span>Subscribe for Updates</span>
+            <a href="https://luma.com/agentic-hamburg" class="btn-cta">
+              <span>Open Community Calendar</span>
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
@@ -357,22 +363,16 @@ import { communityStats } from "../config/community";
     transform: translateX(4px);
   }
 
-  @media (max-width: 500px) {
-    .banner-badge {
-      display: none;
-    }
-  }
-
   /* ===== HERO SECTION ===== */
   .hero {
     position: relative;
-    min-height: min(80vh, 700px);
+    min-height: min(70vh, 620px);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    padding: 3rem 2rem 4rem;
+    padding: 2.5rem 1.5rem 7rem;
     background: var(--color-primary);
   }
 
@@ -441,10 +441,28 @@ import { communityStats } from "../config/community";
   .hero-tagline {
     font-size: clamp(1.1rem, 2.5vw, 1.35rem);
     line-height: 1.7;
-    color: var(--color-secondary);
+    color: #1f2c28;
     max-width: 640px;
-    margin: 0 auto 3rem;
+    margin: 0 auto 1.5rem;
     font-weight: 700;
+  }
+
+  .hero-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .hero-actions .btn-primary {
+    white-space: normal;
+    justify-content: center;
+  }
+
+  .hero-actions .btn-ghost {
+    color: #1f2c28;
   }
 
   .hero-stats {
@@ -554,7 +572,7 @@ import { communityStats } from "../config/community";
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.2em;
-    color: var(--color-primary-dark);
+    color: var(--color-secondary);
     margin-bottom: 0.75rem;
   }
 
@@ -647,7 +665,7 @@ import { communityStats } from "../config/community";
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: var(--color-primary-dark);
+    color: var(--color-secondary);
     background: rgba(232, 136, 127, 0.12);
     padding: 0.5rem 1rem;
     border-radius: 50px;
@@ -994,7 +1012,7 @@ import { communityStats } from "../config/community";
     align-items: center;
     gap: 0.5rem;
     background: var(--color-primary);
-    color: var(--color-secondary);
+    color: #1f2c28;
     padding: 1.25rem 2.5rem;
     border-radius: 14px;
     font-weight: 700;

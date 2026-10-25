@@ -410,9 +410,7 @@ const faqs = [
                 d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
             </svg>
           </a>
-          <a href="#newsletter" class="cta-tertiary">
-            Get Updates
-          </a>
+          <a href="#newsletter" class="cta-tertiary"> Get Updates </a>
         </div>
         <div class="hero-meta">
           <span class="sold-out-tag">Sold Out</span>
@@ -560,7 +558,9 @@ const faqs = [
           }
         </div>
         <p class="speakers-more">
-          <a href="/conf-2026/schedule/" class="schedule-link">View full schedule →</a>
+          <a href="/conf-2026/schedule/" class="schedule-link"
+            >View full schedule →</a
+          >
         </p>
       </div>
     </section>
@@ -1554,7 +1554,9 @@ const faqs = [
     font-size: 1.15rem;
     border-radius: 8px;
     text-decoration: none;
-    transition: background 0.2s, transform 0.15s;
+    transition:
+      background 0.2s,
+      transform 0.15s;
   }
 
   .schedule-cta:hover {
@@ -1623,7 +1625,7 @@ const faqs = [
     position: relative;
     padding: 0.875rem 2rem;
     background: white;
-    color: var(--color-primary);
+    color: var(--color-secondary);
     border: none;
     border-radius: 8px;
     font-size: 1rem;
@@ -2192,8 +2194,7 @@ const faqs = [
         const result = await response.json();
 
         if (response.ok) {
-          messageDiv.textContent =
-            result.message || "Successfully subscribed!";
+          messageDiv.textContent = result.message || "Successfully subscribed!";
           messageDiv.classList.add("message-success");
           messageDiv.classList.remove("hidden");
           form.reset();
