@@ -5,7 +5,7 @@ export interface PastEvent {
   date: string;
   location: string;
   sponsor: string;
-  attendees: number;
+  attendees?: number;
   url?: string;
 }
 
@@ -60,6 +60,33 @@ const defaultEvents: PastEvent[] = [
     attendees: 120,
     url: "https://luma.com/agentic-a7oi",
   },
+  // #6: meetup-ops/meetup-6/meetup.json (date, venue and Luma URL).
+  {
+    title: "Meetup #6",
+    number: 6,
+    date: "July 7, 2026",
+    location: "Hamburg · Baumwall 7",
+    sponsor: "XING",
+    url: "https://luma.com/agentic-ymzl",
+  },
+  // #7: public Luma event https://luma.com/agentic-nl6d.
+  {
+    title: "Meetup #7",
+    number: 7,
+    date: "September 17, 2026",
+    location: "Hamburg · Neumühlen 19",
+    sponsor: "Freenow by Lyft",
+    url: "https://luma.com/agentic-nl6d",
+  },
+  // #8: content/meetup-8-announcement/post.md and public Luma event.
+  {
+    title: "Meetup #8",
+    number: 8,
+    date: "October 13, 2026",
+    location: "Hamburg · Gasstraße 6A",
+    sponsor: "Haiilo GmbH",
+    url: "https://luma.com/a747f0d0",
+  },
 ];
 
 const { events = defaultEvents } = Astro.props;
@@ -94,16 +121,18 @@ const { events = defaultEvents } = Astro.props;
             >
               <div class="event-header">
                 <h3 class="event-title">{event.title}</h3>
-                <div class="attendee-badge">
-                  <svg
-                    class="attendee-icon"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
-                  </svg>
-                  {event.attendees} attendees
-                </div>
+                {event.attendees !== undefined && (
+                  <div class="attendee-badge">
+                    <svg
+                      class="attendee-icon"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
+                    </svg>
+                    {event.attendees} attendees
+                  </div>
+                )}
               </div>
               <div class="event-meta">
                 <div class="meta-item">

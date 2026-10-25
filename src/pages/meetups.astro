@@ -1,7 +1,10 @@
 ---
+import { Image } from "astro:assets";
+import meetupCover from "../assets/meetup-9.png";
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import { nextMeetup } from "../config/next-meetup";
 import PastEvents from "../components/PastEvents.astro";
 ---
 
@@ -12,16 +15,11 @@ import PastEvents from "../components/PastEvents.astro";
   <Header />
 
   <!-- Next Meetup Banner -->
-  <a
-    href="https://luma.com/agentic-ymzl"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="conf-banner"
-  >
+  <a href="#next-meetup" class="conf-banner">
     <div class="banner-content">
-      <span class="banner-badge">July 7, 2026</span>
+      <span class="banner-badge">November 3, 2026 · 18:00 CET</span>
       <span class="banner-text"
-        >Agentic Coding Meetup #6 @ XING — Register on Luma</span
+        >{nextMeetup.name} @ Google — Agenda &amp; speakers to be announced</span
       >
       <svg
         class="banner-arrow"
@@ -64,11 +62,20 @@ import PastEvents from "../components/PastEvents.astro";
     </section>
 
     <!-- Next Meetup Section -->
-    <section class="next-meetup">
+    <section class="next-meetup" id="next-meetup">
       <div class="mx-auto max-w-4xl px-4 py-12">
         <div class="next-card">
-          <span class="next-badge">Next Up</span>
-          <h2 class="next-title">Agentic Coding Meetup #6</h2>
+          <Image
+            src={meetupCover}
+            alt="Agentic Coding Meetup #9 — November 3, 2026 at Google Hamburg, code.talks warm-up"
+            widths={[320, 480, 640]}
+            sizes="(min-width: 768px) 280px, (min-width: 400px) 320px, 80vw"
+            width={640}
+            format="webp"
+            class="next-cover"
+          />
+          <span class="next-badge">Upcoming Meetup</span>
+          <h2 class="next-title">{nextMeetup.name}</h2>
           <div class="next-details">
             <div class="next-detail">
               <svg fill="currentColor" viewBox="0 0 20 20">
@@ -77,7 +84,9 @@ import PastEvents from "../components/PastEvents.astro";
                   d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
                   clip-rule="evenodd"></path>
               </svg>
-              <span>Tuesday, July 7, 2026 · 18:00–22:00</span>
+              <time datetime={nextMeetup.startsAt}>
+                {nextMeetup.date} · {nextMeetup.time}
+              </time>
             </div>
             <div class="next-detail">
               <svg fill="currentColor" viewBox="0 0 20 20">
@@ -86,149 +95,22 @@ import PastEvents from "../components/PastEvents.astro";
                   d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
                   clip-rule="evenodd"></path>
               </svg>
-              <span>XING (New Work SE) · Baumwall, Hamburg</span>
+              <span>{nextMeetup.venue} · {nextMeetup.address}</span>
             </div>
           </div>
           <p class="next-description">
-            XING hosts us at their new Baumwall office for an evening of two
-            talks, lightning demos (5 minutes, no pitches), and open discussion.
-            Free — grab a seat on Luma.
+            {nextMeetup.theme} at Google Hamburg.
+            {nextMeetup.programStatus}
           </p>
-
-          <div class="next-program">
-            <h3 class="program-heading">On the program</h3>
-            <ul class="program-list">
-              <li class="program-item">
-                <span class="program-tag program-tag--talk">Talk</span>
-                <div class="program-body">
-                  <span class="program-title"
-                    >When Agents Write the Code, Review Becomes the Bottleneck</span
-                  >
-                  <span class="program-speaker">
-                    Malte Burkert · WAPP
-                    <a
-                      href="https://www.linkedin.com/in/malte-burkert-3761b7155/"
-                      target="_blank"
-                      rel="noopener noreferrer">LinkedIn ↗</a
-                    >
-                  </span>
-                  <span class="program-abstract">
-                    A 20-person agency went all-in on agentic engineering and
-                    watched its review queue eat an entire sprint. What actually
-                    broke — and the four numbers they now track to know whether
-                    it's working.
-                  </span>
-                </div>
-              </li>
-              <li class="program-item">
-                <span class="program-tag program-tag--talk">Talk</span>
-                <div class="program-body">
-                  <span class="program-title"
-                    >Agentic Coding Ate Our IT Department</span
-                  >
-                  <span class="program-speaker">
-                    Daniel Schreiber &amp; Felix · AutoFleetControl
-                    <a
-                      href="https://www.autofleetcontrol.de"
-                      target="_blank"
-                      rel="noopener noreferrer">Website ↗</a
-                    >
-                  </span>
-                  <span class="program-abstract">
-                    Two non-developers built a 116K-line production system with
-                    AI agents — then it scaled and stopped being a coding story.
-                    How AFC's IT department became a Product Engineering org:
-                    changing roles, ownership, and what breaks when agentic
-                    coding meets legacy at scale.
-                  </span>
-                </div>
-              </li>
-              <li class="program-item">
-                <span class="program-tag program-tag--lightning">Lightning</span>
-                <div class="program-body">
-                  <span class="program-title">haze</span>
-                  <span class="program-speaker">
-                    Deniz Okcu
-                    <a
-                      href="https://denizokcu.github.io/haze/"
-                      target="_blank"
-                      rel="noopener noreferrer">Project ↗</a
-                    >
-                  </span>
-                  <span class="program-abstract">
-                    A minimal terminal coding agent — bring your own LLM, hand it
-                    a few sharp tools, then get out of the way (custom Markdown
-                    "skills" as slash commands).
-                  </span>
-                </div>
-              </li>
-              <li class="program-item">
-                <span class="program-tag program-tag--lightning">Lightning</span>
-                <div class="program-body">
-                  <span class="program-title"
-                    >I Built a Browser Engine So a Yeti Could Rap</span
-                  >
-                  <span class="program-speaker">
-                    Sebastian Korfmann
-                    <a
-                      href="https://jot.skorfmann.com/prism-renderer/"
-                      target="_blank"
-                      rel="noopener noreferrer">Prism ↗</a
-                    >
-                    <a
-                      href="https://helmut.rocks/"
-                      target="_blank"
-                      rel="noopener noreferrer">helmut.rocks ↗</a
-                    >
-                  </span>
-                  <span class="program-abstract">
-                    A from-scratch WASM browser engine, a rapping Yeti, and the
-                    long agent loops that produced both — colliding live on
-                    stage.
-                  </span>
-                </div>
-              </li>
-              <li class="program-item">
-                <span class="program-tag program-tag--lightning">Lightning</span>
-                <div class="program-body">
-                  <span class="program-title"
-                    >Conversational AI Design System Under the Hood</span
-                  >
-                  <span class="program-speaker">
-                    Lior Oren
-                    <a
-                      href="https://www.linkedin.com/in/lior-oren/"
-                      target="_blank"
-                      rel="noopener noreferrer">LinkedIn ↗</a
-                    >
-                  </span>
-                  <span class="program-abstract">
-                    A look inside the design system that powers a
-                    conversational-AI product.
-                  </span>
-                </div>
-              </li>
-            </ul>
-            <p class="program-note">
-              More lightning slots open —
-              <a href="mailto:hello@agentic.hamburg">pitch us a 5-minute demo</a>.
-            </p>
-          </div>
-
-          <a
-            href="https://luma.com/agentic-ymzl"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="next-cta"
-          >
-            Register on Luma
-            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-            </svg>
+          <p class="next-description">{nextMeetup.language}</p>
+          <p class="next-description">
+            {nextMeetup.lightningCall}
+            <a href={`mailto:${nextMeetup.contactEmail}`}
+              >Get in touch at {nextMeetup.contactEmail}</a
+            >.
+          </p>
+          <a href={nextMeetup.registrationUrl} class="meetup-link">
+            {nextMeetup.registrationLabel}
           </a>
         </div>
       </div>
@@ -478,6 +360,34 @@ import PastEvents from "../components/PastEvents.astro";
     box-shadow: 0 4px 30px rgba(232, 136, 127, 0.12);
   }
 
+  .next-cover {
+    display: block;
+    width: 280px;
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    float: right;
+    margin: 0 0 1.5rem 2rem;
+  }
+
+  .next-card::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  @media (max-width: 767px) {
+    .next-card {
+      padding: 1.5rem;
+    }
+
+    .next-cover {
+      float: none;
+      width: 320px;
+      margin: 0 auto 1.5rem;
+    }
+  }
+
   .next-badge {
     display: inline-block;
     background: var(--color-primary);
@@ -527,150 +437,6 @@ import PastEvents from "../components/PastEvents.astro";
     color: var(--color-text-secondary);
     margin-bottom: 1.75rem;
     max-width: 600px;
-  }
-
-  /* On the program */
-  .next-program {
-    margin-bottom: 1.75rem;
-  }
-
-  .program-heading {
-    font-size: 0.8rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--color-primary);
-    margin-bottom: 1rem;
-  }
-
-  .program-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .program-item {
-    display: flex;
-    gap: 0.85rem;
-    align-items: flex-start;
-    background: white;
-    border: 1px solid rgba(44, 62, 58, 0.08);
-    border-radius: 12px;
-    padding: 1rem 1.1rem;
-  }
-
-  .program-tag {
-    flex-shrink: 0;
-    font-size: 0.65rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    padding: 0.25rem 0.55rem;
-    border-radius: 50px;
-    margin-top: 0.15rem;
-  }
-
-  .program-tag--talk {
-    background: var(--color-primary);
-    color: white;
-  }
-
-  .program-tag--lightning {
-    background: rgba(44, 62, 58, 0.08);
-    color: var(--color-text-secondary);
-  }
-
-  .program-body {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-    min-width: 0;
-  }
-
-  .program-title {
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--color-text-primary);
-    line-height: 1.3;
-  }
-
-  .program-speaker {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--color-text-secondary);
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .program-speaker a {
-    font-weight: 600;
-    color: var(--color-primary);
-    text-decoration: none;
-  }
-
-  .program-speaker a:hover {
-    text-decoration: underline;
-  }
-
-  .program-abstract {
-    font-size: 0.85rem;
-    line-height: 1.55;
-    color: var(--color-text-secondary);
-    margin-top: 0.15rem;
-  }
-
-  .program-note {
-    font-size: 0.9rem;
-    color: var(--color-text-secondary);
-    margin-top: 1rem;
-  }
-
-  .program-note a {
-    color: var(--color-primary);
-    font-weight: 600;
-    text-decoration: none;
-  }
-
-  .program-note a:hover {
-    text-decoration: underline;
-  }
-
-  .next-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: var(--color-primary);
-    color: white;
-    padding: 1rem 2rem;
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 1.05rem;
-    text-decoration: none;
-    border: 2px solid var(--color-primary);
-    box-shadow: 0 4px 12px rgba(232, 136, 127, 0.3);
-    transition: all 0.3s ease;
-  }
-
-  .next-cta:hover {
-    background: var(--color-primary-light);
-    border-color: var(--color-primary-light);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(232, 136, 127, 0.4);
-  }
-
-  .next-cta svg {
-    width: 1.2rem;
-    height: 1.2rem;
-    transition: transform 0.3s ease;
-  }
-
-  .next-cta:hover svg {
-    transform: translateX(4px);
   }
 
   /* Format Section */
