@@ -1,0 +1,32 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+---
+
+<Layout
+  title="Agentic Conf 2027 – Agentic Hamburg"
+  description="Agentic Conf 2027. Details will be announced here."
+>
+  <Header />
+  <main
+    class="mx-auto flex min-h-[60vh] max-w-4xl flex-col justify-center px-6 py-20"
+  >
+    <p class="mb-4 text-sm font-bold uppercase tracking-widest">
+      Agentic Hamburg
+    </p>
+    <h1 class="display-title">Agentic Conf 2027</h1>
+    <p class="mt-6 text-lg text-[var(--color-text-secondary)]">
+      Details will be announced here.
+    </p>
+    <p class="mt-10">
+      <a
+        href="/conf-2026"
+        class="inline-flex min-h-11 items-center underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4"
+      >
+        Explore Agentic Conf 2026
+      </a>
+    </p>
+  </main>
+  <Footer />
+</Layout>
