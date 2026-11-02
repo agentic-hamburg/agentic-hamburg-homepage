@@ -8,9 +8,10 @@ This is the Agentic Hamburg community website - a meetup group for developers in
 
 ## Design System
 
-Brand colors and design tokens are documented in `design-system/colors.md`. Key colors:
+Brand colors and design tokens come from the Agentic design system and are summarised in `design-system/colors.md`. Key colors:
 - **Salmon** `#FB9DA1` — banner backgrounds, cards, promotional materials
-- **Teal** `#244043` — text, headings, logo, UI elements
+- **Slate** `#244043` — text, headings, logo, UI elements
+- **Paper** `#F7F3EE` — page background
 
 ## Commands
 
@@ -31,7 +32,7 @@ npm run ci           # Full CI check (typecheck + lint + format:check)
 
 - **Framework**: Astro 5 with TypeScript (strict mode)
 - **Styling**: Tailwind CSS 3 with custom CSS variables in `src/styles/global.css`
-- **Font**: Quicksand (via @fontsource)
+- **Font**: Rufina display face (via @fontsource, stand-in for Canela) and Helvetica Neue for body text
 - **Deployment**: Netlify with SSR adapter for API routes
 - **Analytics**: PostHog
 - **Newsletter**: ConvertKit API

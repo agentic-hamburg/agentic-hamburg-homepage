@@ -70,24 +70,24 @@ export const prerender = false;
   .filter-btn {
     background: white;
     color: var(--color-text-secondary);
-    border: 2px solid rgba(44, 62, 58, 0.12);
+    border: 2px solid rgba(36, 64, 67, 0.12);
     transition: all 0.15s ease;
   }
 
   .filter-btn:hover {
     border-color: var(--color-primary);
-    color: var(--color-primary-dark);
+    color: var(--color-secondary);
   }
 
   .filter-btn.active {
     background: var(--color-primary);
-    color: white;
+    color: var(--slate);
     border-color: var(--color-primary);
   }
 
   .idea-card {
     background: white;
-    border-color: rgba(44, 62, 58, 0.12);
+    border-color: rgba(36, 64, 67, 0.12);
   }
 
   .action-btn {
@@ -172,7 +172,7 @@ export const prerender = false;
       renderIdeas();
     } catch {
       container.innerHTML = `
-        <div class="py-8 text-center" style="color: var(--color-primary-dark);">
+        <div class="py-8 text-center" style="color: var(--color-secondary);">
           Failed to load ideas. Please refresh.
         </div>
       `;

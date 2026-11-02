@@ -6,8 +6,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Quicksand", "sans-serif"],
-        mono: ["Quicksand", "monospace"],
+        sans: ["Helvetica Neue", "Helvetica", "Arial", "sans-serif"],
+        serif: ["Canela", "Canela Text", "Rufina", "Georgia", "serif"],
       },
     },
   },

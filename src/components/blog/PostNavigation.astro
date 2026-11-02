@@ -19,14 +19,14 @@ const { prevPost, nextPost } = Astro.props;
       {prevPost ? (
         <a
           href={`/news/${prevPost.id}`}
-          class="group flex items-start gap-2 rounded-lg border border-gray-200 p-4 transition-colors hover:border-[#f77f00] hover:bg-orange-50"
+          class="group flex items-start gap-2 rounded-lg border border-gray-200 p-4 transition-colors hover:border-[var(--salmon)] hover:bg-[var(--paper)]"
         >
           <span class="text-gray-400 transition-transform group-hover:-translate-x-1">
             &larr;
           </span>
           <div class="flex flex-col">
             <span class="text-sm text-gray-500">Previous</span>
-            <span class="font-medium text-gray-900 group-hover:text-[#f77f00]">
+            <span class="font-medium text-gray-900 hover:underline group-hover:text-[var(--slate)]">
               {prevPost.title}
             </span>
           </div>
@@ -37,11 +37,11 @@ const { prevPost, nextPost } = Astro.props;
       {nextPost && (
         <a
           href={`/news/${nextPost.id}`}
-          class="group flex items-start justify-end gap-2 rounded-lg border border-gray-200 p-4 text-right transition-colors hover:border-[#f77f00] hover:bg-orange-50 sm:col-start-2"
+          class="group flex items-start justify-end gap-2 rounded-lg border border-gray-200 p-4 text-right transition-colors hover:border-[var(--salmon)] hover:bg-[var(--paper)] sm:col-start-2"
         >
           <div class="flex flex-col">
             <span class="text-sm text-gray-500">Next</span>
-            <span class="font-medium text-gray-900 group-hover:text-[#f77f00]">
+            <span class="font-medium text-gray-900 hover:underline group-hover:text-[var(--slate)]">
               {nextPost.title}
             </span>
           </div>

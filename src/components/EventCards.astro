@@ -232,7 +232,7 @@ const { events = defaultEvents } = Astro.props;
 
   .event-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 24px -4px rgba(247, 127, 0, 0.15);
+    box-shadow: 0 12px 24px -4px rgba(251, 157, 161, 0.15);
     border-color: var(--color-primary-light);
   }
 
@@ -257,17 +257,17 @@ const { events = defaultEvents } = Astro.props;
 
   .badge-meetup {
     background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
-    color: white;
+    color: var(--slate);
   }
 
   .badge-coding-day {
-    background: linear-gradient(135deg, var(--color-secondary), #04c28f);
-    color: white;
+    background: var(--slate);
+    color: var(--paper);
   }
 
   .spots-badge {
     background: var(--color-bg-light);
-    color: var(--color-primary);
+    color: var(--color-secondary);
     padding: 0.25rem 0.75rem;
     border-radius: 20px;
     font-size: 0.75rem;
@@ -275,7 +275,7 @@ const { events = defaultEvents } = Astro.props;
   }
 
   .spots-badge.sold-out {
-    background: linear-gradient(135deg, #dc2626, #b91c1c);
+    background: var(--slate);
     color: white;
   }
 
@@ -335,7 +335,7 @@ const { events = defaultEvents } = Astro.props;
     justify-content: center;
     gap: 0.5rem;
     background: var(--color-primary);
-    color: white;
+    color: var(--slate);
     padding: 0.875rem 1.75rem;
     border-radius: 8px;
     font-weight: 600;
@@ -371,7 +371,7 @@ const { events = defaultEvents } = Astro.props;
   }
 
   .event-secondary-link:hover {
-    color: var(--color-primary);
+    color: var(--color-secondary);
     text-decoration: underline;
   }
 
@@ -395,7 +395,7 @@ const { events = defaultEvents } = Astro.props;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: var(--color-primary);
+    color: var(--color-secondary);
     margin-bottom: 1rem;
   }
 
@@ -414,7 +414,7 @@ const { events = defaultEvents } = Astro.props;
   .agenda-time {
     font-size: 0.875rem;
     font-weight: 600;
-    color: var(--color-primary);
+    color: var(--color-secondary);
     min-width: 50px;
     flex-shrink: 0;
   }

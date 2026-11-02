@@ -1011,8 +1011,8 @@ const faqs = [
   /* Stats Bar */
   .stats-bar {
     background: white;
-    border-top: 1px solid rgba(247, 127, 0, 0.2);
-    border-bottom: 1px solid rgba(247, 127, 0, 0.2);
+    border-top: 1px solid rgba(251, 157, 161, 0.2);
+    border-bottom: 1px solid rgba(251, 157, 161, 0.2);
     padding: 2rem 1rem;
   }
 
@@ -1067,7 +1067,7 @@ const faqs = [
     background: linear-gradient(
       180deg,
       transparent,
-      rgba(247, 127, 0, 0.3),
+      rgba(251, 157, 161, 0.3),
       transparent
     );
   }
@@ -1214,7 +1214,7 @@ const faqs = [
       135deg,
       var(--color-bg-soft) 0%,
       var(--color-bg-cream) 40%,
-      #fff5eb 100%
+      var(--paper) 100%
     );
   }
 
@@ -1222,7 +1222,7 @@ const faqs = [
     content: "";
     position: absolute;
     inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg width='600' height='600' viewBox='0 0 600 600' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23f77f00' fill-opacity='0.04'%3E%3Ccircle cx='100' cy='150' r='120'/%3E%3Ccircle cx='550' cy='500' r='150'/%3E%3Crect x='350' y='80' width='180' height='180' rx='30' transform='rotate(15 440 170)'/%3E%3Cpolygon points='80,420 200,580 -40,580'/%3E%3Crect x='250' y='320' width='120' height='120' rx='15' transform='rotate(-10 310 380)'/%3E%3Ccircle cx='500' cy='200' r='80'/%3E%3C/g%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg width='600' height='600' viewBox='0 0 600 600' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23fb9da1' fill-opacity='0.04'%3E%3Ccircle cx='100' cy='150' r='120'/%3E%3Ccircle cx='550' cy='500' r='150'/%3E%3Crect x='350' y='80' width='180' height='180' rx='30' transform='rotate(15 440 170)'/%3E%3Cpolygon points='80,420 200,580 -40,580'/%3E%3Crect x='250' y='320' width='120' height='120' rx='15' transform='rotate(-10 310 380)'/%3E%3Ccircle cx='500' cy='200' r='80'/%3E%3C/g%3E%3C/svg%3E");
     background-size: cover;
   }
 
@@ -1243,7 +1243,7 @@ const faqs = [
       var(--color-primary),
       var(--color-accent)
     );
-    color: white;
+    color: var(--slate);
     padding: 0.75rem 1.5rem;
     border-radius: 50px;
     font-weight: 700;
@@ -1251,7 +1251,7 @@ const faqs = [
     text-transform: uppercase;
     letter-spacing: 0.08em;
     margin-bottom: 2rem;
-    box-shadow: 0 4px 20px rgba(247, 127, 0, 0.35);
+    box-shadow: 0 4px 20px rgba(251, 157, 161, 0.35);
   }
 
   .badge-divider {
@@ -1334,7 +1334,7 @@ const faqs = [
     align-items: center;
     gap: 0.5rem;
     background: transparent;
-    color: var(--color-primary);
+    color: var(--color-secondary);
     padding: 1rem 2rem;
     border-radius: 8px;
     font-weight: 700;
@@ -1346,9 +1346,9 @@ const faqs = [
 
   .cta-secondary:hover {
     background: var(--color-primary);
-    color: white;
+    color: var(--slate);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(247, 127, 0, 0.4);
+    box-shadow: 0 6px 20px rgba(251, 157, 161, 0.4);
   }
 
   .cta-tertiary {
@@ -1364,7 +1364,7 @@ const faqs = [
   }
 
   .cta-tertiary:hover {
-    color: var(--color-primary);
+    color: var(--color-secondary);
     border-bottom-color: var(--color-primary);
   }
 
@@ -1392,7 +1392,7 @@ const faqs = [
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    color: var(--color-primary);
+    color: var(--color-secondary);
     margin-bottom: 0.5rem;
     text-align: center;
   }
@@ -1414,7 +1414,7 @@ const faqs = [
   }
 
   .section-description a {
-    color: var(--color-primary);
+    color: var(--color-secondary);
     font-weight: 600;
   }
 
@@ -1433,7 +1433,7 @@ const faqs = [
   }
 
   .conf-about .prose p.about-vision {
-    color: var(--color-primary);
+    color: var(--color-secondary);
     font-weight: 600;
     font-size: 1.2rem;
   }
@@ -1525,7 +1525,7 @@ const faqs = [
   }
 
   .venue-address-link:hover {
-    color: var(--color-primary);
+    color: var(--color-secondary);
   }
 
   /* Schedule Section */
@@ -1536,7 +1536,7 @@ const faqs = [
   .schedule-time-large {
     font-size: 3rem;
     font-weight: 800;
-    color: var(--color-primary);
+    color: var(--color-secondary);
   }
 
   .schedule-highlights {
@@ -1549,7 +1549,7 @@ const faqs = [
     display: inline-block;
     padding: 0.9rem 2.5rem;
     background: var(--color-primary);
-    color: #fff;
+    color: var(--slate);
     font-weight: 700;
     font-size: 1.15rem;
     border-radius: 8px;
@@ -1565,7 +1565,7 @@ const faqs = [
   }
 
   .schedule-link {
-    color: var(--color-primary);
+    color: var(--color-secondary);
     font-weight: 600;
     text-decoration: none;
   }
@@ -1713,7 +1713,7 @@ const faqs = [
   }
 
   .organizer-link:hover .organizer-image-wrapper {
-    box-shadow: 0 8px 20px rgba(247, 127, 0, 0.3);
+    box-shadow: 0 8px 20px rgba(251, 157, 161, 0.3);
   }
 
   .organizer-image-wrapper {
@@ -1723,7 +1723,7 @@ const faqs = [
     border-radius: 50%;
     overflow: hidden;
     border: 4px solid var(--color-primary);
-    box-shadow: 0 4px 12px rgba(247, 127, 0, 0.2);
+    box-shadow: 0 4px 12px rgba(251, 157, 161, 0.2);
     transition: box-shadow 0.3s ease;
   }
 
@@ -1745,7 +1745,7 @@ const faqs = [
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: var(--color-primary);
+    color: var(--color-secondary);
   }
 
   /* Volunteers Section */
@@ -1794,7 +1794,7 @@ const faqs = [
   }
 
   .volunteer-link:hover .volunteer-image-wrapper {
-    box-shadow: 0 8px 20px rgba(247, 127, 0, 0.3);
+    box-shadow: 0 8px 20px rgba(251, 157, 161, 0.3);
   }
 
   .volunteer-image-wrapper {
@@ -1804,7 +1804,7 @@ const faqs = [
     border-radius: 50%;
     overflow: hidden;
     border: 3px solid var(--color-primary);
-    box-shadow: 0 4px 12px rgba(247, 127, 0, 0.15);
+    box-shadow: 0 4px 12px rgba(251, 157, 161, 0.15);
     transition: box-shadow 0.3s ease;
   }
 
@@ -1871,7 +1871,7 @@ const faqs = [
   }
 
   .faq-contact a {
-    color: var(--color-primary);
+    color: var(--color-secondary);
     font-weight: 600;
   }
 
@@ -1881,7 +1881,7 @@ const faqs = [
     align-items: center;
     gap: 0.5rem;
     background: var(--color-primary);
-    color: white;
+    color: var(--slate);
     padding: 1rem 2rem;
     border-radius: 8px;
     font-weight: 700;
@@ -1889,12 +1889,12 @@ const faqs = [
     text-decoration: none;
     transition: all 0.3s ease;
     border: 2px solid var(--color-primary);
-    box-shadow: 0 4px 12px rgba(247, 127, 0, 0.3);
+    box-shadow: 0 4px 12px rgba(251, 157, 161, 0.3);
   }
 
   .cta-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(247, 127, 0, 0.4);
+    box-shadow: 0 6px 20px rgba(251, 157, 161, 0.4);
   }
 
   .cta-icon {
@@ -1929,13 +1929,13 @@ const faqs = [
     background: white;
     padding: 1.25rem;
     border-radius: 16px;
-    border: 1px solid rgba(44, 62, 58, 0.08);
+    border: 1px solid rgba(36, 64, 67, 0.08);
     transition: all 0.3s ease;
   }
 
   .speaker-card:hover {
     border-color: var(--color-primary);
-    box-shadow: 0 4px 20px rgba(232, 136, 127, 0.12);
+    box-shadow: 0 4px 20px rgba(251, 157, 161, 0.12);
     transform: translateY(-2px);
   }
 
@@ -1977,18 +1977,18 @@ const faqs = [
     letter-spacing: 0.08em;
     padding: 0.2rem 0.6rem;
     border-radius: 6px;
-    background: rgba(232, 136, 127, 0.12);
-    color: var(--color-primary-dark);
+    background: rgba(251, 157, 161, 0.12);
+    color: var(--color-secondary);
   }
 
   .format-workshop {
-    background: rgba(44, 62, 58, 0.08);
+    background: rgba(36, 64, 67, 0.08);
     color: var(--color-secondary);
   }
 
   .format-lightning-talk {
     background: rgba(245, 199, 194, 0.3);
-    color: var(--color-primary-dark);
+    color: var(--color-secondary);
   }
 
   .speakers-more {
@@ -2040,7 +2040,7 @@ const faqs = [
 
   .sponsor-logo-wrapper:hover {
     border-color: var(--color-primary);
-    box-shadow: 0 4px 16px rgba(232, 136, 127, 0.12);
+    box-shadow: 0 4px 16px rgba(251, 157, 161, 0.12);
     transform: translateY(-2px);
   }
 
@@ -2102,7 +2102,7 @@ const faqs = [
     background: white;
     padding: 1.75rem;
     border-radius: 16px;
-    border: 1px solid rgba(44, 62, 58, 0.08);
+    border: 1px solid rgba(36, 64, 67, 0.08);
     text-decoration: none;
     color: inherit;
     transition: all 0.3s ease;
@@ -2110,7 +2110,7 @@ const faqs = [
 
   .partner-card:hover {
     border-color: var(--color-primary);
-    box-shadow: 0 4px 20px rgba(232, 136, 127, 0.12);
+    box-shadow: 0 4px 20px rgba(251, 157, 161, 0.12);
     transform: translateY(-2px);
   }
 
@@ -2119,7 +2119,7 @@ const faqs = [
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: var(--color-primary);
+    color: var(--color-secondary);
     margin-bottom: 0.5rem;
   }
 
@@ -2145,7 +2145,7 @@ const faqs = [
     gap: 0.25rem;
     font-size: 0.85rem;
     font-weight: 700;
-    color: var(--color-primary);
+    color: var(--color-secondary);
     transition: gap 0.3s ease;
   }
 

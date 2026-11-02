@@ -4,27 +4,39 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * Brand tokens from the Agentic design system
+ * (github.com/agentic-hamburg/design-system, tokens/tokens.json).
+ * Two brand colors plus the paper ground. No other hues, tints or greys:
+ * muted text is slate at --ink-muted-opacity.
+ */
 :root {
-  /* Coral/Teal palette inspired by the Agentic Conf logo */
-  --color-primary: #e8887f; /* Coral/salmon */
-  --color-primary-light: #f0a59e;
-  --color-primary-dark: #d6706a;
-  --color-secondary: #2c3e3a; /* Dark teal */
-  --color-secondary-light: #3d524e;
-  --color-accent: #f5c7c2; /* Soft coral accent */
+  --slate: #244043;
+  --salmon: #fb9da1;
+  --paper: #f7f3ee;
+  --ink-muted-opacity: 0.65;
+
+  /* Site aliases mapped onto the brand tokens */
+  --color-primary: var(--salmon);
+  --color-primary-light: var(--salmon);
+  --color-primary-dark: var(--salmon);
+  --color-secondary: var(--slate);
+  --color-secondary-light: var(--slate);
+  --color-accent: var(--salmon);
 
   /* Backgrounds */
-  --color-bg-cream: #fdf0ed; /* Very light coral */
-  --color-bg-light: #fbe8e4; /* Light coral */
-  --color-bg-soft: #fef5f3; /* Subtle coral tint */
+  --color-bg-cream: var(--paper);
+  --color-bg-light: var(--paper);
+  --color-bg-soft: var(--paper);
 
   /* Text colors */
-  --color-text-primary: #2c3e3a; /* Dark teal */
-  --color-text-secondary: #4a5e5a; /* Medium teal */
+  --color-text-primary: var(--slate);
+  --color-text-secondary: rgba(36, 64, 67, var(--ink-muted-opacity));
 
-  /* Fonts */
-  --font-display: "DM Serif Display", Georgia, serif;
-  --font-body: "Quicksand", system-ui, -apple-system, sans-serif;
+  /* Fonts: Rufina stands in for Canela until it is licensed */
+  --font-display: "Canela", "Canela Text", "Rufina", Georgia, serif;
+  --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-body: var(--font-sans);
 }
 
 /* Global font family for the entire app */
@@ -42,6 +54,13 @@ body {
   color: var(--color-text-primary);
 }
 
+/* Titles use the display face at 700, as in the design system */
+h1,
+h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
 .site-header,
 .site-footer {
   background-color: var(--color-bg-soft);
@@ -55,8 +74,8 @@ body {
   font-family: var(--font-display);
   font-size: clamp(2.5rem, 5vw, 3.75rem);
   line-height: 1.1;
-  font-weight: 400;
-  letter-spacing: -0.015em;
+  font-weight: 700;
+  letter-spacing: 0;
   color: var(--color-text-primary);
 }
 

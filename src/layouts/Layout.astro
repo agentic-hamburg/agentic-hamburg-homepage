@@ -1,11 +1,10 @@
 ---
 import PostHogClient from "../components/PostHogClient.astro";
 
-// Import only fonts actually used in the codebase - Latin subset only for optimal performance
-import "@fontsource/quicksand/latin-500.css"; /* font-medium (form labels/buttons) */
-import "@fontsource/quicksand/latin-600.css"; /* font-semibold */
-import "@fontsource/quicksand/latin-700.css"; /* font-bold (headings) */
-import "@fontsource/dm-serif-display/latin-400.css"; /* Display serif for headings */
+// Design system display face (Rufina stands in for Canela), self-hosted, Latin subset only.
+// Body text uses the system Helvetica Neue stack, so it needs no web font.
+import "@fontsource/rufina/latin-400.css"; /* lead paragraphs */
+import "@fontsource/rufina/latin-700.css"; /* titles, names, dates, numerals */
 
 export interface Props {
   title: string;

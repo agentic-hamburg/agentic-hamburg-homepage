@@ -31,12 +31,6 @@ import { communityStats } from "../config/community";
   <main>
     <!-- Hero Section -->
     <section class="hero">
-      <div class="hero-bg">
-        <div class="hero-orb hero-orb-1"></div>
-        <div class="hero-orb hero-orb-2"></div>
-        <div class="hero-orb hero-orb-3"></div>
-      </div>
-
       <div class="hero-content">
         <h1 class="hero-title">
           <span class="title-line">Agentic</span>
@@ -319,7 +313,8 @@ import { communityStats } from "../config/community";
     position: relative;
     z-index: 40;
     background: var(--color-secondary);
-    color: white;
+    color: var(--paper);
+    border-bottom: 2px solid var(--salmon);
     text-decoration: none;
     padding: 0.75rem 1rem;
     text-align: center;
@@ -339,7 +334,8 @@ import { communityStats } from "../config/community";
   }
 
   .banner-badge {
-    background: rgba(232, 136, 127, 0.3);
+    background: var(--salmon);
+    color: var(--slate);
     padding: 0.25rem 0.75rem;
     border-radius: 50px;
     font-size: 0.75rem;
@@ -373,43 +369,9 @@ import { communityStats } from "../config/community";
     justify-content: center;
     overflow: hidden;
     padding: 2.5rem 1.5rem 7rem;
-    background: var(--color-primary);
-  }
-
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-  }
-
-  .hero-orb {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(100px);
-  }
-
-  .hero-orb-1 {
-    width: 700px;
-    height: 700px;
-    background: rgba(214, 112, 106, 0.5);
-    top: -300px;
-    right: -200px;
-  }
-
-  .hero-orb-2 {
-    width: 500px;
-    height: 500px;
-    background: rgba(245, 199, 194, 0.4);
-    bottom: -200px;
-    left: -150px;
-  }
-
-  .hero-orb-3 {
-    width: 300px;
-    height: 300px;
-    background: rgba(44, 62, 58, 0.15);
-    top: 40%;
-    left: 60%;
+    /* Hero surface from the design system: slate ground, paper ink, salmon accents */
+    background: var(--slate);
+    color: var(--paper);
   }
 
   .hero-content {
@@ -422,29 +384,28 @@ import { communityStats } from "../config/community";
   .hero-title {
     font-family: var(--font-display);
     font-size: clamp(4rem, 14vw, 8rem);
-    font-weight: 400;
+    font-weight: 700;
     line-height: 0.95;
-    letter-spacing: -0.03em;
+    letter-spacing: 0.01em;
     margin-bottom: 1.5rem;
   }
 
   .title-line {
     display: block;
-    color: var(--color-secondary);
+    color: var(--paper);
   }
 
   .title-accent {
-    color: var(--color-secondary);
-    opacity: 0.5;
+    color: var(--salmon);
   }
 
   .hero-tagline {
     font-size: clamp(1.1rem, 2.5vw, 1.35rem);
     line-height: 1.7;
-    color: #1f2c28;
+    color: var(--paper);
     max-width: 640px;
     margin: 0 auto 1.5rem;
-    font-weight: 700;
+    font-weight: 400;
   }
 
   .hero-actions {
@@ -459,10 +420,18 @@ import { communityStats } from "../config/community";
   .hero-actions .btn-primary {
     white-space: normal;
     justify-content: center;
+    background: var(--salmon);
+    color: var(--slate);
+    box-shadow: none;
+  }
+
+  .hero-actions .btn-primary:hover {
+    background: var(--salmon);
+    box-shadow: none;
   }
 
   .hero-actions .btn-ghost {
-    color: #1f2c28;
+    color: var(--paper);
   }
 
   .hero-stats {
@@ -483,13 +452,13 @@ import { communityStats } from "../config/community";
   .stat-number {
     font-family: var(--font-display);
     font-size: 2.25rem;
-    font-weight: 400;
-    color: var(--color-secondary);
+    font-weight: 700;
+    color: var(--salmon);
     line-height: 1;
   }
 
   .stat-star {
-    color: var(--color-secondary);
+    color: var(--salmon);
     margin-left: 2px;
   }
 
@@ -498,18 +467,14 @@ import { communityStats } from "../config/community";
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: var(--color-secondary-light);
+    color: var(--paper);
+    opacity: var(--ink-muted-opacity);
   }
 
   .stat-separator {
-    width: 1px;
+    width: 2px;
     height: 40px;
-    background: linear-gradient(
-      180deg,
-      transparent,
-      rgba(44, 62, 58, 0.25),
-      transparent
-    );
+    background: var(--salmon);
   }
 
   @media (max-width: 600px) {
@@ -530,7 +495,7 @@ import { communityStats } from "../config/community";
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
-    color: var(--color-secondary);
+    color: var(--paper);
     font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
@@ -579,7 +544,7 @@ import { communityStats } from "../config/community";
   .section-title {
     font-family: var(--font-display);
     font-size: clamp(2rem, 5vw, 3rem);
-    font-weight: 400;
+    font-weight: 700;
     color: var(--color-text-primary);
     letter-spacing: -0.01em;
   }
@@ -621,11 +586,11 @@ import { communityStats } from "../config/community";
       var(--color-bg-light) 100%
     );
     border: 2px solid var(--color-primary);
-    box-shadow: 0 4px 30px rgba(232, 136, 127, 0.12);
+    box-shadow: 0 4px 30px rgba(251, 157, 161, 0.12);
   }
 
   .card-featured:hover {
-    box-shadow: 0 20px 60px rgba(232, 136, 127, 0.25);
+    box-shadow: 0 20px 60px rgba(251, 157, 161, 0.25);
   }
 
   .card-featured .card-glow {
@@ -636,7 +601,7 @@ import { communityStats } from "../config/community";
     height: 100%;
     background: radial-gradient(
       circle,
-      rgba(232, 136, 127, 0.1) 0%,
+      rgba(251, 157, 161, 0.1) 0%,
       transparent 70%
     );
     pointer-events: none;
@@ -644,11 +609,11 @@ import { communityStats } from "../config/community";
 
   .card-secondary {
     background: var(--color-bg-soft);
-    border: 2px solid rgba(44, 62, 58, 0.08);
+    border: 2px solid rgba(36, 64, 67, 0.08);
   }
 
   .card-secondary:hover {
-    border-color: rgba(232, 136, 127, 0.3);
+    border-color: rgba(251, 157, 161, 0.3);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
   }
 
@@ -666,7 +631,7 @@ import { communityStats } from "../config/community";
     text-transform: uppercase;
     letter-spacing: 0.1em;
     color: var(--color-secondary);
-    background: rgba(232, 136, 127, 0.12);
+    background: rgba(251, 157, 161, 0.12);
     padding: 0.5rem 1rem;
     border-radius: 50px;
     margin-bottom: 1.25rem;
@@ -693,7 +658,7 @@ import { communityStats } from "../config/community";
   }
 
   .badge-muted {
-    background: rgba(44, 62, 58, 0.06);
+    background: rgba(36, 64, 67, 0.06);
     color: var(--color-text-secondary);
   }
 
@@ -721,7 +686,7 @@ import { communityStats } from "../config/community";
   .card-title {
     font-family: var(--font-display);
     font-size: clamp(1.75rem, 4vw, 2.25rem);
-    font-weight: 400;
+    font-weight: 700;
     line-height: 1.15;
     letter-spacing: -0.01em;
     color: var(--color-text-primary);
@@ -776,12 +741,12 @@ import { communityStats } from "../config/community";
     font-size: 1rem;
     text-decoration: none;
     transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-    box-shadow: 0 4px 15px rgba(44, 62, 58, 0.25);
+    box-shadow: 0 4px 15px rgba(36, 64, 67, 0.25);
   }
 
   .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(44, 62, 58, 0.35);
+    box-shadow: 0 8px 25px rgba(36, 64, 67, 0.35);
     background: var(--color-secondary-light);
   }
 
@@ -811,7 +776,7 @@ import { communityStats } from "../config/community";
   }
 
   .btn-secondary:hover {
-    background: rgba(44, 62, 58, 0.04);
+    background: rgba(36, 64, 67, 0.04);
     transform: translateY(-2px);
   }
 
@@ -836,7 +801,7 @@ import { communityStats } from "../config/community";
   }
 
   .btn-ghost:hover {
-    color: var(--color-primary-dark);
+    color: var(--color-secondary);
   }
 
   /* ===== PROOF SECTION ===== */
@@ -890,8 +855,8 @@ import { communityStats } from "../config/community";
     background: white;
     padding: 1.5rem 2rem;
     border-radius: 16px;
-    box-shadow: 0 2px 15px rgba(44, 62, 58, 0.05);
-    border: 1px solid rgba(44, 62, 58, 0.06);
+    box-shadow: 0 2px 15px rgba(36, 64, 67, 0.05);
+    border: 1px solid rgba(36, 64, 67, 0.06);
   }
 
   .testimonial-rating {
@@ -924,8 +889,8 @@ import { communityStats } from "../config/community";
     display: block;
     font-family: var(--font-display);
     font-size: 2.5rem;
-    font-weight: 400;
-    color: var(--color-primary-dark);
+    font-weight: 700;
+    color: var(--color-secondary);
     line-height: 1.1;
   }
 
@@ -940,7 +905,7 @@ import { communityStats } from "../config/community";
   .summary-divider {
     width: 1px;
     height: 50px;
-    background: rgba(44, 62, 58, 0.1);
+    background: rgba(36, 64, 67, 0.1);
   }
 
   @media (max-width: 600px) {
@@ -974,7 +939,7 @@ import { communityStats } from "../config/community";
     height: 400px;
     background: radial-gradient(
       ellipse,
-      rgba(232, 136, 127, 0.15) 0%,
+      rgba(251, 157, 161, 0.15) 0%,
       transparent 70%
     );
   }
@@ -987,7 +952,7 @@ import { communityStats } from "../config/community";
   .cta-title {
     font-family: var(--font-display);
     font-size: clamp(2.5rem, 6vw, 4rem);
-    font-weight: 400;
+    font-weight: 700;
     color: white;
     margin-bottom: 1rem;
     letter-spacing: -0.01em;
@@ -1012,19 +977,19 @@ import { communityStats } from "../config/community";
     align-items: center;
     gap: 0.5rem;
     background: var(--color-primary);
-    color: #1f2c28;
+    color: var(--slate);
     padding: 1.25rem 2.5rem;
     border-radius: 14px;
     font-weight: 700;
     font-size: 1.125rem;
     text-decoration: none;
     transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-    box-shadow: 0 4px 20px rgba(232, 136, 127, 0.3);
+    box-shadow: 0 4px 20px rgba(251, 157, 161, 0.3);
   }
 
   .btn-cta:hover {
     transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 10px 40px rgba(232, 136, 127, 0.4);
+    box-shadow: 0 10px 40px rgba(251, 157, 161, 0.4);
     background: var(--color-primary-light);
   }
 
