@@ -245,13 +245,13 @@ const { events = defaultEvents } = Astro.props;
       var(--color-primary) 0%,
       var(--color-accent) 100%
     );
-    color: white;
+    color: var(--slate);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.5rem;
     font-weight: 800;
-    box-shadow: 0 4px 12px rgba(247, 127, 0, 0.3);
+    box-shadow: 0 4px 12px rgba(251, 157, 161, 0.3);
     border: 4px solid white;
   }
 
@@ -269,7 +269,7 @@ const { events = defaultEvents } = Astro.props;
   .timeline-content:hover {
     border-color: var(--color-primary-light);
     transform: translateX(4px);
-    box-shadow: 0 4px 12px rgba(247, 127, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(251, 157, 161, 0.1);
   }
 
   .event-header {
@@ -297,7 +297,7 @@ const { events = defaultEvents } = Astro.props;
     padding: 0.5rem 1rem;
     border-radius: 20px;
     font-weight: 600;
-    color: var(--color-primary);
+    color: var(--color-secondary);
     border: 2px solid var(--color-primary);
     white-space: nowrap;
   }
@@ -323,7 +323,7 @@ const { events = defaultEvents } = Astro.props;
   }
 
   .meta-item.sponsor {
-    color: var(--color-primary);
+    color: var(--color-secondary);
     font-weight: 600;
   }
 

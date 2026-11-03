@@ -53,7 +53,7 @@ export const prerender = false;
               <div class="mb-2 flex items-center justify-between">
                 <span
                   class="rounded-full px-3 py-1 text-xs font-semibold"
-                  style="background: var(--color-bg-light); color: var(--color-primary-dark);"
+                  style="background: var(--color-bg-light); color: var(--color-secondary);"
                 >
                   {workshop.level}
                 </span>
@@ -72,12 +72,12 @@ export const prerender = false;
               <p class="mb-3 text-sm" style="color: var(--color-text-secondary);">
                 {workshop.description}
               </p>
-              <p class="text-sm font-semibold" style="color: var(--color-primary-dark);">
+              <p class="text-sm font-semibold" style="color: var(--color-secondary);">
                 {workshop.speakers.join(", ")}
               </p>
               <div
                 class="mt-3 text-xs font-semibold"
-                style="color: var(--color-primary);"
+                style="color: var(--color-secondary);"
               >
                 Register on Luma &rarr;
               </div>
@@ -110,7 +110,7 @@ export const prerender = false;
         <!-- Submission Form -->
         <div
           class="mb-8 rounded-xl border p-6"
-          style="background: white; border-color: rgba(44, 62, 58, 0.12);"
+          style="background: white; border-color: rgba(36, 64, 67, 0.12);"
         >
           <h3
             class="mb-4 text-lg font-bold"
@@ -198,7 +198,7 @@ export const prerender = false;
 <style>
   .workshop-card {
     background: white;
-    border-color: rgba(44, 62, 58, 0.12);
+    border-color: rgba(36, 64, 67, 0.12);
   }
 
   .workshop-card:hover {
@@ -206,14 +206,14 @@ export const prerender = false;
   }
 
   .idea-input {
-    border-color: rgba(44, 62, 58, 0.2);
+    border-color: rgba(36, 64, 67, 0.2);
     color: var(--color-text-primary);
     outline: none;
   }
 
   .idea-input:focus {
     border-color: var(--color-primary);
-    box-shadow: 0 0 0 2px rgba(232, 136, 127, 0.2);
+    box-shadow: 0 0 0 2px rgba(251, 157, 161, 0.2);
   }
 
   .idea-input::placeholder {
@@ -236,7 +236,7 @@ export const prerender = false;
 
   .idea-card {
     background: white;
-    border-color: rgba(44, 62, 58, 0.12);
+    border-color: rgba(36, 64, 67, 0.12);
   }
 
 </style>
@@ -274,7 +274,7 @@ export const prerender = false;
         .join("");
     } catch {
       container.innerHTML = `
-        <div class="py-8 text-center" style="color: var(--color-primary-dark);">
+        <div class="py-8 text-center" style="color: var(--color-secondary);">
           Failed to load ideas. Please refresh the page.
         </div>
       `;

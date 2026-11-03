@@ -1,6 +1,7 @@
 ---
-import { Image } from "astro:assets";
-import logoImage from "../assets/logo-header.png";
+// Horizontal, Hamburg logo from the design system (assets/logos/). Vector only:
+// never rasterise, redraw or recolor it. Slategreen art sits on the paper header.
+import logo from "../assets/brand/logo-horizontal-slategreen-hamburg.svg";
 import { useTranslations } from "../lib/i18n/utils";
 
 const t = useTranslations();
@@ -15,19 +16,18 @@ const isAbout = currentPath.includes("/about");
 ---
 
 <header
-  class="site-header relative z-50 w-full border-b border-[var(--color-secondary)]"
-  style="border-opacity: 0.1;"
+  class="site-header relative z-50 w-full border-b-2 border-[var(--salmon)]"
 >
   <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
     <div class="flex h-20 items-center justify-between">
       <div class="flex items-center">
         <a href="/" class="flex items-center" aria-label="Agentic Hamburg home">
-          <Image
-            src={logoImage}
+          <img
+            src={logo.src}
             alt="Agentic Hamburg"
-            width={400}
-            height={97}
-            class="h-14 w-auto rounded-md"
+            width={logo.width}
+            height={logo.height}
+            class="site-logo"
             loading="eager"
             decoding="sync"
           />
@@ -53,6 +53,12 @@ const isAbout = currentPath.includes("/about");
 </header>
 
 <style>
+  .site-logo {
+    display: block;
+    height: 2.25rem;
+    width: auto;
+  }
+
   @media (max-width: 767px) {
     .site-header > div > div {
       height: auto;
